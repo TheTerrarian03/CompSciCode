@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\C Test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F3B712E4-02A8-4D06-9443-AA80B30DBD1F}|C Test\\C Test.vcxproj|Z:\\Desktop\\Programming\\College\\CPT_S 121\\C Test\\C Test\\C Test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F3B712E4-02A8-4D06-9443-AA80B30DBD1F}|C Test\\C Test.vcxproj|solutionrelative:C Test\\C Test.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "C Test.c",
+              "DocumentMoniker": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\C Test\\C Test\\C Test.c",
+              "RelativeDocumentMoniker": "C Test\\C Test.c",
+              "ToolTip": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\C Test\\C Test\\C Test.c",
+              "RelativeToolTip": "C Test\\C Test.c",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAwwAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-08-19T18:09:18.104Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

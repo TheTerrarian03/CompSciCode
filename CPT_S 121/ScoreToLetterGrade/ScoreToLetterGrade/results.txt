@@ -1,0 +1,3 @@
+Score 1: A
+Score 2: C
+Score 3: B

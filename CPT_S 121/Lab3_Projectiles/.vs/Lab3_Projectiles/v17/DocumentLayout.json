@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|solutionrelative:Lab3_Projectiles\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|solutionrelative:Lab3_Projectiles\\functions.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.h||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{C8BE02CF-CB83-4447-9679-4AC5316D6CB9}|Lab3_Projectiles\\Lab3_Projectiles.vcxproj|solutionrelative:Lab3_Projectiles\\functions.h||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "functions.h",
+              "DocumentMoniker": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.h",
+              "RelativeDocumentMoniker": "Lab3_Projectiles\\functions.h",
+              "ToolTip": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.h",
+              "RelativeToolTip": "Lab3_Projectiles\\functions.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-09-13T00:05:15.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "functions.c",
+              "DocumentMoniker": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.c",
+              "RelativeDocumentMoniker": "Lab3_Projectiles\\functions.c",
+              "ToolTip": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\functions.c",
+              "RelativeToolTip": "Lab3_Projectiles\\functions.c",
+              "ViewState": "AgIAAB8AAAAA/////z8lwDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-09-13T00:05:06.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\main.c",
+              "RelativeDocumentMoniker": "Lab3_Projectiles\\main.c",
+              "ToolTip": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab3_Projectiles\\Lab3_Projectiles\\main.c",
+              "RelativeToolTip": "Lab3_Projectiles\\main.c",
+              "ViewState": "AgIAAAYAAAAAODMzMzPrvxQAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-09-13T00:04:51.659Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

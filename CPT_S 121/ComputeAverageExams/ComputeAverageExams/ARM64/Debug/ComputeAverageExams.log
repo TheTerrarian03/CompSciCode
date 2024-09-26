@@ -1,0 +1,7 @@
+﻿  main.c
+\\mac\Home\Desktop\Programming\College\CPT_S 121\ComputeAverageExams\ComputeAverageExams\main.c(9,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+main.obj : error LNK2019: unresolved external symbol get_grade_point referenced in function main
+main.obj : error LNK2019: unresolved external symbol compute_sum_credits referenced in function main
+main.obj : error LNK2019: unresolved external symbol get_credits referenced in function main
+main.obj : error LNK2019: unresolved external symbol compute_gpa referenced in function main
+\\Mac\Home\Desktop\Programming\College\CPT_S 121\ComputeAverageExams\ARM64\Debug\ComputeAverageExams.exe : fatal error LNK1120: 4 unresolved externals

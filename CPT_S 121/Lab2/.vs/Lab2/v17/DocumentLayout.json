@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07B5ED23-710B-4364-B7D4-C9604301CC4D}|Lab2\\Lab2.vcxproj|Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab2\\Lab2\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{07B5ED23-710B-4364-B7D4-C9604301CC4D}|Lab2\\Lab2.vcxproj|solutionrelative:Lab2\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab2\\Lab2\\main.c",
+              "RelativeDocumentMoniker": "Lab2\\main.c",
+              "ToolTip": "Z:\\Desktop\\Programming\\College\\CPT_S 121\\Lab2\\Lab2\\main.c",
+              "RelativeToolTip": "Lab2\\main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-09-05T23:31:04.36Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

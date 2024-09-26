@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "Z:\\Desktop\\College Work\\2024 Semester 1\\CPT_2 121\\1. Hello World\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{70268B43-C96F-42CC-912A-191175CC5CB9}|1. Hello World\\1. Hello World.vcxproj|Z:\\Desktop\\College Work\\2024 Semester 1\\CPT_2 121\\1. Hello World\\1. Hello World\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{70268B43-C96F-42CC-912A-191175CC5CB9}|1. Hello World\\1. Hello World.vcxproj|solutionrelative:1. Hello World\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "Z:\\Desktop\\College Work\\2024 Semester 1\\CPT_2 121\\1. Hello World\\1. Hello World\\main.c",
+              "RelativeDocumentMoniker": "1. Hello World\\main.c",
+              "ToolTip": "Z:\\Desktop\\College Work\\2024 Semester 1\\CPT_2 121\\1. Hello World\\1. Hello World\\main.c",
+              "RelativeToolTip": "1. Hello World\\main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-08-23T15:48:29.955Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

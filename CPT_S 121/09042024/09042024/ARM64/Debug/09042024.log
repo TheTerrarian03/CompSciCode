@@ -1,0 +1,9 @@
+﻿  main.c
+Z:\Desktop\Programming\College\CPT_S 121\09042024\09042024\main.c(8,16): warning C4129: 'o': unrecognized character escape sequence
+Z:\Desktop\Programming\College\CPT_S 121\09042024\09042024\main.c(13,8): warning C4473: 'scanf' : not enough arguments passed for format string
+      Z:\Desktop\Programming\College\CPT_S 121\09042024\09042024\main.c(13,8):
+      placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+      Z:\Desktop\Programming\College\CPT_S 121\09042024\09042024\main.c(13,8):
+      the missing variadic argument 1 is required by format string '%d'
+  
+  09042024.vcxproj -> Z:\Desktop\Programming\College\CPT_S 121\09042024\ARM64\Debug\09042024.exe
