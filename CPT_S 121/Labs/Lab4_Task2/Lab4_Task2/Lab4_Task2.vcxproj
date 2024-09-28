@@ -185,8 +185,8 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lab4.c" />
-    <ClInclude Include="lab4.h" />
+    <ClInclude Include="Lab5.c" />
+    <ClInclude Include="Lab5.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
