@@ -29,7 +29,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Lab4Task2</RootNamespace>
+    <ProjectGuid>{0dd957cf-9ffd-438b-beb4-0a5fd8be0a71}</ProjectGuid>
+    <RootNamespace>Lab5_VS_TEST</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
