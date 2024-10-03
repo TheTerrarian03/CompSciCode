@@ -1,0 +1,13 @@
+Sep 30 2024
+
+int n = 5;
+int *ptr = NULL
+int *ptr = &n;
+
+the address stored in the pointer is the direct value of the pointer, it's an address
+
+the value stored in the variable at that address is the indirect value of the pointer
+
+PA:
+
+loop, %, /10's

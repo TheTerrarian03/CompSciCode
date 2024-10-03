@@ -20,5 +20,10 @@
 
 int draw_card(int range);
 void print_card(int card_number);
+int sum_card(int sum, int card_num);
+
+void divide(int n1, int n2, int *result_ptr, int *remainder_ptr);
+
+int calc_sum_digits(int number);
 
 #endif
