@@ -5,14 +5,13 @@ yeah
 #include "modularprogramming.h"
 
 int main() {
-    int n1 = 7, n2 = 3;
-    int result = 0, remainder = 0;
+    int array_ints[5] = {1, 2, 3, 4, 5};
 
-    divide(n1, n2, &result, &remainder);
+    print_array(array_ints, sizeof(array_ints)/4);
 
-    printf("Res: %d, Rem: %d\n", result, remainder);
-    
-    printf("&res: %p, &rem: %p\n", &result, &remainder);
+    init_array(array_ints, 5);
+
+    print_array(array_ints, sizeof(array_ints)/4);
 
     return 0;
 }

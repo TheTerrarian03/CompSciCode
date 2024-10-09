@@ -71,6 +71,3 @@ int main() {
 // "i like the way your thing looks" -Mason, 2024
 
 // monkeys on typewriters is this entire group ngl
-
-// L: Logan is gay
-// M: 
