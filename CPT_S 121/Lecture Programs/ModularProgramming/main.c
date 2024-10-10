@@ -9,7 +9,7 @@ int main() {
 
     print_array(array_ints, sizeof(array_ints)/4);
 
-    init_array(array_ints, 5);
+    init_array(array_ints, 6);
 
     print_array(array_ints, sizeof(array_ints)/4);
 
