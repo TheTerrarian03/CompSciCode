@@ -1,2 +1,4 @@
-run: build
-	clear; gcc -o program.o pa4.c main.c && clear && ./program.o
+all:
+	clear
+	gcc -o program.o pa4.c main.c
+	clear && ./program.o
