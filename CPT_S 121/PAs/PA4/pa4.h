@@ -79,8 +79,21 @@ double adjust_bank_balance(double bank_balance,
 
 /* --------- comparison methods ---------*/
 
+// Name: check_wager_amount
+// Description: Makes sure the wager is withing the bounds of the balance
+// Parameter: double wager, the player's wager
+// Parameter: double balance, the player's balance
+// Returns: int 1 if it is within bounds, int 0 all else
 int check_wager_amount(double wager, double balance);
+
+// Name: calculate_sum_dice
+// Description: Sums dice values
+// Parameter: int die1_value
+// Parameter: int die2_value
+// Returns: int sum of die1_value and die2_value
 int calculate_sum_dice(int die1_value, int die2_value);
+
+// 
 int is_win_loss_or_point(int sum_dice);
 int is_point_loss_or_neither(int sum_dice, int point_value);
 
