@@ -1,0 +1,5 @@
+﻿  BlackJack4.c
+  main.c
+  Generating Code...
+C:\Users\lsm03\Desktop\CompSciCode\CPT_S 121\Extra Credit\BlackJack4\BlackJack4\BlackJack4.c(59,1): warning C4715: 'determine_winner': not all control paths return a value
+  BlackJack4.vcxproj -> C:\Users\lsm03\Desktop\CompSciCode\CPT_S 121\Extra Credit\BlackJack4\x64\Debug\BlackJack4.exe
