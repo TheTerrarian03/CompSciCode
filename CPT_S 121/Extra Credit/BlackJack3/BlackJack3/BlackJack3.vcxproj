@@ -7,8 +7,6 @@
     <ClInclude Include="BlackJack.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="makefile" />
-    <None Include="program.o" />
-    <None Include="settings.json" />
+    <None Include=".DS_Store" />
   </ItemGroup>
 </Project>
