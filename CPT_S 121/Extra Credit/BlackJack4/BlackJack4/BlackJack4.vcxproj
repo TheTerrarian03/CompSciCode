@@ -126,12 +126,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
+  <ItemGroup Label="Header Files">
+    <ClInclude Include="BlackJack4.h" />
+  </ItemGroup>
+  <ItemGroup Label="Resource Files">
+    <ClCompile Include="main.py" />
+  </ItemGroup>
+  <ItemGroup Label="Source Files">
     <ClCompile Include="BlackJack4.c" />
     <ClCompile Include="main.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BlackJack4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
