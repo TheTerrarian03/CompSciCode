@@ -1,0 +1,14 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <ClCompile Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/main.c" />
+    <ClCompile Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/BlackJack.c" />
+    </ItemGroup>
+    <ItemGroup>
+    <ClInclude Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/BlackJack.h" />
+    </ItemGroup>
+    <ItemGroup>
+    <None Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/makefile" />
+    <None Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/program.o" />
+    <None Include="/Users/lsm03/Desktop/Programming/College/CompSciCode/CPT_S 121/Extra Credit/BlackJack 2/.vscode/settings.json" />
+    </ItemGroup>
+</Project>
