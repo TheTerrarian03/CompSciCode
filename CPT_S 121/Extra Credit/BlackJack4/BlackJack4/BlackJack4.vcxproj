@@ -126,13 +126,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup Label="Header Files">
+  <ItemGroup>
     <ClInclude Include="BlackJack4.h" />
   </ItemGroup>
-  <ItemGroup Label="Resource Files">
+  <ItemGroup>
     <ClCompile Include="main.py" />
   </ItemGroup>
-  <ItemGroup Label="Source Files">
+  <ItemGroup>
     <ClCompile Include="BlackJack4.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
