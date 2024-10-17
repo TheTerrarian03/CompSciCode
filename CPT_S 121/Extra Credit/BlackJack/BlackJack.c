@@ -14,15 +14,15 @@ void print_card(int card_num) {
 			break;
 		case THREE: printf("Three\n");
 			break;
-		case FOUR: printf("Three\n");
+		case FOUR: printf("Four\n");
 			break;
-		case FIVE: printf("Three\n");
+		case FIVE: printf("Five\n");
 			break;
-		case SIX: printf("Three\n");
+		case SIX: printf("Six\n");
 			break;
-		case SEVEN: printf("Three\n");
+		case SEVEN: printf("Seven\n");
 			break;
-		case EIGHT: printf("Three\n");
+		case EIGHT: printf("Eight\n");
 			break;
 		case NINE: printf("Nine\n");
 			break;
@@ -40,6 +40,49 @@ void print_card(int card_num) {
 			}
 			break;
 	}
+}
+
+void print_array(int *to_print, int size) {
+	for (int i=0; i < size; i++) {
+		printf(" %d\n", to_print[i]);
+	}
+}
+
+void print_player_turn(int *dealer_cards, int num_dealer_cards, int dealer_sum, int *player_cards, int num_player_cards, int player_sum) {
+	// Seperator
+	printf("\n---------- Player's Turn ---------\n");
+
+	// Dealer cards
+	printf("\nThe Dealer has the following cards:\n");
+	for (int i=0; i < num_dealer_cards; i++) {
+		print_card(dealer_cards[i]);
+	}
+	printf("with a sum of: [%d]\n", dealer_sum);
+	
+	// Player cards
+	printf("\nAnd you, the Player, have the following cards:\n");
+	for (int i=0; i < num_player_cards; i++) {
+		print_card(player_cards[i]);
+	}
+	printf(".. With a sum of: [%d]\n", player_sum);
+}
+
+void print_dealer_turn(int *dealer_cards, int num_dealer_cards, int dealer_sum, int decision) {
+	// Seperator
+	printf("\n---------- Dealer's Turn ----------\n");
+
+	// Decision 0, stand
+	if (decision == 0) {
+		printf("\nThe dealer has chosen to stand!\nThe dealer ends with the following cards:\n");
+	} else {
+		printf("\nThe dealer has chosen to draw!\nThe dealer now has the following cards:\n\n");
+	}
+
+	// Dealer Cards
+	for (int i=0; i < num_dealer_cards; i++) {
+		print_card(dealer_cards[i]);
+	}
+	printf("with a sum of: [%d]\n", dealer_sum);
 }
 
 int sum_cards(int card1, int card2) {
