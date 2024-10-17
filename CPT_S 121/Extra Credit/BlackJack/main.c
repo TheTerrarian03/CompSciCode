@@ -1,24 +1,21 @@
-// We are designing and building a game of Blackjack. We are making some
-// simplifications to our game. We'll not worry about the suit of a card.
-// We'll get a start to the implementation and then this will become a bonus
-// assignment.
+/*
+Name: Logan Meyers
+Date: 10/16/2024
+Program: BlackJack
 
-// History: 9/27/24 - Started drawing a flowchart for Blackjack. Introduced
-//                    random number generation using srand () and rand (), which
-//                    is very helpful for PA 4 as well. Implemented functions
-//                    draw_card () and print_card (). The function print_card ()
-//                    is incomplete.
+Description: Plays Black Jack!
+*/
 
 #include "BlackJack.h"
 
 int main(void)
 {
 	// seed random
-	srand((unsigned int) time(NULL));
+	srand((unsigned int)time(NULL));
 
 	// init vars
-	int player_cards[NUM_CARDS_IN_ARRAY] = {0};
-	int dealer_cards[NUM_CARDS_IN_ARRAY] = {0};
+	int player_cards[NUM_CARDS_IN_ARRAY] = { 0 };
+	int dealer_cards[NUM_CARDS_IN_ARRAY] = { 0 };
 
 	int p_sum = 0, d_sum = 0;
 	int p_num_cards = 2, d_num_cards = 2;
@@ -53,8 +50,8 @@ int main(void)
 	while (player_turn) {
 		// Print player's turn screen
 		print_player_turn(dealer_cards, d_num_cards, d_sum,
-						  player_cards, p_num_cards, p_sum);
-		
+			player_cards, p_num_cards, p_sum);
+
 		// ask for if they want to draw another card
 		char y_n_draw = ask_hit();
 
@@ -66,12 +63,12 @@ int main(void)
 
 		// if they draw, continue
 		p_num_cards++;
-		player_cards[p_num_cards-1] = draw_card(10);
-		p_sum = sum_cards(p_sum, player_cards[p_num_cards-1]);
+		player_cards[p_num_cards - 1] = draw_card(10);
+		p_sum = sum_cards(p_sum, player_cards[p_num_cards - 1]);
 
 		// Give feedback to the user about what they drew:
 		printf("You drew a: ");
-		print_card(player_cards[p_num_cards-1]);
+		print_card(player_cards[p_num_cards - 1]);
 
 		// if they go over 21, end player's turn, dealer wins
 		if (p_sum > 21) {
@@ -93,8 +90,8 @@ int main(void)
 		// draw another card
 		if (d_sum < 16) {
 			d_num_cards++;
-			dealer_cards[d_num_cards-1] = draw_card(10);
-			d_sum = sum_cards(d_sum, dealer_cards[d_num_cards-1]);
+			dealer_cards[d_num_cards - 1] = draw_card(10);
+			d_sum = sum_cards(d_sum, dealer_cards[d_num_cards - 1]);
 			print_dealer_turn(dealer_cards, d_num_cards, d_sum, 1);
 		}
 		// stand
@@ -119,30 +116,32 @@ int main(void)
 		}
 	}
 
-	// the dealer has less than 21.
-	// if the dealer and the player tie, they tie
-	if (d_sum == p_sum) {
-		game_result = 3;
+	if (!game_result) {
+		// the dealer has less than 21.
+		// if the dealer and the player tie, they tie
+		if (d_sum == p_sum) {
+			game_result = 3;
+		}
+
+		// if dealer has more than the player, the dealer wins
+		if (d_sum > p_sum) {
+			game_result = 2;
+		}
+
+		// if player has more than the dealer, the player wins
+		if (p_sum > d_sum) {
+			game_result = 1;
+		}
 	}
 
-	// if dealer has more than the player, the dealer wins
-	if (d_sum > p_sum) {
-		game_result = 2;
-	}
-
-	// if player has more than the dealer, the player wins
-	if (p_sum > d_sum) {
-		game_result = 1;
-	}
-	
 	switch (game_result) {
-		case 1: printf("You the player wins!!\n");
-				break;
-		case 2: printf("The dealer wins! (You lose)\n");
-				break;
-		case 3: printf("You both tie!!");
-				break;
-		default: printf("YOU BROKE THE GAME WAHOOOOO\n");
+	case 1: printf("You the player wins!!\n");
+		break;
+	case 2: printf("The dealer wins! (You lose)\n");
+		break;
+	case 3: printf("You both tie!!");
+		break;
+	default: printf("YOU BROKE THE GAME WAHOOOOO\n");
 	}
 
 	return 0;
