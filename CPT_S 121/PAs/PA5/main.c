@@ -53,27 +53,34 @@ void test() {
     fill_scores(p1_scores, 0);
     fill_scores(p2_scores, 0);
 
-    roll_dice(p1_dice, p1_held);
+    // roll_dice(p1_dice, p1_held);
 
-    printf("First roll:\n");
-    print_array(p1_dice, 6);
+    // printf("First roll:\n");
+    // print_array(p1_dice, 6);
 
-    p1_held[1] = 1;
-    p1_held[5] = 1;
+    // p1_held[1] = 1;
+    // p1_held[5] = 1;
 
-    printf("Second roll:\n");
-    roll_dice(p1_dice, p1_held);
+    // printf("Second roll:\n");
+    // roll_dice(p1_dice, p1_held);
 
-    print_array(p1_dice, 6);
+    // print_array(p1_dice, 6);
 
-    p1_held[1] = 0;
-    p1_held[5] = 0;
-    p1_held[2] = 1;
-    p1_held[3] = 1;
-    p1_held[4] = 1;
+    // p1_held[1] = 0;
+    // p1_held[5] = 0;
+    // p1_held[2] = 1;
+    // p1_held[3] = 1;
+    // p1_held[4] = 1;
 
-    roll_dice(p1_dice, p1_held);
+    // roll_dice(p1_dice, p1_held);
 
-    printf("Last roll:\n");
-    print_array(p1_dice, 6);
+    // printf("Last roll:\n");
+    // print_array(p1_dice, 6);
+
+    p1_scores[ONES] = 3;
+    p1_scores[FIVES] = 15;
+    p1_scores[KIND_3] = 6;
+    p1_scores[LG_STRAIGHT] = 69;
+
+    print_round_info(1, p1_scores, p1_dice, p1_held, 3);
 }

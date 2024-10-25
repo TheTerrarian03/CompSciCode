@@ -40,6 +40,8 @@ int roll_die();
 // input/output functions
 void print_game_rules();
 int get_menu_option();
+void print_score(int score, char *combo);
+void print_round_info(int p_turn, int *p_scores, int *p_dice, int *p_held, int rolls_left);
 void clear_scr();
 void print_array(int *array, int len);
 

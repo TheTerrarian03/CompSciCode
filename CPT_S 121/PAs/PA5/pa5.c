@@ -40,6 +40,41 @@ int get_menu_option(int min, int max) {
 
     return choice;
 }
+void print_score(int score, char *combo) {
+    if (score != 0) {
+        printf("%s |  %d\n", combo, score);
+    } else {
+        printf("%s |  -- \n", combo);
+    }
+}
+void print_round_info(int p_turn, int *p_scores, int *p_dice, int *p_held, int rolls_left) {
+    // player turn section
+    printf("It is player [ %d ]'s turn!\n\n", p_turn);
+
+    // game and score info
+    printf("---- Your Scores ----\n");
+    print_score(p_scores[ONES],        "Ones        ");
+    print_score(p_scores[TWOS],        "Twos        ");
+    print_score(p_scores[THREES],      "Threes      ");
+    print_score(p_scores[FOURS],       "Fours       ");
+    print_score(p_scores[FIVES],       "Fives       ");
+    print_score(p_scores[SIXES],       "Sixes       ");
+    printf("             |\n");
+    print_score(p_scores[UPPER_SUM],   "Sum         ");
+    print_score(p_scores[BONUS],       "Bonus       ");
+    printf("             |\n");
+    print_score(p_scores[KIND_3],      "3 of a Kind ");
+    print_score(p_scores[KIND_4],      "4 of a Kind ");
+    print_score(p_scores[FULL_HOUSE],  "Full House  ");
+    print_score(p_scores[SM_STRAIGHT], "Sm. Straight");
+    print_score(p_scores[LG_STRAIGHT], "Lg. Straight");
+    print_score(p_scores[CHANCE],      "Chance      ");
+    print_score(p_scores[YAHTZEE],     "Yahtzee!    ");
+    printf("             |\n");
+    print_score(p_scores[TOTAL],       "Total       ");
+
+    // Player dice
+}
 void clear_scr() {
     #ifndef DISABLE_CLEAR_SCR
         system(CLEAR_COMMAND);
