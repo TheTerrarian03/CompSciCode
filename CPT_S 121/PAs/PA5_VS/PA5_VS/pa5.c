@@ -223,7 +223,6 @@ int play_game() {
         printf("No one wins!\n");
     }
 
-    printf("\nPress enter to continue...");
     system("pause");
 
     return 0;

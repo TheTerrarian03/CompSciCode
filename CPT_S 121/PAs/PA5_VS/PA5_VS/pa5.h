@@ -38,7 +38,7 @@
 
 // other defines
 #define SCORE_ARRAY_LENGTH 16
-#define ROUNDS 2
+#define ROUNDS 13
 #define CLEAR_COMMAND "cls"
 // #define DISABLE_CLEAR_SCR  // un-comment to disable clearing screen, if you want history
 
