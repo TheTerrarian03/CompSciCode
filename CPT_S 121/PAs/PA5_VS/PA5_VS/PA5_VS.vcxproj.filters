@@ -15,24 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa5.c">
+    <ClCompile Include="pa5_vs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="pa5.h">
+    <ClCompile Include="pa5_vs.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="makefile">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="program.o">
-      <Filter>Resource Files</Filter>
-    </Text>
+    </ClCompile>
   </ItemGroup>
 </Project>

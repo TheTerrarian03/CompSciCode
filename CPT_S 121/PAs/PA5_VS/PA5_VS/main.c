@@ -8,7 +8,7 @@
 - Description: Let's play Yahtzee! 2 Player
 */
 
-#include "pa5.h"
+#include "pa5_vs.h"
 
 int main() {
     // seed random
