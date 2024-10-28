@@ -28,7 +28,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include=".DS_Store">
+    <Text Include="makefile">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="program.o">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

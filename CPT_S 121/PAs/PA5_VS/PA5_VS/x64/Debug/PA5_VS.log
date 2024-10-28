@@ -1,8 +1,0 @@
-﻿  main.c
-x64\Debug\pa5.obj : warning LNK4042: object specified more than once; extras ignored
-main.obj : error LNK2019: unresolved external symbol seed_rand referenced in function main
-main.obj : error LNK2019: unresolved external symbol print_game_rules referenced in function main
-main.obj : error LNK2019: unresolved external symbol get_menu_option referenced in function main
-main.obj : error LNK2019: unresolved external symbol clear_scr referenced in function main
-main.obj : error LNK2019: unresolved external symbol play_game referenced in function main
-C:\Users\lsm03\Desktop\CompSciCode\CPT_S 121\PAs\PA5_VS\x64\Debug\PA5_VS.exe : fatal error LNK1120: 5 unresolved externals

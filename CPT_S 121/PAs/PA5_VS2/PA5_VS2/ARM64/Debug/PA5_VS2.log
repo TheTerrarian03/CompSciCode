@@ -1,5 +1,0 @@
-﻿  main.c
-  pa5.c
-  Generating Code...
-Z:\Desktop\Programming2\College\CompSciCode\CPT_S 121\PAs\PA5_VS2\PA5_VS2\pa5.c(56,26): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  PA5_VS2.vcxproj -> Z:\Desktop\Programming2\College\CompSciCode\CPT_S 121\PAs\PA5_VS2\ARM64\Debug\PA5_VS2.exe
