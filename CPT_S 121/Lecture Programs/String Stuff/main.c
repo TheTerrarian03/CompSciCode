@@ -1,25 +1,17 @@
 #include <stdio.h>
 #include <string.h> // strlen() strcpy() strncpy() strcat() strncat() strcmp() strtok()
 
-char *my_strcpy(char *dest, const char *src);
+#define MAX_ROWS 10
+#define MAX_COLUMNS 10
+
+typedef struct student {
+    char name[100];
+    int id;
+    double gpa;
+} Student;
 
 int main() {
-    printf("result of strcmp: %d\n", strcmp("cat", "dog"));
-    printf("result of strcmp: %d\n", strcmp("dog", "cat"));
-    printf("result of strcmp: %d\n", strcmp("cat", "cat"));
-    printf("result of strcmp: %d\n", strcmp("cat", "Cat"));
-
-    
+    Student arrStudents[100];
 
     return 0;
-}
-
-char *my_strcpy(char *dest, const char *src) {
-    int index = 0;
-    for (; src[index] != '\0'; ++index) {
-        dest[index] = src[index];
-    }
-    dest[index] = '\0';
-
-    return dest;
 }
