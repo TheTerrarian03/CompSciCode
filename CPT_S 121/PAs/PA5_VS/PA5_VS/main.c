@@ -10,8 +10,6 @@
 
 #include "pa5.h"
 
-void test();
-
 int main() {
     // seed random
     seed_rand();
