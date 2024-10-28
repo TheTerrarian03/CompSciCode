@@ -8,12 +8,12 @@
 - Description: Let's play Yahtzee! 2 Player
 */
 
-#include "pa5_vs.h"
+#include "pa5.h"
 
 int main() {
     // seed random
     seed_rand();
-    
+
     // main menu loop
     int program_running = 1, game_running = 0, main_menu_choice = -1;
 
@@ -23,22 +23,22 @@ int main() {
 
         switch (main_menu_choice) {
             // exit game
-            case 3: program_running = 0;
-                    break;
-            
+        case 3: program_running = 0;
+            break;
+
             // Hand playing the game off to the play_game() function
-            case 2: clear_scr();
-                    play_game();
-                    // test();
-                    break;
+        case 2: clear_scr();
+            play_game();
+            // test();
+            break;
 
             // Print Rules
-            case 1: clear_scr();
-                    print_game_rules();
-                    break;
-            default: printf("Invalid option entered! Try again..\n\n");
+        case 1: clear_scr();
+            print_game_rules();
+            break;
+        default: printf("Invalid option entered! Try again..\n\n");
         }
     }
-    
+
     return 0;
 }
