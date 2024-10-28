@@ -6,6 +6,10 @@
 - TA: Awesome James
 
 - Description: Let's play Yahtzee! 2 Player
+
+- Note: This program works best on a terminal window at least 40 lines tall
+
+- Also Note: For some reason, Full house detection isn't working. I can't figure out why.
 */
 
 #include "pa5.h"
@@ -23,20 +27,20 @@ int main() {
 
         switch (main_menu_choice) {
             // exit game
-        case 3: program_running = 0;
-            break;
+            case 3: program_running = 0;
+                    break;
 
             // Hand playing the game off to the play_game() function
-        case 2: clear_scr();
-            play_game();
+            case 2: clear_scr();
+                    play_game();
             // test();
-            break;
+                    break;
 
             // Print Rules
-        case 1: clear_scr();
-            print_game_rules();
-            break;
-        default: printf("Invalid option entered! Try again..\n\n");
+            case 1: clear_scr();
+                    print_game_rules();
+                    break;
+            default: printf("Invalid option entered! Try again..\n\n");
         }
     }
 

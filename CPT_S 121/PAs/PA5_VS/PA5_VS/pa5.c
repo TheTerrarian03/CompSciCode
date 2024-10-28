@@ -23,10 +23,13 @@ int roll_die() {
 // this was straight from ChatGPT, I won't lie.
 // The Game Rules are NOT my focus. I care more about the game
 // actually working like you was it to, not some fancy rule formatting.
+// EDIT 10/28/2024: I edited this a little bit to tailer more to the program
 void print_game_rules() {
     printf("GAME RULES:\n");
     printf("1. Each player rolls five dice per turn.\n");
     printf("2. A turn consists of three rolls, with the option to keep or reroll any dice.\n");
+    printf("   - Each reroll requires you to enter which dice to hold and roll with\n");
+    printf("     a sequence of 0's and 1's.\n");
     printf("3. The goal is to create specific combinations for points, such as:\n");
     printf("   - Three of a kind\n");
     printf("   - Four of a kind\n");
@@ -36,8 +39,12 @@ void print_game_rules() {
     printf("   - Yahtzee (five of a kind)\n");
     printf("   - Chance (any combination)\n");
     printf("4. Scoring is based on these combinations, with each having specific points.\n");
+    printf("   - On the score board you can see the following:\n");
+    printf("     - \"--\" means no score yet\n");
+    printf("     - \"[##]\" means that is your potential score there\n");
+    printf("     - \"##\" is your actual score there\n");
     printf("5. The game continues until all scoring categories are filled.\n");
-    printf("6. The player with the highest total score wins.\n");
+    printf("6. The player with the highest total score wins.\n\n");
 }
 int get_menu_option(int min, int max) {
     int choice = -1;
@@ -65,20 +72,20 @@ int get_menu_option(int min, int max) {
 }
 void print_score(int score, char* combo) {
     if (score != -1) {
-        printf("%s |  %d\n", combo, score);
+        printf("%s  %2d\n", combo, score);
     }
     else {
-        printf("%s |  -- \n", combo);
+        printf("%s  -- \n", combo);
     }
 }
 void print_score_w_pot(int* dice, int combo_id, int score, char* combo) {
     if (score != -1) {
-        printf("%s |  %d\n", combo, score);
+        printf("%s  %2d\n", combo, score);
     }
     else {
         int pot_score = get_score_for_combo(dice, combo_id);
-        if (pot_score > 0) printf("%s | [%d]\n", combo, pot_score);
-        else printf("%s |  -- \n", combo);
+        if (pot_score > 0) printf("%s [%2d]\n", combo, pot_score);
+        else printf("%s  -- \n", combo);
     }
 }
 void print_round_info(int p_turn, int* p_scores, int* p_dice, int round) {
@@ -89,26 +96,28 @@ void print_round_info(int p_turn, int* p_scores, int* p_dice, int round) {
     printf("Player [ %d ]'s turn!\n\n", p_turn);
 
     // game and score info
-    printf("---- Your Scores ----\n");
-    print_score_w_pot(p_dice, 1, p_scores[ONES], "1  | Ones        ");
-    print_score_w_pot(p_dice, 2, p_scores[TWOS], "2  | Twos        ");
-    print_score_w_pot(p_dice, 3, p_scores[THREES], "3  | Threes      ");
-    print_score_w_pot(p_dice, 4, p_scores[FOURS], "4  | Fours       ");
-    print_score_w_pot(p_dice, 5, p_scores[FIVES], "5  | Fives       ");
-    print_score_w_pot(p_dice, 6, p_scores[SIXES], "6  | Sixes       ");
-    printf("   |              |\n");
-    print_score(p_scores[UPPER_SUM], "   | Sum         ");
-    print_score(p_scores[BONUS], "   | Bonus       ");
-    printf("   |              |\n");
-    print_score_w_pot(p_dice, 9, p_scores[KIND_3], "7  | 3 of a Kind ");
-    print_score_w_pot(p_dice, 10, p_scores[KIND_4], "8  | 4 of a Kind ");
-    print_score_w_pot(p_dice, 11, p_scores[FULL_HOUSE], "9  | Full House  ");
-    print_score_w_pot(p_dice, 12, p_scores[SM_STRAIGHT], "10 | Sm. Straight");
-    print_score_w_pot(p_dice, 13, p_scores[LG_STRAIGHT], "11 | Lg. Straight");
-    print_score_w_pot(p_dice, 14, p_scores[CHANCE], "12 | Chance      ");
-    print_score_w_pot(p_dice, 15, p_scores[YAHTZEE], "13 | Yahtzee!    ");
-    printf("   |              |\n");
-    print_score(p_scores[TOTAL], "Total            ");
+    printf(                                              "---------+- Your Scores +----------\n");
+    printf(                                              "-[cat #]-+--[cat name]--+-[points]-\n");
+    print_score_w_pot(p_dice, 1, p_scores[ONES],         "      1  | Ones         |  ");
+    print_score_w_pot(p_dice, 2, p_scores[TWOS],         "      2  | Twos         |  ");
+    print_score_w_pot(p_dice, 3, p_scores[THREES],       "      3  | Threes       |  ");
+    print_score_w_pot(p_dice, 4, p_scores[FOURS],        "      4  | Fours        |  ");
+    print_score_w_pot(p_dice, 5, p_scores[FIVES],        "      5  | Fives        |  ");
+    print_score_w_pot(p_dice, 6, p_scores[SIXES],        "      6  | Sixes        |  ");
+    printf(                                              "         |              |\n");
+    print_score(p_scores[UPPER_SUM],                     "         | Sum          |  ");
+    print_score(p_scores[BONUS],                         "         | Bonus        |  ");
+    printf(                                              "         |              |\n");
+    print_score_w_pot(p_dice, 9, p_scores[KIND_3],       "      7  | 3 of a Kind  |  ");
+    print_score_w_pot(p_dice, 10, p_scores[KIND_4],      "      8  | 4 of a Kind  |  ");
+    print_score_w_pot(p_dice, 11, p_scores[FULL_HOUSE],  "      9  | Full House   |  ");
+    print_score_w_pot(p_dice, 12, p_scores[SM_STRAIGHT], "     10  | Sm. Straight |  ");
+    print_score_w_pot(p_dice, 13, p_scores[LG_STRAIGHT], "     11  | Lg. Straight |  ");
+    print_score_w_pot(p_dice, 14, p_scores[CHANCE],      "     12  | Chance       |  ");
+    print_score_w_pot(p_dice, 15, p_scores[YAHTZEE],     "     13  | Yahtzee!     |  ");
+    printf(                                              "         |              |\n");
+    printf(                                              "---------+--------------+----------\n");
+    print_score(p_scores[TOTAL],                         "Total                      ");
     printf("\n");
 }
 void print_dice(int* dice) {
@@ -199,6 +208,23 @@ int play_game() {
         // update scores
         update_scores(p2_scores);
     }
+
+    // player win conditions
+    if (p1_scores[TOTAL] > p2_scores[TOTAL]) {
+        printf("Player 1 Won %d-%d!\n", p1_scores[TOTAL], p2_scores[TOTAL]);
+    }
+    else if (p1_scores[TOTAL] < p2_scores[TOTAL]) {
+        printf("Player 2 Won %d-%d!\n", p2_scores[TOTAL], p1_scores[TOTAL]);
+    }
+    else if (p1_scores[TOTAL] == p2_scores[TOTAL]) {
+        printf("Both players Tie %d-%d!\n", p1_scores[TOTAL], p2_scores[TOTAL]);
+    }
+    else {
+        printf("No one wins!\n");
+    }
+
+    printf("\nPress enter to continue...");
+    system("pause");
 
     return 0;
 }
@@ -311,14 +337,29 @@ int get_has_sm_straight(int* freqs) {
     // case 2: 2, 3, 4, 5 - offset 1
     // case 3: 3, 4, 5, 6 - offset 2
 
-    for (int offset = 0; offset <= 2; offset++) {
+    /*for (int offset = 0; offset <= 2; offset++) {
         if (
             freqs[1 + offset] == 1 &&
             freqs[2 + offset] == 1 &&
             freqs[3 + offset] == 1 &&
             freqs[4 + offset] == 1
             ) return 1;
-    }
+    }*/
+
+    if (freqs[1] == 1 &&
+        freqs[2] == 1 &&
+        freqs[3] == 1 &&
+        freqs[4] == 1) return 1;
+
+    if (freqs[2] == 1 &&
+        freqs[3] == 1 &&
+        freqs[4] == 1 &&
+        freqs[4] == 1) return 1;
+
+    if (freqs[3] == 1 &&
+        freqs[4] == 1 &&
+        freqs[5] == 1 &&
+        freqs[6] == 1) return 1;
 
     return 0;
 }
