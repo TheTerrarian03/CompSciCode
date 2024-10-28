@@ -1,5 +1,11 @@
 /*
-- 
+- Name: Logan Meyers
+- ID: 011881121
+- Date Finished: 10/25/2024
+- Assignment: PA 5
+- TA: Awesome James
+
+- Description: Let's play Yahtzee! 2 Player
 */
 
 #include "pa5.h"
@@ -24,8 +30,8 @@ int main() {
             
             // Hand playing the game off to the play_game() function
             case 2: clear_scr();
-                    // play_game();
-                    test();
+                    play_game();
+                    // test();
                     break;
 
             // Print Rules
@@ -37,50 +43,4 @@ int main() {
     }
     
     return 0;
-}
-
-void test() {
-    printf("Welcome to yahtzee!\n");
-
-    // scores have all 13 point sections, plus upper section sum, upper section bonus, and total score
-    int p1_scores[SCORE_ARRAY_LENGTH] = {0}, p2_scores[SCORE_ARRAY_LENGTH] = {0};
-    // player dice include empty space at [0]
-    int p1_dice[6] = {0}, p2_dice[6] = {0};
-    // player holds for their dice, plus empty space at [0]
-    int p1_held[6] = {0}, p2_held[6] = {0};
-
-    // Reset scores for safety
-    fill_scores(p1_scores, 0);
-    fill_scores(p2_scores, 0);
-
-    // roll_dice(p1_dice, p1_held);
-
-    // printf("First roll:\n");
-    // print_array(p1_dice, 6);
-
-    // p1_held[1] = 1;
-    // p1_held[5] = 1;
-
-    // printf("Second roll:\n");
-    // roll_dice(p1_dice, p1_held);
-
-    // print_array(p1_dice, 6);
-
-    // p1_held[1] = 0;
-    // p1_held[5] = 0;
-    // p1_held[2] = 1;
-    // p1_held[3] = 1;
-    // p1_held[4] = 1;
-
-    // roll_dice(p1_dice, p1_held);
-
-    // printf("Last roll:\n");
-    // print_array(p1_dice, 6);
-
-    p1_scores[ONES] = 3;
-    p1_scores[FIVES] = 15;
-    p1_scores[KIND_3] = 6;
-    p1_scores[LG_STRAIGHT] = 69;
-
-    print_round_info(1, p1_scores, p1_dice, p1_held, 3);
 }
