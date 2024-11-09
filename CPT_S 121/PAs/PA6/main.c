@@ -1,22 +1,20 @@
 /*
+- Logan Meyers
+- 11/07/2024
+- Lab Section 12
+- TA: JAMESSS
 
+- Description: Battle Ship game! Player vs computer
 */
 
 #include "pa6.h"
 
 int main() {
-    player_data_t player_data;
+    Player_data p1 = {.hits=0, .misses=0, .total_shots=0, .hit_miss_ratio=0, .win_loss_status=0};  // player
+    Player_data p2 = {.hits=0, .misses=0, .total_shots=0, .hit_miss_ratio=0, .win_loss_status=0};  // computer
 
-    int matrix[3][5] = {{0, 1, 2, 3, 4}, {0}, {0}};
-
-    // rows, cols
-    // char p1_board[MAX_ROWS][MAX_COLUMNS];
-    player_data.hits = 5;
-    player_data.losses = 69;
-
-    init_board(player_data.board, MAX_ROWS, MAX_COLUMNS, '~');
-
-    print_board(player_data.board, MAX_ROWS, MAX_COLUMNS);
+    // init player data (including boards)
+    init
 
     return 0;
 }
