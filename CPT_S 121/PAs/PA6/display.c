@@ -26,7 +26,7 @@ void disp_message(char *message_str) {
     printf("|  %s  |\n", message_str);
     disp_horizontal_border(message_len);
 }
-int disp_combo_ask(char *prompt_str, char **options_str_arr, int amnt_options) {
+void disp_combo_ask(char *prompt_str, char **options_str_arr, int amnt_options) {
     int max_message_len = strlen(prompt_str);
 
     for (int i=0; i < amnt_options; i++) {

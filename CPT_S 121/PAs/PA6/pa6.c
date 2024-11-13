@@ -27,7 +27,6 @@ void print_board(Cell board[MAX_ROWS][MAX_COLUMNS], char *name, int ignore_ships
     for (int i=0; i < MAX_COLUMNS; i++) printf("%*d ", COL_SPACING-1, i+1);
     putchar('\n');
 
-
     for (int i = 0; i < MAX_ROWS; i++) {
         printf("%2d ", i+1);
         for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -41,6 +40,8 @@ void print_board(Cell board[MAX_ROWS][MAX_COLUMNS], char *name, int ignore_ships
         }
         printf("\n");
     }
+
+    putchar('\n');
 }
 void manual_ship_placement(Cell board[MAX_ROWS][MAX_COLUMNS]) {
     // parallel arrays for ship char and length
@@ -311,11 +312,55 @@ int detemine_winner(Player_data *p1_data, Player_data *p2_data) {
 }
 
 /* ----- Input from Player ----- */
+// void ask_enter(char *prompt_str) {
+//     printf("\n%s", prompt_str);
+//     while(getchar() != '\n');
+//     char tmp;
+//     scanf("%c", &tmp);
+// }
+
 void ask_enter(char *prompt_str) {
+    // Clear any leftover characters in the input buffer
+    // int c;
+    // while ((c = getchar()) != '\n' && c != EOF);
+
+    // Display the prompt and wait for Enter
     printf("\n%s", prompt_str);
-    while(getchar() != '\n');
-    char tmp;
-    scanf("%c", &tmp);
+    while (getchar() != '\n');
 }
 
 /* ----- Output to Files ----- */
+void log_clearfile() {
+    FILE *logfile = fopen("battleship.log", "w");
+    fclose(logfile);
+}
+void log_data(char *player_name_str, char shot_result, int x, int y) {
+    FILE *logfile = fopen("battleship.log", "a");
+
+    if (shot_result == '*') fprintf(logfile, "%s shot at (%d, %d), and hit a ship!\n", player_name_str, x, y);
+    else if (shot_result == 's') fprintf(logfile, "%s shot at (%d, %d) and sunk a ship!\n", player_name_str, x, y);
+    else fprintf(logfile, "%s shot at (%d, %d) and missed!\n", player_name_str, x, y);
+
+    fclose(logfile);
+}
+void log_winner(char *winner_name_str, int ship_cells_left) {
+    FILE *logfile = fopen("battleship.log", "a");
+
+    fprintf("%s won the game! %s still had %d ship cell left!\n", winner_name_str, winner_name_str, ship_cells_left);
+
+    fclose(logfile);
+}
+// CAUSES ERRORS
+// void log_player_data(Player_data *p_data, char *player_name_str) {
+//     FILE *logfile = fopen("battleship.log", "a");
+
+//     fprintf("Data on %s:\n", player_name_str);
+//     fprintf("  - Hits:            %d\n", p_data->hits);
+//     fprintf("  - Misses:          %d\n", p_data->misses);
+//     fprintf("  - Total Shots:     %d\n", p_data->total_shots);
+//     fprintf("  - Hit Miss Ratio:  %d\n", p_data->hit_miss_ratio);
+//     fprintf("  - Win-Loss Status: %d\n", p_data->win_loss_status);
+//     fprintf("  - Ship Cells Left: %d\n", count_all_symbols_left(p_data->board));
+
+//     fclose(logfile);
+// }
