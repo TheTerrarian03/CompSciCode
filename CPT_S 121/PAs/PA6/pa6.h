@@ -19,10 +19,16 @@
 #include <stdlib.h>
 
 /* ----- Definitions ----- */
-// #define DEBUG_MSGS
-#define MAX_ROWS 10
-#define MAX_COLUMNS 10
-#define WATER_CHAR '-'
+#define DEBUG_MSGS
+#define PLAYER_CHEAT   1
+#define MAX_ROWS      10  // assume <= 99 and >= 6
+#define MAX_COLUMNS   10  // assume <= 99 and >= 6
+#if (MAX_COLUMNS <= 10)
+    #define COL_SPACING 2
+#else
+    #define COL_SPACING 3
+#endif
+#define WATER_CHAR   '-'
 
 /* ----- Structs ----- */
 // board cell
@@ -56,7 +62,6 @@ void init_player_data(Player_data* p_data);
 int determine_ship_placement_valid(Cell board[MAX_ROWS][MAX_COLUMNS], int left_x, int top_y, int vertical, int len);
 void place_single_ship(Cell board[MAX_ROWS][MAX_COLUMNS], int left_x, int top_y, int vertical, int len, char symbol);
 void place_ships_randomly(Cell board[MAX_ROWS][MAX_COLUMNS]);
-int determine_hit(Cell board[MAX_ROWS][MAX_COLUMNS], int x, int y);
 char make_shot(Cell board[MAX_ROWS][MAX_COLUMNS], int x, int y);
 int count_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS], char symbol);
 int count_all_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS]);
@@ -69,6 +74,7 @@ void update_player_stats(Player_data *p_data);
 int detemine_winner(Player_data *p1_data, Player_data *p2_data);
 
 /* ----- Input from Player ----- */
+void ask_enter(char *prompt_str);
 
 /* ----- Output to Files ----- */
 

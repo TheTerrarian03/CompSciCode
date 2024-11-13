@@ -19,17 +19,24 @@ int rand_range(int range) {
 
 /* ----- Display ----- */
 void print_board(Cell board[MAX_ROWS][MAX_COLUMNS], char *name, int ignore_ships) {
+    // board title/name
     printf("   %*s%*s\n", 10 + strlen(name) / 2, name, 10 - strlen(name) / 2, "");
-    printf("   1 2 3 4 5 6 7 8 9 10\n");
+
+    // top row
+    printf("    ");
+    for (int i=0; i < MAX_COLUMNS; i++) printf("%*d ", COL_SPACING-1, i+1);
+    putchar('\n');
+
+
     for (int i = 0; i < MAX_ROWS; i++) {
         printf("%2d ", i+1);
         for (int j = 0; j < MAX_COLUMNS; j++) {
             char to_print = board[i][j].status_char;
             if (ignore_ships) {
-                if (to_print == 'm' || to_print == '*') printf("%c ", to_print);
-                else printf("%c ", WATER_CHAR);
+                if (to_print == 'm' || to_print == '*') printf("%*c", COL_SPACING, to_print);
+                else printf("%*c", COL_SPACING, WATER_CHAR);
             } else {
-                printf("%c ", to_print);
+                printf("%*c", COL_SPACING, to_print);
             }
         }
         printf("\n");
@@ -70,7 +77,7 @@ void manual_ship_placement(Cell board[MAX_ROWS][MAX_COLUMNS]) {
             }
 
             // check for invalid ranges for x, y, and vertical
-            if ((x < 1 || x > 10) || (y < 1 || y > 10) || (vertical < 0 || vertical > 1)) {
+            if ((x < 1 || x > MAX_COLUMNS) || (y < 1 || y > MAX_ROWS) || (vertical < 0 || vertical > 1)) {
                 x = 0; y = 0; vertical = 0;
                 while(getchar() != '\n');
                 printf("Ruh roh! One of your entries was out of bounds. Please make sure you enter in the right range of values for each question.\n");
@@ -103,7 +110,7 @@ void ask_x_y_shot(int *x, int *y) {
             continue;
         }
 
-        if (*x < 1 || *x > 10) {
+        if (*x < 1 || *x > MAX_COLUMNS) {
             *x = 0;
             printf("Please enter a integer number from 1 to 10 inclusive!\n\n");
             continue;
@@ -122,7 +129,7 @@ void ask_x_y_shot(int *x, int *y) {
             continue;
         }
 
-        if (*y < 1 || *y > 10) {
+        if (*y < 1 || *y > MAX_ROWS) {
             *y = 0;
             printf("Please enter a integer number from 1 to 10 inclusive!\n\n");
             continue;
@@ -182,11 +189,11 @@ void place_ships_randomly(Cell board[MAX_ROWS][MAX_COLUMNS]) {
 
             // adjust bounds based on horizontal / vertical
             if (vertical) {
-                x = rand_range(10);
-                y = rand_range(10-ship_lens[i]);
+                x = rand_range(MAX_COLUMNS);
+                y = rand_range(MAX_ROWS-ship_lens[i]);
             } else {
-                x = rand_range(10-ship_lens[i]);
-                y = rand_range(10);
+                x = rand_range(MAX_COLUMNS-ship_lens[i]);
+                y = rand_range(MAX_ROWS);
             }
 
             #ifdef DEBUG_MSGS
@@ -215,6 +222,39 @@ void place_ships_randomly(Cell board[MAX_ROWS][MAX_COLUMNS]) {
             #endif
         }
     }
+}
+char make_shot(Cell board[MAX_ROWS][MAX_COLUMNS], int x, int y) {
+    x -= 1; y -= 1;
+
+    char ship_chars[5] = {'c', 'b', 'r', 's', 'd'};
+    
+    char hit_ship = '\0';
+    char result = '\0';
+
+    // see if the spot on the board being hit matches a ship's character
+    for (int i=0; i < 5; i++) {
+        // return '*' if it's a hit
+        if (board[y][x].status_char == ship_chars[i]) {
+            hit_ship = ship_chars[i];
+            break;
+        }
+    }
+
+    // if hit_ship is still null, set cell status to 'm' and return 'm' for miss
+    if (hit_ship == '\0') {
+        result = 'm';
+        board[y][x].status_char = result;
+        return result;
+    }
+
+    // else, set cell status to '*', and determine sink status
+    result = '*';
+    board[y][x].status_char = result;
+
+    if (count_symbols_left(board, hit_ship) == 0) result = 's';
+
+    return result;
+    
 }
 int count_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS], char symbol) {
     int count = 0;
@@ -262,12 +302,20 @@ int detemine_winner(Player_data *p1_data, Player_data *p2_data) {
     int p1_total_chars = count_all_symbols_left(p1_data->board);
     int p2_total_chars = count_all_symbols_left(p2_data->board);
 
-    if (p1_total_chars == 0) return 2;
-    if (p2_total_chars == 0) return 1;
-    else return 0;
+    if (p1_total_chars == 0 &&
+        p2_total_chars == 0) return 3;  // both player and computer lost. This. Should. Not. Happen.
+
+    if (p1_total_chars == 0) return 2;  // player lost, computer won
+    if (p2_total_chars == 0) return 1;  // computer lost, player won
+    else return 0;                      // not end game yet
 }
 
 /* ----- Input from Player ----- */
-
+void ask_enter(char *prompt_str) {
+    printf("\n%s", prompt_str);
+    while(getchar() != '\n');
+    char tmp;
+    scanf("%c", &tmp);
+}
 
 /* ----- Output to Files ----- */

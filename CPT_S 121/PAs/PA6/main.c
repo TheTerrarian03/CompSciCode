@@ -41,34 +41,45 @@ int main() {
     int who_won = detemine_winner(&p1, &p2);
 
     while (!who_won) {
-        // player's turn
         clr_screen();
+
+        #ifdef DEBUG_MSGS
+        printf("Current winner: %d\n", who_won);
+        printf("Player ship chars: %d\n", count_all_symbols_left(p1.board));
+        printf("Computer ship chars: %d\n", count_all_symbols_left(p2.board));
+        #endif
+
+        // player's turn
         printf("Player's turn!\n\n");
 
         print_board(p1.board, "Player", 0);
         putchar('\n');
-        print_board(p2.board, "Computer", 1);
+        print_board(p2.board, "Computer", !PLAYER_CHEAT);
+        putchar('\n');
 
         int x = 0, y = 0;
         ask_x_y_shot(&x, &y);
 
-        printf("Shooting at: (%d, %d)\n", x, y);
+        char shot_result = make_shot(p2.board, x, y);
 
-        
+        if      (shot_result == '*') printf("You hit a ship!");
+        else if (shot_result == 's') printf("You sunk a ship!");
+        else                         printf("You missed :(");
+
+        ask_enter("Please press enter to continue... ");
 
         // computer's turn
+        
+
+        // at the end of the loop, determine new winner status
+        who_won = detemine_winner(&p1, &p2);
     }
 
-    //printf("Player Hits: %d\n", p1.hits);
-
-    //for (int i = 0; i < MAX_ROWS; i++) {
-    //    for (int j = 0; j < MAX_COLUMNS; j++) {
-    //        printf("Row: %d, Column: %d, State: %c\n", p1.board[i][j].row, p1.board[i][j].column, p1.board[i][j].status_char);
-    //    }
-    //}
-
-    print_board(p1.board, "Player", 0);
-    print_board(p2.board, "Computer", 0);
+    clr_screen();
+    if      (who_won == 3) printf("Congrats! You both lose! That shouldn't happen!\n");
+    else if (who_won == 2) printf("Drats! The computer won and you lose.\n");
+    else if (who_won == 1) printf("Congrats! You won against the computer!\n");
+    else                   printf("Wow! You broke the game! Kudos to you.\n");
 
     return 0;
 }
