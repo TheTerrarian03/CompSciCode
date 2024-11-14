@@ -7,11 +7,6 @@
 - Description: Battle Ship game! Player vs computer
 */
 
-// Name: 
-// Description: 
-// Parameter: 
-// Returns: 
-
 #ifndef PA6_H
 #define PA6_H
 
@@ -25,9 +20,10 @@
 
 /* ----- Definitions ----- */
 // #define DEBUG_MSGS
-#define PLAYER_CHEAT   0  // set to 1 if you want to see the computer's board
-#define MAX_ROWS      10  // precondition: 6 <= MAX_ROWS <= 99
-#define MAX_COLUMNS   10  // precondition: 6 <= MAX_COLUMNS <= 99
+// #define DEBUG_MAX_ROUNDS 15
+#define PLAYER_CHEAT     0  // set to 1 if you want to see the computer's board
+#define MAX_ROWS        10  // precondition: 6 <= MAX_ROWS <= 99
+#define MAX_COLUMNS     10  // precondition: 6 <= MAX_COLUMNS <= 99
 
 #if (MAX_COLUMNS <= 10)
     #define COL_SPACING 2
@@ -145,12 +141,15 @@ int count_all_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS]);
 // Name: init_player_data
 // Description: inits player struct data, all to zero's and water_chars for the board
 // Parameter: Player_data* p_data, the address of the struct to init
+// [UPDATED 11/13]
 void init_player_data(Player_data *p_data);
 
 // Name: update_player_stats
 // Description: updates player stats (such as hit and miss data)
 // Parameter: Player_data *p_data, address of player data to update
-void update_player_stats(Player_data *p_data);
+// Parameter: char shot_result, '*' or 's' or 'm'
+// [UPDATED 11/13]
+void update_player_stats(Player_data *p_data, char shot_result);
 
 /* ----- Game State Stuff ----- */
 // Name: determine_winner
@@ -158,7 +157,7 @@ void update_player_stats(Player_data *p_data);
 // Parameter: Player_data *p1_data, address of player 1 data
 // Parameter: Player_data *p2_data, address of computer data
 // Returns: 3 if both lost, 2 if computer win, 1 if player 1, 0 if no winner yet
-int detemine_winner(Player_data *p1_data, Player_data *p2_data);
+int determine_winner(Player_data *p1_data, Player_data *p2_data);
 
 /* ----- Input from Player ----- */
 // Name: ask_enter
@@ -183,8 +182,14 @@ void log_data(char *player_name_str, char shot_result, int x, int y);
 // Description: logs the winner of a game
 // Parameter: char *winner_name_str, name of who won
 // Parameter: int ship_cells_left of winner
+// [UPDATED 11/13]
 void log_winner(char *winner_name_str, int ship_cells_left);
 
-// void log_player_data(Player_data *p_data, char *player_name_str);
+// Name: log_player_data
+// Description: logs the struct data of the player in the logfile
+// Parameter: Player_data *p_data to log
+// Parameter: char *player_name_str of the player in question
+// [ADDED 11/13]
+void log_player_data(Player_data *p_data, char *player_name_str);
 
 #endif

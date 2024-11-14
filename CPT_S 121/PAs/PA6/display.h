@@ -3,7 +3,9 @@
     that have to do with displaying info!
 
 - Some notable functions:
-    - dbgjkbdkj
+    - clr_screen
+    - disp_combo_ask
+    - ask_manual_vs_random_placement
 */
 
 #ifndef DISPLAY_H

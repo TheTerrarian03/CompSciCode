@@ -20,7 +20,7 @@ int rand_range(int range) {
 /* ----- Display ----- */
 void print_board(Cell board[MAX_ROWS][MAX_COLUMNS], char *name, int ignore_ships) {
     // board title/name
-    printf("   %*s%*s\n", 10 + strlen(name) / 2, name, 10 - strlen(name) / 2, "");
+    printf("   %*s%*s\n", 10 + (int)strlen(name) / 2, name, 10 - (int)strlen(name) / 2, "");
 
     // top row
     printf("    ");
@@ -257,6 +257,13 @@ char make_shot(Cell board[MAX_ROWS][MAX_COLUMNS], int x, int y) {
     return result;
     
 }
+int check_shot_already_made(Cell board[MAX_ROWS][MAX_COLUMNS], int x, int y) {
+    // return 1 if hit or miss already at that spot
+    if (board[y][x].status_char == '*' || board[y][x].status_char == 'm') return 1;
+    
+    // return 0 otherwise
+    else return 0;
+}
 int count_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS], char symbol) {
     int count = 0;
     for (int i=0; i<MAX_ROWS; i++) {
@@ -283,14 +290,18 @@ int count_all_symbols_left(Cell board[MAX_ROWS][MAX_COLUMNS]) {
 void init_player_data(Player_data* p_data) {
     p_data->hits = 0;
     p_data->misses = 0;
+    p_data->total_shots = 0;
     p_data->win_loss_status = 0;
+    p_data->hit_miss_ratio = 0;
     init_board(p_data);
-    update_player_stats(p_data);
 }
-void update_player_stats(Player_data* p_data) {
+void update_player_stats(Player_data* p_data, char shot_result) {
+    if (shot_result == '*' || shot_result == 's') p_data->hits++;
+    else p_data->misses++;
+    
     p_data->total_shots = p_data->hits + p_data->misses;
 
-    // if to avoid dividing by zero
+    // `if` to avoid dividing by zero
     // note: if there are no misses, it will default to hits
     //   which, may become above 1 if hits > 1.
     //   which doesn't make sense; 200% hit-miss ratio?
@@ -299,7 +310,7 @@ void update_player_stats(Player_data* p_data) {
 }
 
 /* ----- Game State Stuff ----- */
-int detemine_winner(Player_data *p1_data, Player_data *p2_data) {
+int determine_winner(Player_data *p1_data, Player_data *p2_data) {
     int p1_total_chars = count_all_symbols_left(p1_data->board);
     int p2_total_chars = count_all_symbols_left(p2_data->board);
 
@@ -312,21 +323,10 @@ int detemine_winner(Player_data *p1_data, Player_data *p2_data) {
 }
 
 /* ----- Input from Player ----- */
-// void ask_enter(char *prompt_str) {
-//     printf("\n%s", prompt_str);
-//     while(getchar() != '\n');
-//     char tmp;
-//     scanf("%c", &tmp);
-// }
-
 void ask_enter(char *prompt_str) {
-    // Clear any leftover characters in the input buffer
-    // int c;
-    // while ((c = getchar()) != '\n' && c != EOF);
-
-    // Display the prompt and wait for Enter
     printf("\n%s", prompt_str);
     while (getchar() != '\n');
+    getchar();
 }
 
 /* ----- Output to Files ----- */
@@ -346,21 +346,20 @@ void log_data(char *player_name_str, char shot_result, int x, int y) {
 void log_winner(char *winner_name_str, int ship_cells_left) {
     FILE *logfile = fopen("battleship.log", "a");
 
-    fprintf("%s won the game! %s still had %d ship cell left!\n", winner_name_str, winner_name_str, ship_cells_left);
+    fprintf(logfile, "%s won the game! %s still had %d ship cell left!\n", winner_name_str, winner_name_str, ship_cells_left);
 
     fclose(logfile);
 }
-// CAUSES ERRORS
-// void log_player_data(Player_data *p_data, char *player_name_str) {
-//     FILE *logfile = fopen("battleship.log", "a");
+void log_player_data(Player_data *p_data, char *player_name_str) {
+    FILE *logfile = fopen("battleship.log", "a");
 
-//     fprintf("Data on %s:\n", player_name_str);
-//     fprintf("  - Hits:            %d\n", p_data->hits);
-//     fprintf("  - Misses:          %d\n", p_data->misses);
-//     fprintf("  - Total Shots:     %d\n", p_data->total_shots);
-//     fprintf("  - Hit Miss Ratio:  %d\n", p_data->hit_miss_ratio);
-//     fprintf("  - Win-Loss Status: %d\n", p_data->win_loss_status);
-//     fprintf("  - Ship Cells Left: %d\n", count_all_symbols_left(p_data->board));
+    fprintf(logfile, "\nData on %s:\n", player_name_str);
+    fprintf(logfile, "  - Hits:            %d\n", p_data->hits);
+    fprintf(logfile, "  - Misses:          %d\n", p_data->misses);
+    fprintf(logfile, "  - Total Shots:     %d\n", p_data->total_shots);
+    fprintf(logfile, "  - Hit Miss Ratio:  %d\n", p_data->hit_miss_ratio);
+    fprintf(logfile, "  - Win-Loss Status: %d\n", p_data->win_loss_status);
+    fprintf(logfile, "  - Ship Cells Left: %d\n", count_all_symbols_left(p_data->board));
 
-//     fclose(logfile);
-// }
+    fclose(logfile);
+}
