@@ -1,0 +1,17 @@
+will check for types of hands such as 3 of a kind, full house, etc.
+human vs dealer (computer)
+- dealer should know what hand they have
+- if they have the potential of getting a better hand, they should do it
+  - if you have a pair, try for 3 of a kind or dual-pair
+
+card contains two integers:
+- row_idx
+- col_idx
+
+Hand struct contains:
+- array of cards of size 5
+
+given deal function might need to be modified as:
+- num cards to redraw
+- starting card number (e.x. 11)
+- hand
