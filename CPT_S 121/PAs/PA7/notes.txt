@@ -15,3 +15,33 @@ given deal function might need to be modified as:
 - num cards to redraw
 - starting card number (e.x. 11)
 - hand
+
+instructions checklist:
+[ ] - struct Card w/ 2 integers
+[ ] - struct Hand w/ array of 5 Cards
+[ ] - main menu: view rules, play game, exit
+[ ] - modify card dealing function to deal a poker hand
+      deal & draw any number of cards
+[ ] - hand check functions:
+    [ ] - contains pair
+    [ ] - contains 2 pairs
+    [ ] - contains 3 of a kind
+    [ ] - contains 4 of a kind
+    [ ] - contains full house
+    [ ] - contains flush (all cards of same suit)
+    [ ] - contains straight (cards of consecutive face value)
+[ ] - simulate dealer. their cards not seen by player. they should try to get a better hand if possible
+[ ] - handle dealer's hand automatically.
+[ ] - player can decide which cards to replace
+[ ] - player can replace up to 3 cards
+[ ] - both hands evaluated and winner determined
+
+Rules/Game Flow:
+1. main menu runs
+2. cards shuffled
+3. player dealt hand
+4. dealer dealt hand
+5. player replaces up to 3 cards
+6. dealer replaces up to 3 cards
+7. showdown
+8. winner determined
