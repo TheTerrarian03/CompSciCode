@@ -86,6 +86,7 @@ void deal_to_hand(const int wDeck[4][13], Hand *hand, int num_to_deal, int *star
 	}
 
 	(*start_card) += num_to_deal;
+	
 }
 
 /* ----- Hand Checks ----- */
@@ -158,7 +159,7 @@ int check_3_kind(Hand hand) {
 }
 int check_4_kind(Hand hand) {
 	// I'm really sorry James
-	// There are better ways to do this (frequency table)
+	// There are better ways to do this (frequency table, thanks Kenny)
 	// Buuuuut this is funny
 	for (int i=0; i < 5; i++) {
 		for (int j=0; j < 5; j++) {
@@ -185,7 +186,38 @@ int check_4_kind(Hand hand) {
 	return 0;
 }
 int check_full_house(Hand hand) {
+	int i_idx = -1, j_idx = -1, k_idx = -1;
+	
+	// check for 3 of a kind
+	for (int i=0; i < 5; i++) {
+		for (int j=0; j < 5; j++) {
+			if (j != i) {
+				for (int k=0; k < 5; k++) {
+					if ((k != i) && (k != j)) {
+						// return 1 if a triplet found
+						// NOTE: the pair found may not be the highest rank,
+						//       but there is still a pair found
+						if ((hand.cards[i].col_idx == hand.cards[j].col_idx) &&
+						    (hand.cards[j].col_idx == hand.cards[k].col_idx)) {
+								i_idx = i;
+								j_idx = j;
+								k_idx = k;
+						}
+					}
+				}
+			}
+		}
+	}
 
+	// if a triplet has not been found, return false
+	if ((i_idx == -1) || (j_idx == -1) || (k_idx = -1)) return 0;
+
+	// other wise, determine two other indexes
+	int other_1_idx = -1, other_2_idx = -1;
+
+	for (int i = 0; i < 5; i++) {
+
+	}
 }
 int check_flush(Hand hand);
 int check_straight(Hand hand);

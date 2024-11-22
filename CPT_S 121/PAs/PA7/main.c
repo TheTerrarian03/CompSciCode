@@ -35,9 +35,7 @@ int main ()
 	/* shuffle deck and deal hands to player and dealer */
 	shuffle (deck);
 	deal_to_hand(deck, &player_hand, 5, &next_free_card);
-	deal_to_hand(deck, &dealer_hand, 3, &next_free_card);
-
-	
+	deal_to_hand(deck, &dealer_hand, 5, &next_free_card);
 
 	printf("hand faces: %d, %d, %d, %d, %d\n", player_hand.cards[0].col_idx, player_hand.cards[1].col_idx, player_hand.cards[2].col_idx, player_hand.cards[3].col_idx, player_hand.cards[4].col_idx);
 	printf("You have pair: %d\n", check_4_kind(player_hand));
