@@ -156,7 +156,36 @@ int check_3_kind(Hand hand) {
 	// return 0 otherwise, no pairs found
 	return 0;
 }
-int check_4_kind(Hand hand);
-int check_full_house(Hand hand);
+int check_4_kind(Hand hand) {
+	// I'm really sorry James
+	// There are better ways to do this (frequency table)
+	// Buuuuut this is funny
+	for (int i=0; i < 5; i++) {
+		for (int j=0; j < 5; j++) {
+			if (j != i) {
+				for (int k=0; k < 5; k++) {
+					if ((k != i) && (k != j)) {
+						for (int l=0; l < 5; l++) {
+							if ((l != k) && (l != j) && (l != i)) {
+								// return 1 if a quadruplet found
+								// NOTE: the pair found may not be the highest rank,
+								//       but there is still a pair found
+								if ((hand.cards[i].col_idx == hand.cards[j].col_idx) &&
+									(hand.cards[j].col_idx == hand.cards[k].col_idx) &&
+									(hand.cards[k].col_idx == hand.cards[l].col_idx)) return 1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// return 0 otherwise, no pairs found
+	return 0;
+}
+int check_full_house(Hand hand) {
+
+}
 int check_flush(Hand hand);
 int check_straight(Hand hand);

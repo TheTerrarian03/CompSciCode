@@ -26,7 +26,7 @@ typedef struct {
 } Hand;
 
 /* ----- Starting Code ----- */
-void shuffle (int wDeck[][13]);
+void shuffle (int wDeck[4][13]);
 // void deal (const int wDeck[][13], const char *wFace[], const char *wSuit[]);
 void deal_to_hand(const int wDeck[4][13], Hand *hand, int num_to_deal, int *start_card);
 
