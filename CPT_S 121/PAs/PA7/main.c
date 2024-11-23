@@ -9,7 +9,6 @@
 */
 
 #include "funcs.h"
-#include "display.h"
 #include "poker.h"
 
 int main ()
@@ -37,16 +36,25 @@ int main ()
 	deal_to_hand(deck, &player_hand, 5, &next_free_card);
 	deal_to_hand(deck, &dealer_hand, 5, &next_free_card);
 
-	printf("hand faces: %d, %d, %d, %d, %d\n", player_hand.cards[0].col_idx, player_hand.cards[1].col_idx, player_hand.cards[2].col_idx, player_hand.cards[3].col_idx, player_hand.cards[4].col_idx);
-	printf("You have pair: %d\n", check_4_kind(player_hand));
-
 	// game flow:
 	// player chooses cards to replace
-	
+	clr_screen();
+	player_turn(deck, face, suit, &player_hand, &next_free_card);
+
+	dealer_hand.cards[0].col_idx = 2;
+	dealer_hand.cards[1].col_idx = 1;
+	dealer_hand.cards[2].col_idx = 9;
+	dealer_hand.cards[3].col_idx = 7;
+	dealer_hand.cards[4].col_idx = 4;
 
 	// dealer chooses cards to replace
+	clr_screen();
+	dealer_turn(deck, face, suit, &dealer_hand, &next_free_card);
 
 	// cards are shown and winner chosen
+	clr_screen();
+	printf("Your cards:\n");
+	print_all_cards(face, suit, player_hand);
 
 	return 0;
 }
