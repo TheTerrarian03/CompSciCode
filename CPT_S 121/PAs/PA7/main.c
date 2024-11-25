@@ -55,6 +55,12 @@ int main ()
 	clr_screen();
 	printf("Your cards:\n");
 	print_all_cards(face, suit, player_hand);
+	putchar('\n');
+	printf("Dealer's cards:\n");
+	print_all_cards(face, suit, dealer_hand);
+	
+	// temp winner message
+	printf("\n\nSomebody won!\n");
 
 	return 0;
 }
