@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "Y:\\College\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\",
+  "WorkspaceRootPath": "C:\\Users\\lsm03\\Desktop\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{22910305-F837-44A1-985A-BE34D110366B}|PA5_VS\\PA5_VS.vcxproj|Y:\\College\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{22910305-F837-44A1-985A-BE34D110366B}|PA5_VS\\PA5_VS.vcxproj|C:\\Users\\lsm03\\Desktop\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{22910305-F837-44A1-985A-BE34D110366B}|PA5_VS\\PA5_VS.vcxproj|solutionrelative:PA5_VS\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.c",
-              "DocumentMoniker": "Y:\\College\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c",
               "RelativeDocumentMoniker": "PA5_VS\\main.c",
-              "ToolTip": "Y:\\College\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\CompSciCode\\CPT_S 121\\PAs\\PA5_VS\\PA5_VS\\main.c",
               "RelativeToolTip": "PA5_VS\\main.c",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB0AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-11-14T23:37:30.656Z",
               "EditorCaption": ""
