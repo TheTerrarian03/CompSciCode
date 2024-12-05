@@ -89,7 +89,18 @@ void bubble_sort(int num_strings, char *strings[]) {
     }
 }
 int is_palindrome(char *str, int len) {
-    
+    // indexes to check
+    int str_length = strlen(str);
+    int left = (str_length - len)/2;
+    int right = str_length - left;
+
+    if (left > right) return 0;
+
+    printf("Comparing: %c and %c\n", str[left], str[right]);
+
+    return is_palindrome(str, len-2);
+
+    return 0;
 }
 int sum_primes(unsigned int n);
 void maximum_occurences(char *str, Occurences *occur_arr[], int *int_ptr, char *char_ptr);

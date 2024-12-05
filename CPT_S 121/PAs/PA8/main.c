@@ -17,15 +17,18 @@ int main() {
     // printf("Index of %d is: %d\n", target, binary_search(vals, 11, target));
 
     // TASK 3 - Bubble Sort
-    char *to_sort[4] = {"logan", "zebra", "chaos", "apple"};
-    printf("Before: ");
-    print_str_arr(to_sort, 4);
+    // char *to_sort[4] = {"logan", "zebra", "chaos", "apple"};
+    // printf("Before: ");
+    // print_str_arr(to_sort, 4);
 
-    bubble_sort(4, to_sort);
+    // bubble_sort(4, to_sort);
 
-    printf("After: ");
-    print_str_arr(to_sort, 4);
+    // printf("After: ");
+    // print_str_arr(to_sort, 4);
 
+    // TASK 4 - Is Palindrome
+    char *palinstring = "race car";
+    int result = is_palindrome(palinstring, strlen(palinstring)-1);
 
     return 0;
 }
