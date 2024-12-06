@@ -26,7 +26,7 @@ void print_list(Node *list_ptr);
 
 // MAIN
 
-int main() {
+int main() {  // int argc, char *argv[]
     Node *head_ptr = NULL;
     int success = 0;
 
