@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "funcs.h": "c"
-    }
+    },
+    "makefile.configureOnOpen": false
 }

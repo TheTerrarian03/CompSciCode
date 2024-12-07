@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 // Occurences Struct
 typedef struct occurences {
@@ -12,8 +13,9 @@ typedef struct occurences {
 } Occurences;
 
 // OTHER FUNCTIONS
-void print_int_arr(int *arr, int len);
-void print_str_arr(char **arr, int len);
+int print_int_arr(int *arr, int len);
+int print_str_arr(char **arr, int len);
+int nth_prime(unsigned int n);
 
 // TASK FUNCTIONS
 /*
@@ -41,7 +43,7 @@ Returns: integer for index of target. Offset by 1:
             0 means false, not fonud.
          >= 1 means true,  found at index of that number minus 1
 */
-int binary_search(int *sorted_values, int num_values, int target);
+int binary_search(int *sorted_values, int n, int target);
 
 /*
 Name: bubble_sort
@@ -53,10 +55,32 @@ Parameter: char *strings[]: list of pointers to your strings
 */
 void bubble_sort(int num_strings, char *strings[]);
 
-
+/*
+Name: is_palindrome
+Description: Determine if a given string is a palindrome, excludes whitespace and case doesn't matter
+Parameter: char *str: the string up for judging
+Parameter: int len: the length of the string (such as from strlen(str))
+*/
 int is_palindrome(char *str, int len);
+
+/*
+Name: sum_primes
+Description: sum of all prime numbers, up to the nth prime number
+Parameter: unsigned int n: the nth number cap
+Returns: the integer sum of those numbers
+*/
 int sum_primes(unsigned int n);
-void maximum_occurences(char *str, Occurences *occur_arr[], int *int_ptr, char *char_ptr);
+
+/*
+Name: maximum_occurences
+Description: Determines the occurences and frequencies for each character,
+             and their frequency.
+Parameter: char *str: the string to count characters of
+Parameter: Occurnces occur_arr[128]: the array of struct Occurences, of size ASCII limit
+Parameter: int *int_ptr: max count return pointer
+Parameter: char *char_ptr: char of max count return pointer
+*/
+void maximum_occurences(char *str, Occurences occur_arr[128], int *int_ptr, char *char_ptr);
 void max_consequtive_integers(signed int *integer_arr, int rows, int columns, int **first_int, int *num_int_row);
 
 #endif

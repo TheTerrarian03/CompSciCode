@@ -1,15 +1,68 @@
 #include "funcs.h"
 
 // OTHER FUNCTIONS
-void print_int_arr(int *arr, int len) {
-    putchar('[');
-    for (int i = 0; i < len; i++) printf("%d%s", arr[i], (i < len-1) ? ", " : "");
-    printf("]\n");
+int print_int_arr(int *arr, int len) {
+    // initial array string with bracket
+    char arr_str[50] = {'['};
+
+    // loop through each num in the array
+    for (int i = 0; i < len; i++) {
+        // print number to string and add to array string
+        char num_str[20];
+        sprintf(num_str, "%d", arr[i]);
+        strcat(arr_str, num_str);
+
+        // add comma if there are more numbers
+        if (i < len-1) strcat(arr_str, ", ");
+    }
+
+    // final bracket
+    strcat(arr_str, "]");
+
+    // print string, return length
+    printf("%s", arr_str);
+    return strlen(arr_str);
 }
-void print_str_arr(char **arr, int len) {
-    putchar('[');
-    for (int i = 0; i < len; i++) printf("%s%s", arr[i], (i < len-1) ? ", " : "");
-    printf("]\n");
+int print_str_arr(char **arr, int len) {
+    // initial array string with bracket
+    char arr_str[50] = {'['};
+
+    // for (int i = 0; i < len; i++) printf("%s%s", arr[i], (i < len-1) ? ", " : "");
+    for (int i = 0; i < len; i++) {
+        // cat string to array string
+        strcat(arr_str, arr[i]);
+
+        // add comma if there are more numbers
+        if (i < len-1) strcat(arr_str, ", ");
+    }
+
+    // final bracket
+    strcat(arr_str, "]");
+
+    // print string, return length
+    printf("%s", arr_str);
+    return strlen(arr_str);
+}
+int nth_prime(unsigned int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 2;
+
+    // first prime is 2
+    int prime = 2;
+    n--;
+
+    while (n > 0) {
+        prime++;
+
+        int is_prime = 1;
+        for (int div = 2; div <= prime/2; div++) {
+            if (prime % div == 0) is_prime = 0;
+        }
+
+        if (is_prime == 1) n--;
+    }
+
+    return prime;
 }
 
 // TASK FUNCTIONS
@@ -30,8 +83,6 @@ char *my_str_n_cat(char *dest_arr, char *src_string, int n) {
         // otherwise, copy to the next index in the destination
         dest_arr[null_idx+src_index] = next;
 
-        printf("Copied %c from src[%d] to dest[%d]\n", next, src_index, null_idx+src_index);
-
         src_index++;
     }
     
@@ -44,9 +95,9 @@ char *my_str_n_cat(char *dest_arr, char *src_string, int n) {
     // return pointer to destination character array
     return dest_arr;
 }
-int binary_search(int *sorted_values, int num_values, int target) {
+int binary_search(int *sorted_values, int n, int target) {
     // method mostly copied from instructions, but with the Classic Logan Twist [TM]
-    int left = 0, right = num_values-1;
+    int left = 0, right = n-1;
     int target_index = 0;
 
     // loop while not found and valid index
@@ -89,19 +140,63 @@ void bubble_sort(int num_strings, char *strings[]) {
     }
 }
 int is_palindrome(char *str, int len) {
-    // indexes to check
-    int str_length = strlen(str);
-    int left = (str_length - len)/2;
-    int right = str_length - left;
+    // return success if checking the same middle character
+    if (len <= 1) return 1;
 
-    if (left > right) return 0;
+    // check left for whitespace, increment right if whitespace found
+    if (str[0] == ' ') {
+        str = str+1;
+        len--;
+    }
 
-    printf("Comparing: %c and %c\n", str[left], str[right]);
+    // return success if checking the same middle character
+    if (len <= 1) return 1;
 
-    return is_palindrome(str, len-2);
+    // check right for whitespace, decrement left if whitespace found
+    if (str[len-1] == ' ') {
+        len--;
+    }
 
-    return 0;
+    // return success if checking the same middle character
+    if (len <= 1) return 1;
+
+    // if the characters at the beginning and end don't match, quit
+    // (makes both lowercase to make sure case doesn't matter)
+    if (tolower(str[0]) != tolower(str[len-1])) return 0;
+
+    // recursive call, adjust start pointer and string length
+    return is_palindrome(str+1, len-2);
 }
-int sum_primes(unsigned int n);
-void maximum_occurences(char *str, Occurences *occur_arr[], int *int_ptr, char *char_ptr);
-void max_consequtive_integers(signed int *integer_arr, int rows, int columns, int **first_int, int *num_int_row);
+int sum_primes(unsigned int n) {
+    // base case: n=0, return 0 to add
+    if (n == 0) return 0;
+
+    // otherwise, return the nth prime plus the sum of primes before it
+    return nth_prime(n) + sum_primes(n-1);
+}
+void maximum_occurences(char *str, Occurences occur_arr[128], int *int_ptr, char *char_ptr) {
+    // get length of string
+    int len = strlen(str);
+
+    // loop through all indexes in the string
+    for (int i=0; i < len; i++) {
+        // add one to the num_occurences at the corresponding (ascii value) 
+        // Occurence struct in the array
+        occur_arr[str[i]].num_occurences++;
+    }
+
+    // update frequencies and max int & char if necessary
+    for (int i=0; i < 128; i++) {
+        // frequency
+        occur_arr[i].frequency = occur_arr[i].num_occurences / (double)len;
+
+        // max int & char through pointer if new max found
+        if (occur_arr[i].num_occurences > *int_ptr) {
+            *int_ptr = occur_arr[i].num_occurences;
+            *char_ptr = i;
+        }
+    }
+}
+void max_consequtive_integers(signed int *integer_arr, int rows, int columns, int **first_int, int *num_int_row) {
+    // TODO
+}
