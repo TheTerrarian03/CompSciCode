@@ -69,7 +69,7 @@ int get_menu_option();
 // Description: Prints a score with a prefix combo name
 // Param: int score, the score the player has currently for that category
 // Param: char *combo, the string to prefix
-void print_score(int score, char *combo);
+void print_score(int score, char* combo);
 
 // Name: print_score_w_pot
 // Description: Prints the score with a prefix combo name, plus an optional potential score
@@ -77,19 +77,19 @@ void print_score(int score, char *combo);
 // Param: int combo_id, combo id num
 // Param: int score, current player score for that category
 // Param: char *combo, the string to prefix
-void print_score_w_pot(int *dice, int combo_id, int score, char *combo);
+void print_score_w_pot(int* dice, int combo_id, int score, char* combo);
 
 // Name: print_round_info
 // Description: Prints the info the round, including round #, player turn, and all the scores
 // Param: int p_turn, who's turn it is
 // Param: int *p_scores, the array of player scores
 // Param: int round, the round #
-void print_round_info(int p_turn, int *p_scores, int *p_dice, int round);
+void print_round_info(int p_turn, int* p_scores, int* p_dice, int round);
 
 // Name; print_dice
 // Description: prints the player's dice in a nice format
 // Param: int *dice, the array of player dice and what they rolled
-void print_dice(int *dice);
+void print_dice(int* dice);
 
 // Name: clear_scr
 // Description: clears the screen, if not defined otherwise
@@ -99,7 +99,7 @@ void clear_scr();
 // Description: prints an array, used for debugging
 // Param: int *array to print
 // Param: int len of the array
-void print_array(int *array, int len);
+void print_array(int* array, int len);
 
 // game handling functions
 
@@ -111,12 +111,12 @@ int play_game();
 // Description: Asks the user if they want to reroll and what dice to reroll, and validates inputs
 // Param: int *p_dice, the player's current dice
 // Param: int *p_held, the array to store hold choices into
-void reroll_loop(int *p_dice, int *p_held);
+void reroll_loop(int* p_dice, int* p_held);
 
 // Name: combo_ask_loop
 // Description: Asks the user what combo to score into, and validates input
 // Param: int *p_scores, the player's current scores
-int combo_ask_loop(int *p_scores);
+int combo_ask_loop(int* p_scores);
 
 // array functions - dice
 
@@ -124,37 +124,37 @@ int combo_ask_loop(int *p_scores);
 // Description: Fills the dice array with a specified value
 // Param: int *dice, the array of dice values
 // Param: int value, the value to fill each dice with
-void fill_dice(int *dice, int value);
+void fill_dice(int* dice, int value);
 
 // Name: roll_dice
 // Description: Rolls each die in the dice array that is not held
 // Param: int *dice, the array of dice values
 // Param: int *held, the array indicating held dice (1 for held, 0 for roll)
-void roll_dice(int *dice, int *held);
+void roll_dice(int* dice, int* held);
 
 // Name: sum_dice
 // Description: Sums all dice values in the dice array
 // Param: int *dice, the array of dice values
 // Return: int, the sum of the dice values
-int sum_dice(int *dice);
+int sum_dice(int* dice);
 
 // Name: get_has_sm_straight
 // Description: Checks if there is a small straight (4 consecutive values) in the frequency array
 // Param: int *freqs, the frequency array of dice values
 // Return: int, 1 if small straight exists, otherwise 0
-int get_has_sm_straight(int *freqs);
+int get_has_sm_straight(int* freqs);
 
 // Name: get_has_lg_straight
 // Description: Checks if there is a large straight (5 consecutive values) in the frequency array
 // Param: int *freqs, the frequency array of dice values
 // Return: int, 1 if large straight exists, otherwise 0
-int get_has_lg_straight(int *freqs);
+int get_has_lg_straight(int* freqs);
 
 // Name: get_has_yahtzee
 // Description: Checks if there is a Yahtzee (5 of a kind) in the frequency array
 // Param: int *freqs, the frequency array of dice values
 // Return: int, 1 if Yahtzee exists, otherwise 0
-int get_has_yahtzee(int *freqs);
+int get_has_yahtzee(int* freqs);
 
 // array functions - scores
 
@@ -162,26 +162,26 @@ int get_has_yahtzee(int *freqs);
 // Description: Fills the score array with a specified value
 // Param: int *score_array, the array of scores
 // Param: int value, the value to fill each score with
-void fill_scores(int *score_array, int value);
+void fill_scores(int* score_array, int value);
 
 // Name: enter_score
 // Description: Updates the score at a specific index in the score array
 // Param: int *score_array, the array of scores
 // Param: int score_index, the index to update
 // Param: int new_score, the score to enter at the specified index
-void enter_score(int *score_array, int score_index, int new_score);
+void enter_score(int* score_array, int score_index, int new_score);
 
 // Name: get_score_for_combo
 // Description: Calculates the score for a specified combination
 // Param: int *dice, the array of dice values
 // Param: int combo_id, the combination ID for scoring
 // Return: int, the score for the specified combination
-int get_score_for_combo(int *dice, int combo_id);
+int get_score_for_combo(int* dice, int combo_id);
 
 // Name: update_scores
 // Description: Calculates and updates the upper sum, bonus, and total score in the score array
 // Param: int *score_array, the array of scores
-void update_scores(int *score_array);
+void update_scores(int* score_array);
 
 // array functions - frequencies
 
@@ -189,20 +189,20 @@ void update_scores(int *score_array);
 // Description: Populates the frequency array based on dice values
 // Param: int *dice, the array of dice values
 // Param: int *freq_array, the frequency array to populate
-void pop_freq_array(int *dice, int *freq_array);
+void pop_freq_array(int* dice, int* freq_array);
 
 // Name: get_any_with_freq
 // Description: Checks if there is any dice value with a specific frequency
 // Param: int *freqs, the frequency array of dice values
 // Param: int num, the specific frequency to check for
 // Return: int, the dice value with the specified frequency or 0 if none
-int get_any_with_freq(int *freqs, int num);
+int get_any_with_freq(int* freqs, int num);
 
 // Name: get_any_ge_freq
 // Description: Checks if there is any dice value with a frequency greater than or equal to a specific number
 // Param: int *freqs, the frequency array of dice values
 // Param: int num, the minimum frequency to check for
 // Return: int, the dice value with the specified frequency or 0 if none
-int get_any_ge_freq(int *freqs, int num);
+int get_any_ge_freq(int* freqs, int num);
 
 #endif

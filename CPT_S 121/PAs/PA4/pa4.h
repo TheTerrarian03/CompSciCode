@@ -10,6 +10,8 @@
 #ifndef PA4_H
 #define PA4_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -17,7 +19,7 @@
 
 // constants
 #define DEBUG 1
-#define CLEAR_COMMAND "clear"
+#define CLEAR_COMMAND "cls"
 // #define DISABLE_CLEAR_SCR  // un-comment to disable clearing screen, if you want history
 
 #define START_OPTIONS ((const char*[]){"Play Game", "Print Rules", "Exit"})
@@ -36,9 +38,9 @@ void print_welcome_screen();
 
 // 
 void chatter_messages(int number_rolls,
-                      int win_loss_neither,
-                      double initial_bank_balance,
-                      double current_bank_balance);
+    int win_loss_neither,
+    double initial_bank_balance,
+    double current_bank_balance);
 
 // Name: clear_scr
 // Description: clears the terminal screen
@@ -74,26 +76,13 @@ int roll_die();
 // Description: Adjusts the bank balance based on wager and whether to add or sub
 // Notes: unused
 double adjust_bank_balance(double bank_balance,
-                           double wager_amount,
-                           int add_or_subtract);
+    double wager_amount,
+    int add_or_subtract);
 
 /* --------- comparison methods ---------*/
 
-// Name: check_wager_amount
-// Description: Makes sure the wager is withing the bounds of the balance
-// Parameter: double wager, the player's wager
-// Parameter: double balance, the player's balance
-// Returns: int 1 if it is within bounds, int 0 all else
 int check_wager_amount(double wager, double balance);
-
-// Name: calculate_sum_dice
-// Description: Sums dice values
-// Parameter: int die1_value
-// Parameter: int die2_value
-// Returns: int sum of die1_value and die2_value
 int calculate_sum_dice(int die1_value, int die2_value);
-
-// 
 int is_win_loss_or_point(int sum_dice);
 int is_point_loss_or_neither(int sum_dice, int point_value);
 

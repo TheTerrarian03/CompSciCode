@@ -29,7 +29,7 @@ int main() {
         // decide on what to do at that point
         // --game_choice takes it from the user's range of [1-3]
         // to the program's [0-2]
-        switch(--game_choice) {
+        switch (--game_choice) {
             case 0: playing_game = 1;
                     clear_scr();
                     break;
@@ -51,15 +51,17 @@ int main() {
                 // also acts as re-start menu
                 int balance_choice = get_choice(BALANCE_OPTIONS, 3);
 
-                switch(--balance_choice) {
+                switch (--balance_choice) {
                     case 1: player_balance = get_bank_balance();
                             break;
                     case 2: playing_game = 0;
                             clear_scr();
                             break;
-                    default: printf("\nKeeping your balance of $%.2lf\n\n", player_balance);
+                    default: clear_scr();
+                             printf("\nKeeping your balance of $%.2lf\n\n", player_balance);
                 }
-            } else {
+            }
+            else {
                 player_balance = get_bank_balance();
             }
 
@@ -99,10 +101,11 @@ int main() {
                         case -1: handle_player_make_point(sum, &player_point);
                                  break;
                     }
-                } else {
+                }
+                else {
                     int other_roll_result = is_point_loss_or_neither(sum, player_point);
 
-                    switch(other_roll_result) {
+                    switch (other_roll_result) {
                         case 1: handle_player_win(&player_balance, player_wager);
                                 playing_round = 0;
                                 break;
