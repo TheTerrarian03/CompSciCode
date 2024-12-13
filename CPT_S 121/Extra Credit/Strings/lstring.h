@@ -27,7 +27,7 @@ char *my_gets(char *s);
 int my_puts(const char *s);
 
 // string manipulation functions
-char *mystrcpy(char *destination, const char *source);
+char *my_strcpy(char *destination, const char *source);
 char *my_strncpy(char *destination, const char *source, int n);
 char *my_strcat(char *destination, const char *source);
 char *my_strncat(char *destination, const char *source, int n);

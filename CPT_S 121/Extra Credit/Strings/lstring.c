@@ -111,10 +111,103 @@ int my_puts(const char *s) {
 }
 
 // string manipulation functions
-char *mystrcpy(char *destination, const char *source);
-char *my_strncpy(char *destination, const char *source, int n);
-char *my_strcat(char *destination, const char *source);
-char *my_strncat(char *destination, const char *source, int n);
-int my_strcmp(const char *s1, const char *s2);
-int my_strncmp(const char *s1, const char *s2, int n);
+char *my_strcpy(char *destination, const char *source) {
+    int idx = 0;
+
+    // copy up to the null character
+    while (*(source+idx) != '\0') {
+        *(destination+idx) = *(source+idx);
+        idx++;
+    }
+
+    // copy the null character
+    *(destination+idx) = '\0';
+
+    return destination;
+}
+char *my_strncpy(char *destination, const char *source, int n) {
+    int idx = 0;
+    int at_src_end = 0;
+
+    for (; idx < n; idx++) {
+        if (at_src_end) {
+            *(destination+idx) = '\0';
+            printf("Wrote null char to index %d\n", idx);
+        } else {
+            char next = *(source+idx);
+
+            *(destination+idx) = next;
+
+            printf("Wrote char %c to index %d\n", next, idx);
+
+            if (next == '\0') at_src_end = 1;
+        }
+    }
+
+    return destination;
+}
+char *my_strcat(char *destination, const char *source) {
+    int offset = 0, src_idx = 0;
+
+    for (; *(destination+offset) != '\0'; offset++);  // find end index of destination array
+
+    for (; *(source+src_idx) != '\0'; src_idx++) *(destination+offset+src_idx) = *(source+src_idx);  // append source char to dest
+
+    *(destination+offset+src_idx) = '\0';  // add null char at end
+
+    return destination;
+}
+char *my_strncat(char *destination, const char *source, int n) {
+    int offset = 0, src_idx = 0;
+
+    for (; *(destination+offset) != '\0'; offset++);  // find end index of destination array
+
+    for (; *(source+src_idx) != '\0' && src_idx < n; src_idx++) *(destination+offset+src_idx) = *(source+src_idx);  // append source char to dest
+
+    *(destination+offset+src_idx) = '\0';  // add null char at end
+
+    return destination;
+}
+int my_strcmp(const char *s1, const char *s2) {
+    int s1_end = 0, s2_end = 0;
+    int idx = 0;
+    
+    while (1) {
+        char first = *(s1+idx);
+        char second = *(s2+idx);
+
+        if (first == '\0') s1_end = 1;
+        if (second == '\0') s2_end = 1;
+
+        if (first < second) return -1;
+        if (first > second) return 1;
+
+        if (s1_end && s2_end) break;
+
+        idx++;
+    }
+
+    return 0;
+}
+int my_strncmp(const char *s1, const char *s2, int n) {
+    int s1_end = 0, s2_end = 0;
+    int idx = 0;
+    
+    while (idx < n) {
+        char first = *(s1+idx);
+        char second = *(s2+idx);
+
+        if (first == '\0') s1_end = 1;
+        if (second == '\0') s2_end = 1;
+
+        if (first < second) return -1;
+        if (first > second) return 1;
+
+        if (s1_end && s2_end) break;
+
+        idx++;
+    }
+
+    return 0;
+}
 int my_strlen(const char *s);

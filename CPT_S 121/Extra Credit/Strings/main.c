@@ -33,13 +33,10 @@ int main() {
 
     // printf("Got: %d\n", gets_res);
 
-    char input[80] = {};
+    char *first = "Dog2";
+    char *second = "Dog3";
 
-    my_gets(input);
-
-    my_puts("Got string: ");
-    my_puts(input);
-    my_putchar('\n');
+    printf("Result: %d\n", my_strncmp(first, second, 3));
 
     return 0;
 }
