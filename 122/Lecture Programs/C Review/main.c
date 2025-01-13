@@ -22,16 +22,14 @@ int main() {
         while (fgets(line, 100, inputStream) != NULL) {  // or !feof(inputStream)
             // Wicked,2024\n\0
             strcpy(records[numRecords].title, strtok(line, ","));
-            char *year = strtok(line, "\n");
-            printf("Year: %s", year);
-            year = strtok(line, "\n");
-            printf("Year: %s", year);
-            year = strtok(line, "\n");
-            printf("Year: %s", year);
-            year = strtok(line, "\n");
-            printf("Year: %s", year);
-            year = strtok(line, "\n");
-            printf("Year: %s", year);
+            
+            // basically just let strtok work on the last string??
+            records[numRecords].year = atoi (strtok(NULL, "\n"));
+
+            printf("records[%d].title: %s\nrecords[%d].year: %d\n",
+                numRecords, records[numRecords].title,
+                numRecords, records[numRecords].year);
+
             numRecords++;
         }
     } else {
