@@ -1,7 +1,20 @@
 #include "functions.h"
 
 int main() {
-    printf("Hello world!");
+    // fitbit data array
+    FitbitData fitbitData[DATA_LEN] = {};
+    
+    // make sure data exists and can be read
+    if (checkFitbitDataPresent() != 1) return -1;
+
+    // read and clean data
+    readAndCleanData(fitbitData);
+
+    // calculate results
+
+    // write results
+
+    // output to terminal
     
     return 0;
 }
