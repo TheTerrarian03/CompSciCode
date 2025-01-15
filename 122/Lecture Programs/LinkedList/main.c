@@ -1,6 +1,11 @@
 #include "linkedlist.h"
+#include "movieUtilities.h"
 
 int main() {
+    Node pHead;  // we now have an (empty) list
+
+    initList(&pHead);
+
     return 0;
 }
 
