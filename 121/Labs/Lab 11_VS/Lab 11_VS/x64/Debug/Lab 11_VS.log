@@ -1,0 +1,10 @@
+﻿  lab11.c
+  main.c
+  Generating Code...
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(13,12): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[100]'
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(13,12): warning C4024: 'strcat': different types for formal and actual parameter 1
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(14,12): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[100]'
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(14,12): warning C4024: 'strcat': different types for formal and actual parameter 1
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(14,19): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char (*)[50]'
+C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\Lab 11_VS\lab11.c(14,19): warning C4024: 'strcat': different types for formal and actual parameter 2
+  Lab 11_VS.vcxproj -> C:\Users\lsm03\Desktop\CompSciCode\121\Labs\Lab 11_VS\x64\Debug\Lab 11_VS.exe
