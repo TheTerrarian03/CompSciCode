@@ -17,4 +17,40 @@ Node *createNode(Movie newData) {
 
     return pMem;
 }
-int insertAtFront(Node *headNode, Movie newData);
+int insertAtFront(Node** pList, Movie newData) {
+    // case 1) empty
+    // case 2) containes title and year
+        // case 2.1) 
+    
+    Node *pMem = createNode(newData);
+    int success = 0;
+
+    if (pMem != NULL) {
+        // allocated space for a node
+        success = 1;
+
+        // is the list empty?
+        if (*pList == NULL) {
+            // yes, empty, set pList to the new node we created
+            *pList = pMem;
+        } else {
+            // no, list is not empty
+            pMem->pNext = *pList;
+            *pList = pMem;
+        }
+    }
+
+    return success;
+}
+
+void printList(Node* pHeadCpy) {
+    // base case
+    if (pHeadCpy == NULL) {
+        printf("--> ");
+    }
+    // recursive step
+    else {
+        printf("--> %s, %d", pHeadCpy->data.title, pHeadCpy->data.year);
+        printList(pHeadCpy->pNext);
+    }
+}

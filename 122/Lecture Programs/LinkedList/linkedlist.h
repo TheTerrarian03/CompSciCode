@@ -18,6 +18,8 @@ typedef struct node {
 
 void initList(Node **pList);
 Node *createNode(Movie newData);
-int insertAtFront(Node *headNode, Movie newData);  // insertFront(L, e); L: first item, e: data to insert
+int insertAtFront(Node** pList, Movie newData);  // insertFront(L, e); L: first item, e: data to insert
+
+void printList(Node* pHeadCpy);
 
 #endif

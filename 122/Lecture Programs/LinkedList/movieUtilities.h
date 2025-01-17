@@ -9,11 +9,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct movie {
-    char title[25];
-    int year;
-} Movie;
-
 
 
 #endif

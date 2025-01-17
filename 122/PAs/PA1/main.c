@@ -34,3 +34,8 @@ int main() {
 // 2)   then use strtok for every line, insert data into struct array
 // 3)   perform calculations
 // 3.1) for each type, skips -1's
+
+// poor sleep range is inclusive on minutes, e.x. if there were
+// sleep levels > 1 at minute 1, minute 5, and in between, you would
+// include minute 1 and 5: 1:5
+// 0 on sleep means no data
