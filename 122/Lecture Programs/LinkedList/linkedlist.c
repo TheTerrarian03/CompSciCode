@@ -43,14 +43,28 @@ int insertAtFront(Node** pList, Movie newData) {
     return success;
 }
 
+Movie deleteFront(Node **pList) {
+    Node *pTemp = *pList;
+    Movie deleted = (*pList)->data;  // struct assignment
+
+    *pList = pTemp->pNext;
+    free(pTemp);
+
+    return deleted;  // return copy of a struct
+}
+
+int insertInOrder(Node **pList, Movie newData) {
+    
+}
+
 void printList(Node* pHeadCpy) {
     // base case
     if (pHeadCpy == NULL) {
-        printf("--> ");
+        printf("-->\n");
     }
     // recursive step
     else {
-        printf("--> %s, %d", pHeadCpy->data.title, pHeadCpy->data.year);
+        printf("--> %s, %d ", pHeadCpy->data.title, pHeadCpy->data.year);
         printList(pHeadCpy->pNext);
     }
 }

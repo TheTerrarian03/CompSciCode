@@ -39,3 +39,9 @@ int main() {
 // sleep levels > 1 at minute 1, minute 5, and in between, you would
 // include minute 1 and 5: 1:5
 // 0 on sleep means no data
+
+// anyhting > 1 is poor sleep
+// add all greater than one in sequence until a 1 is found
+// save sum
+// find highest sum of poor sleep and that timeline
+// track start and ending minute

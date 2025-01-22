@@ -56,9 +56,9 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
 char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) {
     // target
     int valids[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-    validEntries(line, valids);
+    // validEntries(line, valids);
 
-    printf("Valids: %d %d %d %d %d %d %d %d\n", valids[0], valids[1], valids[2], valids[3], valids[4], valids[5], valids[6], valids[7]);
+    // printf("Valids: %d %d %d %d %d %d %d %d\n", valids[0], valids[1], valids[2], valids[3], valids[4], valids[5], valids[6], valids[7]);
 
     // char *readTarget = strtok(line, ",");
     // printf("Got target: %s\n", readTarget);
@@ -98,10 +98,9 @@ void readAndCleanData(FitbitData fitbitData[DATA_LEN]) {
 
     int numRecords = 0;
     
-    while(!feof(infile)) {
+    while(fgets(line, sizeof(line), infile) != NULL) {
         // read line
-        fgets(line, sizeof(line), infile);
-        printf("Line: %s\n", line);
+        printf("Line: %s", line);
 
         // new var to pass to parse
         FitbitData newRecord = {};

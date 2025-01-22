@@ -12,7 +12,7 @@
 #define CLEAN_FILE "FitbitDataCleaned.csv"
 #define OUTPUT_FILE "Results.csv"
 #define DATA_LEN 1440
-#define MAX_LINE_CHARS 64
+#define MAX_LINE_CHARS 70
 #define FITBIT_STR_DATA_LEN 10
 
 // type definitions
