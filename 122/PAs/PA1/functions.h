@@ -13,6 +13,7 @@
 #define OUTPUT_FILE "Results.csv"
 #define DATA_LEN 1440
 #define MAX_LINE_CHARS 64
+#define FITBIT_STR_DATA_LEN 10
 
 // type definitions
 typedef enum sleep {
@@ -23,8 +24,8 @@ typedef enum sleep {
 } Sleep;
 
 typedef struct fitbit {
-    char patient[10];
-    char minute[9];
+    char patient[FITBIT_STR_DATA_LEN];
+    char minute[FITBIT_STR_DATA_LEN];
     double calories;
     double distance;
     unsigned int floors;
@@ -40,7 +41,9 @@ int duplicateMinuteRecord(FitbitData fitbitData[DATA_LEN]);
 
 void writeResults();
 
-void parseLine(char line[MAX_LINE_CHARS], FitbitData *fitbitData);
+void validEntries(char line[MAX_LINE_CHARS], int valids[8]);
+
+char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord);
 
 void readAndCleanData(FitbitData fitbitData[DATA_LEN]);
 
