@@ -1,7 +1,7 @@
 #include "functions.h"
 
 int main() {
-    // data array and struct
+    // variables
     FitbitData data[DATA_LEN] = {};
     int numRecords = 0;
     Results computedResult = {};
@@ -9,49 +9,37 @@ int main() {
     // make sure data exists and can be read
     if (checkFitbitDataPresent() != 1) return -1;
 
+    // welcome screen
+    printf("-- [Fitbit Data Analyzer v2.4 or something] --\n");
+    printf("\nReading data and finding invalid entries...\n");
+
     // read and clean data
     numRecords = readAndCleanData(data);
 
-    // calculate results
-    
+    printf("\nSuccess! Found %d total valid records.\n", numRecords);
 
-    // write results
+    // calculate results
+    calculateResults(data, &computedResult, numRecords);
 
     // output to terminal
-    
+    printf("\nHere is a summary of your Fitbit Stats:\n");
+    printf("------------------------------------------------\n");
+    printf("- Calories burned:             %.2lf\n- Distance walked (mi):        %.2lf\n- Floors climbed:              %d\n- Steps taken:                 %d\n- Average heart rate:          %.1lf\n- Max steps taken in a minute: %d\n- Worst sleep at times:        %s-%s\n",  // I am sorry for this horribly long line and I'm just making it longer by writing this comment please stop m-
+        computedResult.caloriesBurned,
+        computedResult.distanceWalked,
+        computedResult.floorsWalked,
+        computedResult.stepsTaken,
+        computedResult.averageHeartRate,
+        computedResult.maxSteps,
+        computedResult.minuteStart,
+        computedResult.minuteEnd);
+    printf("------------------------------------------------\n");
+
+    // write results to output file
+    writeResults(data, computedResult, numRecords);
+
+    // show user which file the results are in
+    printf("\n> Successfully wrote results to `%s`!\n", OUTPUT_FILE);
+
     return 0;
 }
-
-/*
-[*] check for file present
-[/] read and clean data
-[ ] perform calculations
-[ ] write results
-*/
-
-// read line
-// strtok with line for first use
-// strtok with NULL for other uses
-// strtok will skip commas if they're the first characters being read, so
-//   will need to check for the comma at the start of the returned 
-// possibly write algorithm to check for missing items
-//   keep track of commas in the line
-
-// 1)   clean data first
-// 1.1) remove lines not related to the target patient
-// 1.2) remove lines that are duplicates (same target, new matching timestamp)
-// 1.3) search for missing data and insert -1's for invalid data
-// 2)   then use strtok for every line, insert data into struct array
-// 3)   perform calculations
-// 3.1) for each type, skips -1's
-
-// poor sleep range is inclusive on minutes, e.x. if there were
-// sleep levels > 1 at minute 1, minute 5, and in between, you would
-// include minute 1 and 5: 1:5
-// 0 on sleep means no data
-
-// anyhting > 1 is poor sleep
-// add all greater than one in sequence until a 1 is found
-// save sum
-// find highest sum of poor sleep and that timeline
-// track start and ending minute

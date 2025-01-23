@@ -8,12 +8,16 @@
 #include <string.h>
 
 // definitions
-#define INPUT_FILE "tmp.csv"
-#define CLEAN_FILE "FitbitDataCleaned.csv"
+#define INPUT_FILE "FitbitData.csv"
 #define OUTPUT_FILE "Results.csv"
 #define DATA_LEN 1440
 #define MAX_LINE_CHARS 70
 #define FITBIT_STR_DATA_LEN 10
+
+// comment out to disable lines 3 & 4
+// being written in the output file
+// (the header lines from the original data csv)
+#define WRITE_CLEANED_HEADER_LINES
 
 // type definitions
 typedef enum sleep {
@@ -45,7 +49,8 @@ typedef struct results {
     char *minuteEnd;
 } Results;
 
-// read/write to file functions
+int sleepToInt(Sleep val);
+
 int checkFitbitDataPresent();
 
 int duplicateMinuteRecord(FitbitData data[DATA_LEN], char *minute, int numRecords);
