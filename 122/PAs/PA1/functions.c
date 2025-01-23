@@ -13,10 +13,13 @@ int checkFitbitDataPresent() {
     return 0;
 }
 
-int duplicateMinuteRecord(FitbitData fitbitData[DATA_LEN]) {
+int duplicateMinuteRecord(FitbitData data[DATA_LEN], char *minute, int numRecords) {
     // return 1 if minute has already been recorded
-
-    // return 0 if minute has not been recorded
+    for (int i=0; i < numRecords; i++) {
+        if (strcmp(data[i].minute, minute) == 0) return 1;
+    }
+    
+    return 0;
 }
 
 void writeResults() {
@@ -47,7 +50,6 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
     }
 
     while (v < 8 && i <= strlen(line)) {
-        printf("|%c|\n", line[i]);
         if (line[i] == '\n' || line[i] == ',' || i == strlen(line) || line[i] == '\0') {
             if ((i - lastComma) > 1) valids[v] = 1;
             lastComma = i;
@@ -56,7 +58,8 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
         i++;
     }
 
-    // I was struggling with an edge case, had to use ChatGPT to help me out here...
+    // I was struggling with an edge case, had to use ChatGPT to help me out here;
+    // It had to to with handling weird endings of lines from fgets...
     // Handle the case where the last column is empty due to a trailing comma
     if (lastComma == i - 1) {
         valids[v - 1] = 0; // Ensure the last column is marked as invalid if empty
@@ -64,16 +67,14 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
 }
 
 char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) {
-    // target
+    // valid entries, used to skipping empty columns and multiple commas
     int valids[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     validEntries(line, valids);
 
-    printf("Valids: %d %d %d %d %d %d %d %d\n", valids[0], valids[1], valids[2], valids[3], valids[4], valids[5], valids[6], valids[7]);
-    
-    char *readTarget = strtok(line, ",");
-    printf("Got target: %s\n", readTarget);
+    // printf("Valids: %d %d %d %d %d %d %d %d\n", valids[0], valids[1], valids[2], valids[3], valids[4], valids[5], valids[6], valids[7]);
 
-    char token[FITBIT_STR_DATA_LEN] = {};
+    // assuming target is always filled in data    
+    char *readTarget = strtok(line, ",");
 
     // minute string
     if (valids[1]) {
@@ -119,15 +120,20 @@ char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) 
 
     // sleep level
     if (valids[7]) {
-        newRecord->sleepLevel = atoi(strtok(NULL, ","));
+        switch (atoi(strtok(NULL, ","))) {
+            case 1:  newRecord->sleepLevel = ASLEEP;      break;
+            case 2:  newRecord->sleepLevel = AWAKE;       break;
+            case 3:  newRecord->sleepLevel = REALLYAWAKE; break;
+            default: newRecord->sleepLevel = NONE;
+        }
     } else {
-        newRecord->sleepLevel = -1;
+        newRecord->sleepLevel = NONE;
     }
 
     return readTarget;
 }
 
-void readAndCleanData(FitbitData fitbitData[DATA_LEN]) {
+int readAndCleanData(FitbitData data[DATA_LEN]) {
     // open input file
     FILE *infile = fopen(INPUT_FILE, "r");
     
@@ -148,39 +154,104 @@ void readAndCleanData(FitbitData fitbitData[DATA_LEN]) {
     
     while(fgets(line, sizeof(line), infile) != NULL) {
         // read line
-        printf("Line: %s", line);
+        // printf("Line: %s", line);
 
         // new var to pass to parse
         FitbitData newRecord = {};
 
         char *readTarget = parseLine(target, line, &newRecord);
 
-        printf("--> %d\n", newRecord.sleepLevel);
+        // printf("%s\n", newRecord.minute);
 
-        // if target != actual target: continue
+        // skip if targets don't match
+        if (strcmp(readTarget, target) != 0) continue;
 
-        // if newMinuteRecord == 0: continue
+        // skip if minute has already been recorded
+        if (duplicateMinuteRecord(data, newRecord.minute, numRecords)) {
+            printf("Found duplicate minute: %s\n", newRecord.minute);
+            continue;
+        }
 
         // set new var's values to it's spot in the array
+        strcpy(data->patient, readTarget);
+        strcpy(data->minute, newRecord.minute);
+        data->calories = newRecord.calories;
+        data->distance = newRecord.distance;
+        data->floors = newRecord.floors;
+        data->heartRate = newRecord.heartRate;
+        data->steps = newRecord.steps;
+        data->sleepLevel = newRecord.sleepLevel;
     
-        // printf("Info for record #%d:\n- %d\n- %d\n- %d\n- %d\n- %d\n- %d\n- %d\n", target, newRecord.minute, newRecord.calories, newRecord.distance, newRecord.floors, newRecord.heartRate, newRecord.steps, newRecord.sleepLevel);
+        // printf("Info for record %s:\n- %s\n- %lf\n- %d\n- %d\n- %d\n- %d\n- %d\n", target, newRecord.minute, newRecord.calories, newRecord.distance, newRecord.floors, newRecord.heartRate, newRecord.steps, newRecord.sleepLevel);
+
+        numRecords++;
+    };
+
+    printf("Found %d total valid records.\n", numRecords);
 
     // close file
-    };
+    fclose(infile);
+
+    return numRecords;
 }
 
-void calculateResults() {
-    // total calories
+void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords) {
+    // variables to use throughout this function
+    int totalHeartRate = 0;
+    int maxSteps = 0;
+    
+    // walk the array and update info on totals and averages
+    for (int i=0; i < numRecords; i++) {
+        // calories, distance, floors, and steps
+        result->caloriesBurned += data[i].calories != -1 ? data[i].calories : 0;
+        result->distanceWalked += data[i].distance != -1 ? data[i].distance : 0;
+        result->floorsWalked   += data[i].floors   != -1 ? data[i].floors   : 0;
+        result->stepsTaken     += data[i].steps    != -1 ? data[i].steps    : 0;
 
-    // distance walked
+        // local heartrate total
+        totalHeartRate += data[i].heartRate != -1 ? data[i].heartRate : 0;
 
-    // floors walked
-
-    // steps taken
+        // update max steps
+        if (data[i].steps > result->maxSteps) result->maxSteps = data[i].steps;
+    }
 
     // average heartrate
+    result->averageHeartRate = totalHeartRate / numRecords;
 
-    // latest max steps in one minute
+    // walk the array again and find the worst sleep range
+    // ... seperated from previous for loop for readability
+    char *startMin = NULL;
+    int worstSleepTotal = 0, tmpTotal = 0;
+    for (int i=0; i < numRecords; i++) {
+        // if a range isn't being tracked yet
+        if (startMin == NULL) {
+            if (data[i].sleepLevel > 1) {
+                startMin = data[i].minute;
+                tmpTotal += data[i].sleepLevel;
+                printf("New range being tracked at %s\n", startMin);
+            }
+        }
+
+        // if a range is being tracked
+        else {
+            if (data[i].sleepLevel > 1) {
+                // continue adding total
+                tmpTotal += data[i].sleepLevel;
+                printf("Current Worst: %d\n", tmpTotal);
+            } else {
+                // break found, stop and record
+                if (tmpTotal > worstSleepTotal) {
+                    worstSleepTotal = tmpTotal;
+                    result->minuteStart = startMin;
+                    result->minuteEnd = data[i-1].minute;
+                }
+
+                // reset vals
+                startMin = NULL;
+                tmpTotal = 0;
+            }
+        }
+    }
 
     // longest consecutive range of poor sleep
 

@@ -8,7 +8,7 @@
 #include <string.h>
 
 // definitions
-#define INPUT_FILE "FitbitData.csv"
+#define INPUT_FILE "tmp.csv"
 #define CLEAN_FILE "FitbitDataCleaned.csv"
 #define OUTPUT_FILE "Results.csv"
 #define DATA_LEN 1440
@@ -34,10 +34,21 @@ typedef struct fitbit {
     Sleep sleepLevel;
 } FitbitData;
 
+typedef struct results {
+    double caloriesBurned;
+    double distanceWalked;
+    int floorsWalked;
+    int stepsTaken;
+    int maxSteps;
+    double averageHeartRate;
+    char *minuteStart;
+    char *minuteEnd;
+} Results;
+
 // read/write to file functions
 int checkFitbitDataPresent();
 
-int duplicateMinuteRecord(FitbitData fitbitData[DATA_LEN]);
+int duplicateMinuteRecord(FitbitData data[DATA_LEN], char *minute, int numRecords);
 
 void writeResults();
 
@@ -45,8 +56,8 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]);
 
 char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord);
 
-void readAndCleanData(FitbitData fitbitData[DATA_LEN]);
+int readAndCleanData(FitbitData fitbitData[DATA_LEN]);
 
-void calculateResults();
+void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords);
 
 #endif

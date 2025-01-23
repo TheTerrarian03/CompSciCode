@@ -1,16 +1,19 @@
 #include "functions.h"
 
 int main() {
-    // fitbit data array
-    FitbitData fitbitData[DATA_LEN] = {};
+    // data array and struct
+    FitbitData data[DATA_LEN] = {};
+    int numRecords = 0;
+    Results computedResult = {};
     
     // make sure data exists and can be read
     if (checkFitbitDataPresent() != 1) return -1;
 
     // read and clean data
-    readAndCleanData(fitbitData);
+    numRecords = readAndCleanData(data);
 
     // calculate results
+    
 
     // write results
 
@@ -18,6 +21,13 @@ int main() {
     
     return 0;
 }
+
+/*
+[*] check for file present
+[/] read and clean data
+[ ] perform calculations
+[ ] write results
+*/
 
 // read line
 // strtok with line for first use

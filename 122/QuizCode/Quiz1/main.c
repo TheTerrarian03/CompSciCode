@@ -66,24 +66,12 @@ char *myStrncpy(char *destination, const char *source, int n) {
     return destination;
 }
 
-// pretty much the same as myStrncpy, without filling null chars at end
 char *strCpyRec(char *destination, const char *source) {
-    // current position and character to copy
-    int i=0;
-    char c = source[i];
+    *destination = *source;
 
-    // copy characters from source to destination,
-    // looking for source's null char in order to stop
-    while (c != '\0') {
-        destination[i] = c;
-        c = source[++i];
-    }
+    if (*source == '\0') return destination;
 
-    // add final null char
-    destination[i] = '\0';
-
-    // return dest pointer
-    return destination;
+    strCpyRec(destination+1, source+1);
 }
 
 void bubble_sort(int *arr, int len) {
