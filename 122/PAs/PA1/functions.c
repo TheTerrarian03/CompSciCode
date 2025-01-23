@@ -1,4 +1,17 @@
+/*
+- Name: Logan Meyers
+- TA: Martin
+- PA: #1
+- Date: Jan 22 2025
+- Description: Fitbit Data cleaner and analyzer!
+
+- File: functions.c
+- Description: All functions to handle the fitbit data, plus file operations
+*/
+
 #include "functions.h"
+
+// ----- General Tool Functions ----- //
 
 int sleepToInt(Sleep val) {
     switch (val) {
@@ -23,6 +36,28 @@ int checkFitbitDataPresent() {
     printf("ERROR: The file `FitbitData.csv` doesn't exist relative to this program.\nPlease place the data here and try again.");
     return 0;
 }
+
+void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
+    int i=0, v=0;
+    int lastComma = 0;
+
+    // Initialize the valids array to 0
+    for (int j = 0; j < 8; j++) {
+        valids[j] = 0;
+    }
+
+    // walk the line and find which values are missing data
+    while (v < 8 && i <= strlen(line)) {
+        if (line[i] == '\n' || line[i] == ',' || i == strlen(line) || line[i] == '\0') {
+            if ((i - lastComma) > 1) valids[v] = 1;
+            lastComma = i;
+            v++;
+        }
+        i++;
+    }
+}
+
+// ----- FitbitData-Related Functions ----- //
 
 int duplicateMinuteRecord(FitbitData data[DATA_LEN], char *minute, int numRecords) {
     for (int i=0; i < numRecords; i++) {
@@ -71,27 +106,7 @@ void writeResults(FitbitData data[DATA_LEN], Results result, int numRecords) {
     fclose(outfile);
 }
 
-void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
-    int i=0, v=0;
-    int lastComma = 0;
-
-    // Initialize the valids array to 0
-    for (int j = 0; j < 8; j++) {
-        valids[j] = 0;
-    }
-
-    // walk the line and find which values are missing data
-    while (v < 8 && i <= strlen(line)) {
-        if (line[i] == '\n' || line[i] == ',' || i == strlen(line) || line[i] == '\0') {
-            if ((i - lastComma) > 1) valids[v] = 1;
-            lastComma = i;
-            v++;
-        }
-        i++;
-    }
-}
-
-void parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) {
+void parseLine(char line[MAX_LINE_CHARS], FitbitData *newRecord) {
     // valid entries, used to skipping empty columns and multiple commas
     int valids[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     validEntries(line, valids);
@@ -179,7 +194,7 @@ int readAndCleanData(FitbitData data[DATA_LEN]) {
         // new var to pass to parse
         FitbitData newRecord = {};
 
-        parseLine(target, line, &newRecord);
+        parseLine(line, &newRecord);
 
         // skip if targets don't match
         if (strcmp(newRecord.patient, target) != 0) {

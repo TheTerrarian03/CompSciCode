@@ -1,3 +1,14 @@
+/*
+- Name: Logan Meyers
+- TA: Martin
+- PA: #1
+- Date: Jan 22 2025
+- Description: Fitbit Data cleaner and analyzer!
+
+- File: main.c
+- Description: The main file
+*/
+
 #include "functions.h"
 
 int main() {
