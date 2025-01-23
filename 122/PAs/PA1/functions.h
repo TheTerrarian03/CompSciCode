@@ -59,7 +59,7 @@ void writeResults();
 
 void validEntries(char line[MAX_LINE_CHARS], int valids[8]);
 
-char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord);
+void parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord);
 
 int readAndCleanData(FitbitData fitbitData[DATA_LEN]);
 

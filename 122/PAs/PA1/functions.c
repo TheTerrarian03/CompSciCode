@@ -19,13 +19,12 @@ int checkFitbitDataPresent() {
         return 1;
     }
     
-    // could replace with a fprintf(sterr, ...) like martin did
+    // could replace with a fprintf(sterr, ...) like martin showed
     printf("ERROR: The file `FitbitData.csv` doesn't exist relative to this program.\nPlease place the data here and try again.");
     return 0;
 }
 
 int duplicateMinuteRecord(FitbitData data[DATA_LEN], char *minute, int numRecords) {
-    // return 1 if minute has already been recorded
     for (int i=0; i < numRecords; i++) {
         if (strcmp(data[i].minute, minute) == 0) return 1;
     }
@@ -92,13 +91,13 @@ void validEntries(char line[MAX_LINE_CHARS], int valids[8]) {
     }
 }
 
-char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) {
+void parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) {
     // valid entries, used to skipping empty columns and multiple commas
     int valids[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     validEntries(line, valids);
 
     // assuming target is always filled in data    
-    char *readTarget = strtok(line, ",");
+    strcpy(newRecord->patient, strtok(line, ","));
 
     // minute string
     if (valids[1]) {
@@ -155,8 +154,6 @@ char *parseLine(char *target, char line[MAX_LINE_CHARS], FitbitData *newRecord) 
     } else {
         newRecord->sleepLevel = NONE;
     }
-
-    return readTarget;
 }
 
 int readAndCleanData(FitbitData data[DATA_LEN]) {
@@ -174,24 +171,19 @@ int readAndCleanData(FitbitData data[DATA_LEN]) {
     strcpy(target, strtok(NULL, ","));  // copy the value after that into target, like "12cx7"
 
     // read second line, won't do anything with it, just header data
-    fgets(line, sizeof(line), infile);  // get second line
+    fgets(line, sizeof(line), infile);
 
     int numRecords = 0;
     
     while(fgets(line, sizeof(line), infile) != NULL) {
-        // read line
-        // printf("Line: %s", line);
-
         // new var to pass to parse
         FitbitData newRecord = {};
 
-        char *readTarget = parseLine(target, line, &newRecord);
-
-        // printf("%s\n", newRecord.minute);
+        parseLine(target, line, &newRecord);
 
         // skip if targets don't match
-        if (strcmp(readTarget, target) != 0) {
-            printf("> Found non-matching user: %s\n", readTarget);
+        if (strcmp(newRecord.patient, target) != 0) {
+            printf("> Found non-matching user: %s\n", newRecord.patient);
             continue;
         }
 
@@ -202,7 +194,7 @@ int readAndCleanData(FitbitData data[DATA_LEN]) {
         }
 
         // set new var's values to it's spot in the array
-        strcpy(data[numRecords].patient, readTarget);
+        strcpy(data[numRecords].patient, newRecord.patient);
         strcpy(data[numRecords].minute, newRecord.minute);
         data[numRecords].calories = newRecord.calories;
         data[numRecords].distance = newRecord.distance;
@@ -214,8 +206,6 @@ int readAndCleanData(FitbitData data[DATA_LEN]) {
         numRecords++;
     };
 
-    
-
     // close file
     fclose(infile);
 
@@ -226,16 +216,6 @@ void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords
     // variables to use throughout this function
     double totalHeartRate = 0.0;
     int maxSteps = 0, numHeartRates = 0;
-    
-    // initialize the values to 0
-    // result->caloriesBurned = 0;
-    // result->distanceWalked = 0;
-    // result->floorsWalked = 0;
-    // result->stepsTaken = 0;
-    // result->maxSteps = 0;
-    // result->averageHeartRate = 0;
-    // result->minuteStart = "";
-    // result->minuteEnd = "";
 
     // walk the array and update info on totals and averages
     for (int i=0; i < numRecords; i++) {
@@ -247,16 +227,15 @@ void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords
 
         // local heartrate total
         if (data[i].heartRate > 0) {
-            totalHeartRate += (double) data[i].heartRate;
+            totalHeartRate += data[i].heartRate;
             numHeartRates++;
         }
 
         // update max steps
         if (data[i].steps > result->maxSteps) result->maxSteps = data[i].steps;
     }
-    // printf("Calories: %lf\n", result->caloriesBurned);
 
-    // average heartrate
+    // calc average heartrate
     result->averageHeartRate = totalHeartRate / numHeartRates;
 
     // walk the array again and find the worst sleep range
@@ -264,14 +243,12 @@ void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords
     char *startMin = NULL;
     int worstSleepTotal = 0, tmpTotal = 0;
     for (int i=0; i < numRecords; i++) {
-        // printf("i: %d, sleep: %d\n", i, (sleepToInt(data[i].sleepLevel)));
-
         // if a range isn't being tracked yet
         if (startMin == NULL) {
             if (sleepToInt(data[i].sleepLevel) > 1) {
+                // start tracking
                 startMin = data[i].minute;
                 tmpTotal += sleepToInt(data[i].sleepLevel);
-                // printf("New range being tracked at %s\n", startMin);
             }
         }
 
@@ -280,12 +257,10 @@ void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords
             if (sleepToInt(data[i].sleepLevel) > 1) {
                 // continue adding total
                 tmpTotal += sleepToInt(data[i].sleepLevel);
-                // printf("Current Worst: %d\n", tmpTotal);
             } else {
                 // break found, stop and record
                 if (tmpTotal > worstSleepTotal) {
                     worstSleepTotal = tmpTotal;
-                    // printf("New worst found: %d\n", worstSleepTotal);
                     result->minuteStart = startMin;
                     result->minuteEnd = data[i-1].minute;
                 }
@@ -293,7 +268,6 @@ void calculateResults(FitbitData data[DATA_LEN], Results *result, int numRecords
                 // reset vals
                 startMin = NULL;
                 tmpTotal = 0;
-                // printf("Ending tracking\n");
             }
         }
     }
