@@ -1,39 +1,47 @@
 #include "linkedlist.h"
 
-void initList(Node **pList) {
-    *pList = NULL;
+void initList(Node** pList) // set the list to empty
+{
+    *pList = NULL; // assigning the list as an empty list
 }
-Node *createNode(Movie newData) {
+
+Node* createNode(Movie newData)
+{
     // goal is to allocate space on heap and init with Movie data
 
-    Node *pMem = malloc(sizeof(Node));
+    Node* pMem = malloc(sizeof(Node));
 
     // is the space allocated on the heap?
-    if (pMem != NULL) {
-        // space allocated successfully
+    if (pMem != NULL)
+    {
+        // yes, we allocated space successfully
+
+        // let's init the space - Node
         pMem->pNext = NULL;
-        pMem->data = newData;  // struct assignment
+        pMem->data = newData; // struct assignment
     }
 
-    return pMem;
+    return pMem; // it's possible that pMem contains NULL
 }
-int insertAtFront(Node** pList, Movie newData) {
-    // case 1) empty
-    // case 2) containes title and year
-        // case 2.1) 
-    
-    Node *pMem = createNode(newData);
+
+int insertFront(Node** pList, Movie newData)
+{
+    Node* pMem = createNode(newData);
     int success = 0;
 
-    if (pMem != NULL) {
-        // allocated space for a node
+    if (pMem != NULL)
+    {
+        // yes, we allocated space for a Node
         success = 1;
 
         // is the list empty?
-        if (*pList == NULL) {
-            // yes, empty, set pList to the new node we created
-            *pList = pMem;
-        } else {
+        if (*pList == NULL)
+        {
+            // yes, it's empty
+            *pList = pMem; // modifying the direct value of pHead
+        }
+        else
+        {
             // no, list is not empty
             pMem->pNext = *pList;
             *pList = pMem;
@@ -43,28 +51,56 @@ int insertAtFront(Node** pList, Movie newData) {
     return success;
 }
 
-Movie deleteFront(Node **pList) {
-    Node *pTemp = *pList;
-    Movie deleted = (*pList)->data;  // struct assignment
-
-    *pList = pTemp->pNext;
-    free(pTemp);
-
-    return deleted;  // return copy of a struct
-}
-
 int insertInOrder(Node **pList, Movie newData) {
-    
+    Node *pMem = createNode(newData), *pCur = *pList, *pPrev = NULL;
+    int success = 0;
+
+    if (pMem != NULL) {
+        // pCur check before strcmp is important for avoiding crash
+        while (pCur != NULL && strcmp(pCur->data.title, newData.title) < 0) {
+            // advance
+            pPrev = pCur;
+            pCur = pCur->pNext;
+        }
+
+        // we have found the spot to insert in order
+        // inserting at front?
+        if (pPrev == NULL) {
+            // front
+            pMem->pNext = *pList;
+            *pList = pMem;
+        } else {
+            // not empty or not  at front
+            pMem->pNext = pCur;
+            pPrev->pNext = pMem;
+        }
+    }
+
+    return success;
 }
 
-void printList(Node* pHeadCpy) {
-    // base case
-    if (pHeadCpy == NULL) {
-        printf("-->\n");
+void destroyList(Node **pList) {
+    // recursive step case
+    if (*pList != NULL)
+    {
+        destroyList(&((*pList)->pNext));
+        free(*pList);
     }
-    // recursive step
-    else {
-        printf("--> %s, %d ", pHeadCpy->data.title, pHeadCpy->data.year);
-        printList(pHeadCpy->pNext);
+}
+
+void printList(Node* pHeadCpy)
+{
+    // base case
+    if (pHeadCpy == NULL)
+    {
+        printf("-->\n"); // either we're at the end of the list
+    }
+    else // recursive step
+    {
+        // we know the current pointer is referring to a Node;
+        // let's print the data
+        printf("--> %s, %d ", pHeadCpy->data.title, 
+            pHeadCpy->data.year);
+        printList(pHeadCpy->pNext); // move to the next Node in the list
     }
 }

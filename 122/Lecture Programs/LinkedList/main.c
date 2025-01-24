@@ -2,26 +2,26 @@
 #include "movieUtilities.h"
 
 int main() {
-    Node *pHead;  // we now have an (empty) list
-    int success = 0;
-    Movie r1 = {.title="Wicked", .year=2024},
-        r2 = {.title="Interstellar", .year=2014},
-        r3 = {.title="The Ray", .year=2004};
+	Node* pHead; // we now have a list, we'll use initList () to init list to empty
+	int success = 0;
+	Movie r1 = { .title = "Wicked", .year = 2024 },
+		r2 = { .title = "Interstellar", .year = 2014 },
+        r3 = { .title = "G", .year = 2012};
 
-    initList(&pHead);  // sets list to empty
+	initList(&pHead); // sets list to empty
 
-    success = insertAtFront(&pHead, r2);
-    success = insertAtFront(&pHead, r1);
+	// success = insertFront(&pHead, r1);
+	// success = insertFront(&pHead, r2);
 
-    printList(pHead);
+    success = insertInOrder(&pHead, r2);
+    success = insertInOrder(&pHead, r3);
+    success = insertInOrder(&pHead, r1);
 
-    r1 = deleteFront(&pHead);
+	printList(pHead);
 
-    printf("Title: %s, year: %d\n", r1.title, r1.year);
+	// free(pHead)
 
-    printList(pHead);
-
-    return 0;
+	return 0;
 }
 
 // InsertFront(L, e): insert data at the front of the list
