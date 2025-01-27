@@ -19,7 +19,9 @@ int main() {
 
 	printList(pHead);
 
-	// free(pHead)
+	destroyList(&pHead);
+
+	printList(pHead);
 
 	return 0;
 }

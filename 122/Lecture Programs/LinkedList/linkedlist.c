@@ -44,6 +44,7 @@ int insertFront(Node** pList, Movie newData)
         {
             // no, list is not empty
             pMem->pNext = *pList;
+            (*pList)->pPrev = pMem;
             *pList = pMem;
         }
     }
@@ -84,7 +85,10 @@ void destroyList(Node **pList) {
     if (*pList != NULL)
     {
         destroyList(&((*pList)->pNext));
+        printf("Desroying: %s\n", (*pList)->data.title);
         free(*pList);
+        *pList = NULL;
+        // free()
     }
 }
 
