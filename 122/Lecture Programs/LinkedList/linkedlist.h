@@ -17,7 +17,6 @@ typedef struct node
 {
     Movie data;
     struct node* pNext;
-    struct node* pPrev;
 } Node;
 
 void initList(Node** pList); // set the list to empty

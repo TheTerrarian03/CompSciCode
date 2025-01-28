@@ -44,7 +44,6 @@ int insertFront(Node** pList, Movie newData)
         {
             // no, list is not empty
             pMem->pNext = *pList;
-            (*pList)->pPrev = pMem;
             *pList = pMem;
         }
     }
