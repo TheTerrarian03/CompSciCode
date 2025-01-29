@@ -5,16 +5,20 @@ int main() {
     Node *pHead = NULL;
     init_list(&pHead);
 
-    Record r1 = {"Kidd G", "Karma EP", "Karma", "Pop Country", {3, 8}, 100, 5},
-            r2 = {"Henry Moodie", "beat up car EP", "beat up car", "Pop", {3, 34}, 50, 4};
+    int choice = 0;
+    for (;;) {
+        choice = main_menu();
 
-    pHead = create_node(r1);
-
-    print_list(pHead);
-
-    insert_front(&pHead, r2);
-
-    print_list(pHead);
+        if (choice == 1) {
+            int success = load_menu(&pHead);
+        } else if (choice == 3) {
+            display_menu(pHead);
+        } else if (choice == 11) {
+            return 0;
+        } else {
+            ;
+        }
+    }
     
     return 0;
 }

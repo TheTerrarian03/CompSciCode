@@ -5,10 +5,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* ----- Definintions ----- */
 #define MAX_NAME_LEN 64
-
+#define MAX_LINE_LEN 256
+#define PLAYLIST_FILE "musicPlayList.csv"
 
 /* ----- Types and Structs ----- */
 typedef struct duration {
@@ -34,9 +36,10 @@ typedef struct node {
 
 /* ----- Menu Functions ----- */
 
-void load_menu();
+int main_menu();
+int load_menu(Node **pList);
 void store_menu();
-void display_menu();
+void display_menu(Node *pList);
 // void insert_menu();
 // void delete_menu();
 void edit_menu();
@@ -48,11 +51,12 @@ void exit_menu();
 
 /* ----- File reading/writing ----- */
 
-void check_playlist_exists();
-void load_from_playlist();
-void store_to_playlist();
+void store_to_playlist(Node *pList, FILE *outfile);
 
 /* ----- Data Parsing Functions ----- */
+
+char *extract_string(char dest[MAX_NAME_LEN], char line[MAX_LINE_LEN]);
+void record_from_line(Record *to_store, char line[MAX_LINE_LEN]);
 
 /* ----- Doubly Linked List Functions ---- */
 
@@ -60,6 +64,8 @@ void init_list(Node **pList);
 Node *create_node(Record new_data);
 int insert_front(Node **pList, Record new_data);
 void destroy_list(Node **pList);
+int get_list_length(Node *pList);
 void print_list(Node *pList);
+void print_list_p(Node *pList);
 
 #endif
