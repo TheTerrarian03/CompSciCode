@@ -10,7 +10,7 @@
 /* ----- Definintions ----- */
 #define MAX_NAME_LEN 64
 #define MAX_LINE_LEN 256
-#define PLAYLIST_FILE "musicPlayList.csv"
+#define PLAYLIST_FILE "mpl.csv"
 
 /* ----- Types and Structs ----- */
 typedef struct duration {
@@ -38,7 +38,7 @@ typedef struct node {
 
 int main_menu();
 int load_menu(Node **pList);
-void store_menu();
+void store_menu(Node *pList);
 void display_menu(Node *pList);
 // void insert_menu();
 // void delete_menu();
@@ -51,10 +51,11 @@ void exit_menu();
 
 /* ----- File reading/writing ----- */
 
-void store_to_playlist(Node *pList, FILE *outfile);
+void store_song_to_playlist(Record song, FILE *outfile);
 
 /* ----- Data Parsing Functions ----- */
 
+void string_to_file_format(char dest[MAX_NAME_LEN+2], char *src);
 char *extract_string(char dest[MAX_NAME_LEN], char line[MAX_LINE_LEN]);
 void record_from_line(Record *to_store, char line[MAX_LINE_LEN]);
 

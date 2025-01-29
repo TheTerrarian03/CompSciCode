@@ -53,7 +53,24 @@ int load_menu(Node **pList) {
 
     return 1;
 }
-void store_menu();
+void store_menu(Node *pList) {
+    // make sure there is data to write
+    if (pList == NULL || get_list_length(pList) == 0) {
+        printf("You have no songs loaded! Canceling store operation.\n");
+    }
+
+    // open the file as write, which would create the file if it
+    // doesn't exist MARTIN haha
+    FILE *outfile = fopen(PLAYLIST_FILE, "w");
+
+    // write records to file
+    while (pList != NULL) {
+        store_song_to_playlist(pList->data, outfile);
+        pList = pList->pNext;
+    }
+
+    fclose(outfile);
+}
 void display_menu(Node *pList) {
     printf("You have %d songs:\n", get_list_length(pList));
 
@@ -85,10 +102,46 @@ void exit_menu();
 
 /* ----- File reading/writing ----- */
 
-void store_to_playlist(Node *pList, FILE *outfile);
+void store_song_to_playlist(Record song, FILE *outfile) {
+    char tmp[MAX_NAME_LEN+2] = "";
+    
+    // artist
+    string_to_file_format(tmp, song.artist);
+    fprintf(outfile, "%s,", tmp);
+
+    // album
+    string_to_file_format(tmp, song.album);
+    fprintf(outfile, "%s,", tmp);
+
+    // song
+    string_to_file_format(tmp, song.song);
+    fprintf(outfile, "%s,", tmp);
+
+    // genre
+    string_to_file_format(tmp, song.genre);
+    fprintf(outfile, "%s,", tmp);
+
+    // other num stats
+    fprintf(outfile, "%d:%d,%d,%d\n",
+        song.length.minutes,
+        song.length.seconds,
+        song.num_plays,
+        song.rating);
+}
 
 /* ----- Data Parsing Functions ----- */
 
+void string_to_file_format(char dest[MAX_NAME_LEN+2], char *src) {
+    // check if there is a comma in the string to write
+    char *comma_pos = strchr(src, ',');
+    if (comma_pos) {
+        strcpy(dest, "\"");
+        strncat(dest, src, MAX_NAME_LEN);
+        strcat(dest, "\"");
+    } else {
+        strncpy(dest, src, MAX_NAME_LEN);
+    }
+}
 // for this function, I had to use a little ChatGPT to help get past some errors I was stuck on.
 // originally, I was just using strtok and strcpy but the way strtok works,
 // I was unable to get the pointer to the next portion of the line. So, with a little help,
