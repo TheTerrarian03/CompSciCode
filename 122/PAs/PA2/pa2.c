@@ -57,6 +57,7 @@ void store_menu(Node *pList) {
     // make sure there is data to write
     if (pList == NULL || get_list_length(pList) == 0) {
         printf("You have no songs loaded! Canceling store operation.\n");
+        return;
     }
 
     // open the file as write, which would create the file if it
@@ -93,9 +94,46 @@ void display_menu(Node *pList) {
 }
 // void insert_menu();
 // void delete_menu();
-void edit_menu();
+void edit_menu(Node *pList) {
+
+}
 // void sort_menu();
-void rate_menu();
+void rate_menu(Node **pList) {
+    printf("What song would you like to rate? (Case-sensitive)\n> ");
+
+    char song[MAX_NAME_LEN] = "";
+    int result = scanf("%s", song);
+
+    // check to see if song exists in playlist
+    Node *song_node = get_song_node(*pList, song);
+    if (song_node == NULL) {
+        printf("That song doesn't exist! Please try rating another song.\n");
+        return;
+    }
+
+    printf("Please enter the rating you'd like to give \"%s\": (1-5)\n> ", song);
+    int rating = 0;
+
+    while (rating < 1 || rating > 5) {
+        int result = scanf("%d", &rating);
+
+        if (result > 0 && rating >= 1 && rating <= 5) break;
+
+        if (result > 0) {
+            printf("Rating out of range! Try again:\n> ");
+            continue;
+        }
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+
+        printf("Invalid input! Try again:\n> ");
+    }
+
+    song_node->data.rating = rating;
+
+    printf("Successfully gave song \"%s\" rating %d.\n", song, rating);
+}
 void play_menu();
 // void shuffle_menu();
 void exit_menu();
@@ -154,14 +192,12 @@ char *extract_string(char dest[MAX_NAME_LEN], char *line) {
         char *end = strchr(start, '"');  // find next ending quote
         if (end) {
             strncpy(dest, start, end - start);  // copy string to dest without quotes
-            // unecessary?: dest[end - start] = '\0';  // null-terminate
             return end + 2;  // return pointer to next character, after quote and comma
         }
     } else {
         char *end = strchr(line, ',');  // find next comma
         if (end) {
             strncpy(dest, start, end - start);  // copy string to dest
-            // unecessary code here too?
             return end + 1;  // return pointer to next character, after comma
         }
     }
@@ -246,6 +282,13 @@ int get_list_length(Node *pList) {
         pList = pList->pNext;
     }
     return len;
+}
+Node *get_song_node(Node *pList, char *name) {
+    if (pList == NULL) return NULL;
+
+    if (strcmp(pList->data.song, name) == 0) return pList;
+
+    return get_song_node(pList->pNext, name);
 }
 void print_list(Node *pList) {
     if (pList == NULL) {

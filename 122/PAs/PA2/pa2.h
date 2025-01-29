@@ -9,7 +9,7 @@
 
 /* ----- Definintions ----- */
 #define MAX_NAME_LEN 64
-#define MAX_LINE_LEN 256
+#define MAX_LINE_LEN ((MAX_NAME_LEN*4) + 16)
 #define PLAYLIST_FILE "mpl.csv"
 
 /* ----- Types and Structs ----- */
@@ -42,9 +42,9 @@ void store_menu(Node *pList);
 void display_menu(Node *pList);
 // void insert_menu();
 // void delete_menu();
-void edit_menu();
+void edit_menu(Node *pList);
 // void sort_menu();
-void rate_menu();
+void rate_menu(Node **pList);
 void play_menu();
 // void shuffle_menu();
 void exit_menu();
@@ -66,6 +66,7 @@ Node *create_node(Record new_data);
 int insert_front(Node **pList, Record new_data);
 void destroy_list(Node **pList);
 int get_list_length(Node *pList);
+Node *get_song_node(Node *pList, char *name);
 void print_list(Node *pList);
 void print_list_p(Node *pList);
 

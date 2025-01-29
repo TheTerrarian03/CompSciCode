@@ -15,6 +15,10 @@ int main() {
             store_menu(pHead);
         } else if (choice == 3) {
             display_menu(pHead);
+        } else if (choice == 6) {
+            edit_menu(pHead);
+        } else if (choice == 8) {
+            rate_menu(&pHead);
         } else if (choice == 11) {
             return 0;
         } else {
