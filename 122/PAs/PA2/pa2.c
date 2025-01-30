@@ -1,3 +1,16 @@
+/*
+- Name: Logan Meyers
+- TA: Martin Double Factorial
+- Assignment: PA 2
+- "Finished": 01/29/2025
+- Description: Digital Music Manager!
+
+- Note: Better comments and headers will be added for the third PA, next submission.
+
+- File: pa2.c
+- Description: definitions of the functions from pa2.h
+*/
+
 #include "pa2.h"
 
 /* ----- Menu Functions ----- */
@@ -95,7 +108,53 @@ void display_menu(Node *pList) {
 // void insert_menu();
 // void delete_menu();
 void edit_menu(Node *pList) {
+    printf("!! THIS HAS NOT BEEN IMPLEMENTED AND MAY NOT WORK AT ALL !!\n");
 
+    printf("What artist would you like to seach for? (Case-sensitive)\n> ");
+
+    char artist[MAX_NAME_LEN] = "";
+    scanf("%[^\n]", artist);
+
+    // check to see if artist exists in playlist
+    int artist_exists = get_artist_exists(pList, artist);
+    if (!artist_exists) {
+        printf("That artist doesn't exist! Please try searching by another artist.\n");
+        return;
+    }
+
+    // show songs that match artist
+    int num_matching = print_songs_matching_artist(pList, artist);
+
+    printf("Please enter the number song you'd like to edit (1-%d)\n> ", num_matching);
+
+    int song_num = 0;
+
+    while (song_num < 1 || song_num > num_matching) {
+        int result = scanf("%d", &song_num);
+
+        if (result > 0 && song_num >= 1 && song_num <= num_matching) break;
+
+        if (result > 0) {
+            printf("Number out of range! Try again:\n> ");
+            continue;
+        }
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
+
+        printf("Invalid input! Try again:\n> ");
+    }
+
+    Node *song_to_edit = get_nth_song_of_artist(pList, artist, song_num);
+
+    printf("Please enter the new values you'd like for each field below.\n");
+    printf("NOTE: These are taken literally and there will be no redos.\n");
+    printf("Anything that should be a number but is a character is converted with 0 as default.\n");
+
+    char input[MAX_NAME_LEN] = "";
+    
+    printf("Artist => ");
+    strcpy(song_to_edit->data.artist, fgets(input, sizeof(input), stdin));
 }
 // void sort_menu();
 void rate_menu(Node **pList) {
@@ -289,6 +348,53 @@ Node *get_song_node(Node *pList, char *name) {
     if (strcmp(pList->data.song, name) == 0) return pList;
 
     return get_song_node(pList->pNext, name);
+}
+int get_artist_exists(Node *pList, char *artist) {
+    if (pList == NULL) return 0;
+
+    if (strcmp(pList->data.artist, artist) == 0) return 1;
+
+    return get_artist_exists(pList->pNext, artist);
+}
+int print_songs_matching_artist(Node *pList, char *artist) {
+    int cur_num = 1;
+
+    while (pList != NULL) {
+        if (strcmp(pList->data.artist, artist) == 0) {
+            printf("%3d - \"%s\" by \"%s\" [%s]\n        (%s), %d:%d, %d plays, %d/5 rating\n\n",
+                cur_num,
+                pList->data.song,
+                pList->data.artist,
+                pList->data.album,
+                pList->data.genre,
+                pList->data.length.minutes,
+                pList->data.length.seconds,
+                pList->data.num_plays,
+                pList->data.rating);
+            
+            cur_num++;
+        }
+
+        pList = pList->pNext;
+    }
+
+    return cur_num-1;
+}
+Node *get_nth_song_of_artist(Node *pList, char *artist, int n) {
+    int cur_num = 1;
+
+    while (pList != NULL) {
+        if (strcmp(pList->data.artist, artist) == 0) {
+            if (cur_num == n) return pList;  // current in artist matching n
+            
+            cur_num++;
+        }
+
+        pList = pList->pNext;
+    }
+
+    // return NULL if nth song doesn't exist
+    return NULL;
 }
 void print_list(Node *pList) {
     if (pList == NULL) {

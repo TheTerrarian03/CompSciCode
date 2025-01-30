@@ -1,3 +1,16 @@
+/*
+- Name: Logan Meyers
+- TA: Martin Double Factorial
+- Assignment: PA 2
+- "Finished": 01/29/2025
+- Description: Digital Music Manager!
+
+- Note: Better comments and headers will be added for the third PA, next submission.
+
+- File: main.c
+- Description: main entry point of the program.
+*/
+
 #include "pa2.h"
 
 int main() {
