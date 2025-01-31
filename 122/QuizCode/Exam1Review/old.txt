@@ -1,0 +1,69 @@
+typedef struct node {
+    int data;
+    struct node* pNext;
+    struct node* pPrev;
+} Node;
+
+Node *makeNode(int data) {
+    Node *pNew = malloc(sizeof(Node));
+
+    if (!pNew) return NULL;
+
+    pNew->data = data;
+    pNew->pNext = NULL;
+    pNew->pPrev = NULL;
+
+    return pNew;
+}
+
+void insert_front(Node **pHead, int data) {
+    // empty list
+    if (*pHead == NULL) {
+        *pHead = makeNode(data);
+        return;
+    }
+
+    // not empty
+    Node *pNew = makeNode(data);
+    pNew->pNext = pHead;
+    (*pHead)->pPrev = pNew;
+    *pHead = pNew;
+}
+
+void insert_back(Node **pHead, int data) {
+    // empty
+    if (*pHead == NULL) {
+        *pHead = makeNode(data);
+        return;
+    }
+
+    Node *pCur = *pHead;
+
+    while (pCur->pNext != NULL) {
+        pCur = pCur->pNext;
+    }
+
+    Node *pNew = makeNode(data);
+    pCur->pNext = pNew;
+    pCur->pPrev = pCur;
+}
+
+/*
+insert order:
+
+empty, make node and set head
+
+data less than current head, insert front
+
+find spot by incrementing while new data < current data
+but check for end of list, insert at back
+
+somewhere in the middle,
+make node
+
+new->next to current->next
+new->prev to current->prev
+
+current->next to new
+if (new->next) exists, new->next->prev = new
+*/
