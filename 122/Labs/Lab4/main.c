@@ -12,7 +12,7 @@ int main() {
 	seedRand();
 
 	// test stack functions
-	test_all();
+	// test_all();
 
 	printf("\n---- MAZE ----\n\n");
 
@@ -20,9 +20,19 @@ int main() {
 
 	initMaze(maze);
 	genMaze(maze);
-	printMaze(maze);
 
-	// Point start = 
+	Point start = randValidStart(maze);
+	Point end = randValidEnd(maze);
+
+	printf("Start: %d, %d\n", start.coord.x, start.coord.y);
+	printf("End: %d, %d\n", end.coord.x, end.coord.y);
+
+	Node *pTop = NULL;
+	push(&pTop, end);
+
+	// printMaze(maze, start, end, pTop);
+
+	mazeSolveLoop(maze, start, end, &pTop);
 
 	return 0;
 }

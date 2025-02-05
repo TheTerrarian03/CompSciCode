@@ -16,18 +16,22 @@
 #include <string.h>
 #include <time.h>
 
-#define MAZE_WIDTH 10
-#define MAZE_HEIGHT 5
+#define MAZE_WIDTH 20
+#define MAZE_HEIGHT 20
 
 // a stack is a restricted list, so the underlying data type isn't any different
-typedef struct point {
+typedef struct coord {
 	int x;
 	int y;
+} Coord;
+
+typedef struct point {
+	Coord coord;
+	Coord forks[4];
 } Point;
 
 typedef struct node {
-	Point pos;
-	double data;
+	Point currentPoint;
 	struct node* pNext;
 } Node;
 
@@ -58,7 +62,7 @@ int isEmpty(Node* pTop);
 
 	@return success value
 */
-int push(Node** pTop, double data);
+int push(Node** pTop, Point newPoint);
 
 /*
 	Removes the top of the stack
@@ -67,7 +71,7 @@ int push(Node** pTop, double data);
 
 	@param the data removed - if any
 */
-double pop(Node** pTop);
+Point pop(Node** pTop);
 
 /*
 	Determines the value at the top of the stack
@@ -76,7 +80,16 @@ double pop(Node** pTop);
 
 	@return the data at the top of the stack - if any
 */
-double peek(Node* pTop);
+Point peek(Node* pTop);
+
+#pragma endregion
+
+#pragma region Point and Coord Operations
+
+Point nullPoint();
+
+int pointAtCoord(Node *stack, Coord tgt);
+int coordsMatch(Coord c1, Coord c2);
 
 #pragma endregion
 
@@ -89,7 +102,9 @@ void genMaze(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH]);
 Point randValidStart(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH]);
 Point randValidEnd(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH]);
 
-void printMaze(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH]);
+void printMaze(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH], Point start, Point end, Node *stack);
+
+int mazeSolveLoop(int maze_arr[MAZE_HEIGHT][MAZE_WIDTH], Point start, Point end, Node **stack);
 
 #pragma endregion
 
