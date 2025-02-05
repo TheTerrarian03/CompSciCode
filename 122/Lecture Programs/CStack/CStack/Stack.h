@@ -20,6 +20,8 @@ typedef struct stack {
 
 void initStack(Stack* pStack);
 
+int isEmpty(const Stack *pStack);
+
 Node* makeNode(Data newData);
 
 int push(Stack* pStack, Data newData);

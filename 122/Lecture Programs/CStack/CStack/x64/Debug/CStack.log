@@ -1,0 +1,7 @@
+﻿  main.c
+  ReverseString.c
+  Stack.c
+  TestStack.c
+  Generating Code...
+C:\Users\lsm03\Desktop\Programming2\College\CompSciCode\122\Lecture Programs\CStack\CStack\ReverseString.c(25,1): warning C4716: 'reverseString': must return a value
+  CStack.vcxproj -> C:\Users\lsm03\Desktop\Programming2\College\CompSciCode\122\Lecture Programs\CStack\x64\Debug\CStack.exe

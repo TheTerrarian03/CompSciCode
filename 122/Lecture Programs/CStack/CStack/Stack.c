@@ -4,6 +4,10 @@ void initStack(Stack* pStack) {
 	pStack->pTop = NULL;  // empty stack
 }
 
+int isEmpty(const Stack* pStack) {
+	return pStack->pTop == NULL;  // return !pStack->pTop
+}
+
 Node* makeNode(Data newData) {
 	Node* pMem = (Node*)malloc(sizeof(Node));
 

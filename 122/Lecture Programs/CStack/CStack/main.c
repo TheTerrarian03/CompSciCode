@@ -1,9 +1,11 @@
 #include "Stack.h"
 #include "TestStack.h"
+#include "reverseString.h"
 
 int main(void) {
-	Stack s;
-	initStack(&s);
+	char str[10] = "cat";
+
+	puts(reverseString(str));
 
 	return 0;
 }

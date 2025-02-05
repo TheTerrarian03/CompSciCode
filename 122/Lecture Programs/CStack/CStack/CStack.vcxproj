@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="ReverseString.c" />
     <ClCompile Include="Stack.c" />
     <ClCompile Include="TestStack.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="reverseString.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="TestStack.h" />
   </ItemGroup>

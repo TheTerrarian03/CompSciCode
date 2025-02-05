@@ -24,12 +24,18 @@
     <ClCompile Include="TestStack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReverseString.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestStack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="reverseString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
