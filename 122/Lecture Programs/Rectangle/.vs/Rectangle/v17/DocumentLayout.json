@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\Rectangle.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\Rectangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Rectangle.cpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.cpp",
+              "RelativeDocumentMoniker": "Rectangle\\Rectangle.cpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.cpp",
+              "RelativeToolTip": "Rectangle\\Rectangle.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-07T18:56:51.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Rectangle.hpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp",
+              "RelativeDocumentMoniker": "Rectangle\\Rectangle.hpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp",
+              "RelativeToolTip": "Rectangle\\Rectangle.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-07T18:56:43.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp",
+              "RelativeDocumentMoniker": "Rectangle\\main.cpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp",
+              "RelativeToolTip": "Rectangle\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-07T18:56:34.32Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
