@@ -1,5 +1,5 @@
 all:
 	clear
-	gcc -o ./program.o pa2.c main.c && \
+	gcc -o ./program.o pa3.c main.c && \
 	clear && \
 	./program.o

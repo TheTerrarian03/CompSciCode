@@ -20,6 +20,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef _WIN32
+#include <conio.h> // For _kbhit() on Windows
+#else
+#include <unistd.h>
+#include <sys/select.h> // For select() on POSIX systems
+#endif
+
 /* ----- Definintions ----- */
 #define MAX_NAME_LEN 64
 #define MAX_LINE_LEN ((MAX_NAME_LEN*4) + 16)
@@ -80,7 +87,7 @@ char *extract_string(char dest[MAX_NAME_LEN], char line[MAX_LINE_LEN]);
 // constructs a record given a line read from the csv
 void record_from_line(Record *to_store, char line[MAX_LINE_LEN]);
 
-/* ----- Doubly Linked List Functions ---- */
+/* ----- Doubly Linked List Functions ----- */
 
 // start of standard doubly linked list stuff
 void init_list(Node **pList);
@@ -107,5 +114,15 @@ Node *get_nth_song_of_artist(Node *pList, char *artist, int n);
 // cool function I wrote to print the addresses of pointers,
 // to visibly see how they point to each other
 void print_list_p(Node *pList);
+
+/* ----- Input Helper Functions ----- */
+
+void clear_stdin_buffer();
+
+void cpy_clean_nstring(char *dest, int n);
+
+void cpy_nstring_if_exist(char *dest, int n);
+
+void set_int_in_range_if_exist(int *num, int min, int max);
 
 #endif

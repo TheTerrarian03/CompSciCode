@@ -20,9 +20,13 @@ int main_menu() {
     1  - Load music to file\n\
     2  - Store music to file\n\
     3  - Display the songs currently loaded\n\
+    4  - Insert a song\n\
+    5  - Delete a song\n\
     6  - Edit a song\n\
+    7  - Sort songs\n\
     8  - Rate a song\n\
     9  - Play a song\n\
+    10 - Shuffle songs\n\
     11 - Exit\n> ");
 
     int choice = 0;
@@ -32,8 +36,7 @@ int main_menu() {
 
         if (result > 0) break;
 
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
+        clear_stdin_buffer();
 
         printf("Invalid input! Try again:\n> ");
     }
@@ -44,7 +47,7 @@ int load_menu(Node **pList) {
     // open file
     FILE *infile = fopen(PLAYLIST_FILE, "r");
 
-    // check for success MARTIN LOOK HERE
+    // check for success MARTIN LOOK HERE haha
     if (infile == NULL) {
         printf("There was an error trying to read your file!\nPlease make sure `%s` exists.", PLAYLIST_FILE);
         return 0;
@@ -113,7 +116,9 @@ void edit_menu(Node *pList) {
     printf("What artist would you like to seach for? (Case-sensitive)\n> ");
 
     char artist[MAX_NAME_LEN] = "";
-    scanf("%[^\n]", artist);
+    cpy_clean_nstring(artist, MAX_NAME_LEN);
+
+    printf("Got artist: \"%s\"\n", artist);
 
     // check to see if artist exists in playlist
     int artist_exists = get_artist_exists(pList, artist);
@@ -149,19 +154,34 @@ void edit_menu(Node *pList) {
 
     printf("Please enter the new values you'd like for each field below.\n");
     printf("NOTE: These are taken literally and there will be no redos.\n");
+    printf("NOTE: entering nothing and just pressing enter will skip and keep current value\n");
     printf("Anything that should be a number but is a character is converted with 0 as default.\n");
 
     char input[MAX_NAME_LEN] = "";
     
     printf("Artist => ");
-    strcpy(song_to_edit->data.artist, fgets(input, sizeof(input), stdin));
+    cpy_nstring_if_exist(song_to_edit->data.artist, MAX_NAME_LEN);
+    printf("Artist: %s\n", song_to_edit->data.artist);
+    printf("Album => ");
+    cpy_nstring_if_exist(song_to_edit->data.album, MAX_NAME_LEN);
+    printf("Album: %s\n", song_to_edit->data.album);
+    printf("Song => ");
+    cpy_nstring_if_exist(song_to_edit->data.song, MAX_NAME_LEN);
+    printf("Genre => ");
+    cpy_nstring_if_exist(song_to_edit->data.genre, MAX_NAME_LEN);
+
+    printf("Times played => ");
+    set_int_in_range_if_exist(&(song_to_edit->data.num_plays), 0, __INT32_MAX__);
+
+    printf("Rating (1-5) => ");
+    set_int_in_range_if_exist(&(song_to_edit->data.rating), 1, 5);
 }
 // void sort_menu();
 void rate_menu(Node **pList) {
     printf("What song would you like to rate? (Case-sensitive)\n> ");
 
     char song[MAX_NAME_LEN] = "";
-    int result = scanf("%s", song);
+    cpy_clean_nstring(song, MAX_NAME_LEN);
 
     // check to see if song exists in playlist
     Node *song_node = get_song_node(*pList, song);
@@ -411,4 +431,88 @@ void print_list_p(Node *pList) {
         printf("[%p <-- %p --> %p]\n", pList->pPref, pList, pList->pNext);
         print_list_p(pList->pNext);
     }
+}
+
+/* ----- Input Helper Functions ----- */
+
+// this is straight from chatGPT because I am FED UP WITH
+// not being able to easily clear the stdin buffer
+// so you can make sure you're getting good data.
+// Trust me, I've tried SO MUCH to get a function
+// that behaves like this one... but I finally gave up.
+void clear_stdin_buffer() {
+    #ifdef _WIN32
+        // Check if there is data available to read
+        if (_kbhit()) {
+            // If there is data, clear the buffer
+            while (getchar() != '\n' && !feof(stdin));
+        }
+        // If the buffer is empty, do nothing
+    #else
+        fd_set read_fds;
+        struct timeval timeout;
+    
+        // Set up the file descriptor set
+        FD_ZERO(&read_fds);
+        FD_SET(STDIN_FILENO, &read_fds);
+    
+        // Set timeout to 0 to make it non-blocking
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 0;
+    
+        // Check if there is data available to read
+        if (select(STDIN_FILENO + 1, &read_fds, NULL, NULL, &timeout) > 0) {
+            // If there is data, clear the buffer
+            while (fgetc(stdin) != '\n' && !feof(stdin));
+        }
+        // If the buffer is empty, do nothing
+    #endif
+}
+
+void cpy_clean_nstring(char *dest, int n) {
+    clear_stdin_buffer();
+    // ungetc('a', stdin);
+    // if (fgets(dest, n, stdin) == NULL) {
+    //     printf("Error reading input or EOF reached.\n");
+    //     exit(1);
+    // }
+    // // Remove the newline character if present
+    // dest[strcspn(dest, "\n")] = '\0';
+
+    ungetc('a', stdin);
+    int c;
+    int i=0;
+    scanf("%s", dest);
+}
+
+void cpy_nstring_if_exist(char *dest, int n) {
+    clear_stdin_buffer();
+
+    int c = getchar();
+
+    if (c == '\n') return;
+
+    dest[0] = c;
+    int i = 1;
+
+    while ((c = getchar()) != '\n' && c != EOF && i < n-1) {
+        dest[i] = c;
+        i++;
+    }
+    dest[i] = '\0';
+}
+
+void set_int_in_range_if_exist(int *num, int min, int max) {
+    int input = min;
+
+    int result = scanf("%d", &input);
+
+    if (result == 0) return;
+
+    if (input < min || input > max) {
+        // number out of range, skip
+        return;
+    }
+
+    *num = input;
 }
