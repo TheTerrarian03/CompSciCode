@@ -8,12 +8,14 @@
 - Note: Better comments and headers will be added for the third PA, next submission.
 
 - File: main.c
-- Description: main entry point of the program.
+- Description: main entry point of the program. Runs your amazing DMM.
 */
 
-#include "pa3.h"
+#include "pa3.h"  // includes list.h and input.h as well
 
 int main() {
+    get_pos_int_loop("> ", "Invalid!\n");
+    
     // Playlist of songs in doubly linked list
     Node *pHead = NULL;
     init_list(&pHead);

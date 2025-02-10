@@ -1,16 +1,3 @@
-/*
-- Name: Logan Meyers
-- TA: Martin Double Factorial
-- Assignment: PA 2
-- "Finished": 01/29/2025
-- Description: Digital Music Manager!
-
-- Note: Better comments and headers will be added for the third PA, next submission.
-
-- File: pa2.c
-- Description: definitions of the functions from pa2.h
-*/
-
 #include "pa3.h"
 
 /* ----- Menu Functions ----- */
@@ -36,7 +23,7 @@ int main_menu() {
 
         if (result > 0) break;
 
-        clear_stdin_buffer();
+        clear_buffer();
 
         printf("Invalid input! Try again:\n> ");
     }
@@ -116,7 +103,7 @@ void edit_menu(Node *pList) {
     printf("What artist would you like to seach for? (Case-sensitive)\n> ");
 
     char artist[MAX_NAME_LEN] = "";
-    cpy_clean_nstring(artist, MAX_NAME_LEN);
+    cpy_nstring(artist, MAX_NAME_LEN);
 
     printf("Got artist: \"%s\"\n", artist);
 
@@ -181,7 +168,9 @@ void rate_menu(Node **pList) {
     printf("What song would you like to rate? (Case-sensitive)\n> ");
 
     char song[MAX_NAME_LEN] = "";
-    cpy_clean_nstring(song, MAX_NAME_LEN);
+    cpy_nstring(song, MAX_NAME_LEN);
+
+    printf("Got song: %s\n", song);
 
     // check to see if song exists in playlist
     Node *song_node = get_song_node(*pList, song);
@@ -303,216 +292,4 @@ void record_from_line(Record *to_store, char line[MAX_LINE_LEN]) {
         to_store->num_plays = atoi(strtok(NULL, ","));
         to_store->rating = atoi(strtok(NULL, ",\n\0"));
     }
-}
-
-/* ----- Doubly Linked List Functions ---- */
-
-void init_list(Node **pList) {
-    *pList = NULL;
-}
-Node *create_node(Record new_data) {
-    // try to allocate space for a new Node
-    Node *pMem = malloc(sizeof(Node));
-
-    // set attributes if it exists
-    if (pMem != NULL) {
-        pMem->pNext = NULL;
-        pMem->pPref = NULL;
-        pMem->data = new_data;
-    }
-
-    // return a possibly NULL pointer to a Node
-    return pMem;
-}
-int insert_front(Node **pList, Record new_data) {
-    Node *pMem = create_node(new_data);
-    int success = 0;
-
-    if (pMem != NULL) {
-        success = 1;
-
-        // if list is empty, set *pList to pMem
-        if (*pList == NULL) {
-            *pList = pMem;
-        }
-        // otherwise add to front and adjust links
-        else {
-            pMem->pNext = *pList;
-            (pMem->pNext)->pPref = pMem;
-            *pList = pMem;
-        }
-    }
-
-    return success;
-}
-void destroy_list(Node **pList) {
-    // recursive step
-    if (*pList != NULL) {
-        destroy_list(&(*pList)->pNext);
-        printf("freeing song %s\n", (*pList)->data.song);
-        free(*pList);
-        *pList = NULL;
-    }
-}
-int get_list_length(Node *pList) {
-    int len = 0;
-    while (pList != NULL) {
-        len++;
-        pList = pList->pNext;
-    }
-    return len;
-}
-Node *get_song_node(Node *pList, char *name) {
-    if (pList == NULL) return NULL;
-
-    if (strcmp(pList->data.song, name) == 0) return pList;
-
-    return get_song_node(pList->pNext, name);
-}
-int get_artist_exists(Node *pList, char *artist) {
-    if (pList == NULL) return 0;
-
-    if (strcmp(pList->data.artist, artist) == 0) return 1;
-
-    return get_artist_exists(pList->pNext, artist);
-}
-int print_songs_matching_artist(Node *pList, char *artist) {
-    int cur_num = 1;
-
-    while (pList != NULL) {
-        if (strcmp(pList->data.artist, artist) == 0) {
-            printf("%3d - \"%s\" by \"%s\" [%s]\n        (%s), %d:%d, %d plays, %d/5 rating\n\n",
-                cur_num,
-                pList->data.song,
-                pList->data.artist,
-                pList->data.album,
-                pList->data.genre,
-                pList->data.length.minutes,
-                pList->data.length.seconds,
-                pList->data.num_plays,
-                pList->data.rating);
-            
-            cur_num++;
-        }
-
-        pList = pList->pNext;
-    }
-
-    return cur_num-1;
-}
-Node *get_nth_song_of_artist(Node *pList, char *artist, int n) {
-    int cur_num = 1;
-
-    while (pList != NULL) {
-        if (strcmp(pList->data.artist, artist) == 0) {
-            if (cur_num == n) return pList;  // current in artist matching n
-            
-            cur_num++;
-        }
-
-        pList = pList->pNext;
-    }
-
-    // return NULL if nth song doesn't exist
-    return NULL;
-}
-void print_list(Node *pList) {
-    if (pList == NULL) {
-        printf("-->\n");
-    } else {
-        printf("--> \"%s\" by \"%s\" ", pList->data.song, pList->data.artist);
-        print_list(pList->pNext);
-    }
-}
-void print_list_p(Node *pList) {
-    if (pList == NULL) {
-        putchar('\n');
-    } else {
-        printf("[%p <-- %p --> %p]\n", pList->pPref, pList, pList->pNext);
-        print_list_p(pList->pNext);
-    }
-}
-
-/* ----- Input Helper Functions ----- */
-
-// this is straight from chatGPT because I am FED UP WITH
-// not being able to easily clear the stdin buffer
-// so you can make sure you're getting good data.
-// Trust me, I've tried SO MUCH to get a function
-// that behaves like this one... but I finally gave up.
-void clear_stdin_buffer() {
-    #ifdef _WIN32
-        // Check if there is data available to read
-        if (_kbhit()) {
-            // If there is data, clear the buffer
-            while (getchar() != '\n' && !feof(stdin));
-        }
-        // If the buffer is empty, do nothing
-    #else
-        fd_set read_fds;
-        struct timeval timeout;
-    
-        // Set up the file descriptor set
-        FD_ZERO(&read_fds);
-        FD_SET(STDIN_FILENO, &read_fds);
-    
-        // Set timeout to 0 to make it non-blocking
-        timeout.tv_sec = 0;
-        timeout.tv_usec = 0;
-    
-        // Check if there is data available to read
-        if (select(STDIN_FILENO + 1, &read_fds, NULL, NULL, &timeout) > 0) {
-            // If there is data, clear the buffer
-            while (fgetc(stdin) != '\n' && !feof(stdin));
-        }
-        // If the buffer is empty, do nothing
-    #endif
-}
-
-void cpy_clean_nstring(char *dest, int n) {
-    clear_stdin_buffer();
-    // ungetc('a', stdin);
-    // if (fgets(dest, n, stdin) == NULL) {
-    //     printf("Error reading input or EOF reached.\n");
-    //     exit(1);
-    // }
-    // // Remove the newline character if present
-    // dest[strcspn(dest, "\n")] = '\0';
-
-    ungetc('a', stdin);
-    int c;
-    int i=0;
-    scanf("%s", dest);
-}
-
-void cpy_nstring_if_exist(char *dest, int n) {
-    clear_stdin_buffer();
-
-    int c = getchar();
-
-    if (c == '\n') return;
-
-    dest[0] = c;
-    int i = 1;
-
-    while ((c = getchar()) != '\n' && c != EOF && i < n-1) {
-        dest[i] = c;
-        i++;
-    }
-    dest[i] = '\0';
-}
-
-void set_int_in_range_if_exist(int *num, int min, int max) {
-    int input = min;
-
-    int result = scanf("%d", &input);
-
-    if (result == 0) return;
-
-    if (input < min || input > max) {
-        // number out of range, skip
-        return;
-    }
-
-    *num = input;
 }
