@@ -8,7 +8,9 @@
 
 void clear_buffer();
 
-int get_pos_int_loop(const char *line_prompt, const char *error_response);
+int get_pos_int_loop(const char *line_prompt);
+
+int get_pos_int_range_loop(const char *line_prompt, int min, int max);
 
 void cpy_nstring(char *dest, int n);
 

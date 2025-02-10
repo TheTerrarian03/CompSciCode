@@ -14,19 +14,9 @@ int main_menu() {
     8  - Rate a song\n\
     9  - Play a song\n\
     10 - Shuffle songs\n\
-    11 - Exit\n> ");
+    11 - Exit\n");
 
-    int choice = 0;
-
-    while (choice == 0) {
-        int result = scanf("%d", &choice);
-
-        if (result > 0) break;
-
-        clear_buffer();
-
-        printf("Invalid input! Try again:\n> ");
-    }
+    int choice = choice = get_pos_int_range_loop("> ", 1, 11);
 
     return choice;
 }
@@ -179,24 +169,8 @@ void rate_menu(Node **pList) {
         return;
     }
 
-    printf("Please enter the rating you'd like to give \"%s\": (1-5)\n> ", song);
-    int rating = 0;
-
-    while (rating < 1 || rating > 5) {
-        int result = scanf("%d", &rating);
-
-        if (result > 0 && rating >= 1 && rating <= 5) break;
-
-        if (result > 0) {
-            printf("Rating out of range! Try again:\n> ");
-            continue;
-        }
-
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
-
-        printf("Invalid input! Try again:\n> ");
-    }
+    printf("Please enter the rating you'd like to give \"%s\": (1-5)\n", song);
+    int rating = get_pos_int_range_loop("> ", 1, 5);
 
     song_node->data.rating = rating;
 

@@ -13,9 +13,7 @@
 
 #include "pa3.h"  // includes list.h and input.h as well
 
-int main() {
-    get_pos_int_loop("> ", "Invalid!\n");
-    
+int main() {    
     // Playlist of songs in doubly linked list
     Node *pHead = NULL;
     init_list(&pHead);
