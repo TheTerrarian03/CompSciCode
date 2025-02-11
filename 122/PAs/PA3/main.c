@@ -1,11 +1,9 @@
 /*
 - Name: Logan Meyers
-- TA: Martin Double Factorial
+- TA: Martin "Double Factorial" Hundrup
 - Assignment: PA 3
-- "Finished": 02/02/2025
+- [Mostly] Finished: 02/10/2025
 - Description: Digital Music Manager!
-
-- Note: Better comments and headers will be added for the third PA, next submission.
 
 - File: main.c
 - Description: main entry point of the program. Runs your amazing DMM.
@@ -15,7 +13,9 @@
 #include "test.h"
 
 int main() {    
-    
+    test_all();
+
+    srand((unsigned int)time(NULL));
     
     // Playlist of songs in doubly linked list
     Node *pHead = NULL;
@@ -44,6 +44,8 @@ int main() {
             rate_menu(&pHead);
         } else if (choice == 9) {
             play_menu(pHead);
+        } else if (choice == 10) {
+            shuffle_menu(pHead);
         } else if (choice == 11) {
             return 0;
         } else {

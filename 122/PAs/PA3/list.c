@@ -1,3 +1,14 @@
+/*
+- Name: Logan Meyers
+- TA: Martin "Double Factorial" Hundrup
+- Assignment: PA 3
+- [Mostly] Finished: 02/10/2025
+- Description: Digital Music Manager!
+
+- File: list.c
+- Description: Definitions for my list functions
+*/
+
 #include "list.h"
 
 /* ----- Standard Doubly-Linked-List Functions ----- */
@@ -44,7 +55,7 @@ void destroy_list(Node **pList) {
     // recursive step
     if (*pList != NULL) {
         destroy_list(&(*pList)->pNext);
-        printf("freeing song %s\n", (*pList)->data.song);
+        // printf("freeing song %s\n", (*pList)->data.song);
         free(*pList);
         *pList = NULL;
     }
@@ -157,6 +168,10 @@ void print_list_p(Node *pList) {
 }
 
 /* ----- Sort Functions ----- */
+
+// welcome to my copy+pasted+change_1_thing -ified bubble sort functions, enjoy your stay
+// like the hotel california you might be here a while and beginning to question  things
+// everything starts to look the same but something's off..
 
 void sort_artist(Node **pList) {
     if (!pList || !*pList) return; // Check for empty list

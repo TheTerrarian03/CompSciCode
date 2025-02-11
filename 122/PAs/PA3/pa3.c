@@ -1,3 +1,14 @@
+/*
+- Name: Logan Meyers
+- TA: Martin "Double Factorial" Hundrup
+- Assignment: PA 3
+- [Mostly] Finished: 02/10/2025
+- Description: Digital Music Manager!
+
+- File: pa3.c
+- Description: definitions for those main pa3 functions
+*/
+
 #include "pa3.h"
 
 /* ----- Menu Functions ----- */
@@ -219,9 +230,9 @@ void sort_menu(Node **pList) {
 
     switch (choice) {
         case 1: sort_artist(pList); break;
-        case 2: sort_album(pList); break;
+        case 2: sort_album(pList);  break;
         case 3: sort_rating(pList); break;
-        case 4: sort_plays(pList); break;
+        case 4: sort_plays(pList);  break;
         default: printf("Invalid, not sorting.\n");
     }
 }
@@ -257,7 +268,52 @@ void play_menu(Node *pList) {
         pList = pList->pNext;
     }
 }
-// void shuffle_menu();
+void shuffle_menu(Node *pList) {
+    // frequency array of fixed size
+    int order[100] = {};
+    int list_len = get_list_length(pList);
+
+    // generate unique nums for song order
+    for (int i = 1; i <= list_len; i++) {
+        int random_number;
+
+        int found = 0;
+        do {
+            random_number = rand() % list_len + 1; // random number from 1 to list_len
+
+            found = 0;
+            for (int j = 0; j < i; j++) {
+                if (order[j] == random_number) {
+                    found = 1;
+                    break;
+                }
+            }
+
+        } while (found);
+
+        order[i] = random_number;
+    }
+
+    // play through all songs, keeping track of current # and node
+    int cur_id = 1;
+    Node *pCur = pList;
+
+    for (int i=1; i <= list_len; i++) {
+        int tgt = order[i];
+
+        while (cur_id < tgt) {
+            cur_id++;
+            pCur = pCur->pNext;
+        }
+        while (cur_id > tgt) {
+            cur_id--;
+            pCur = pCur->pPrev;
+        }
+
+        play_song(pCur);
+        printf("\n\n");
+    }
+}
 
 void play_song(Node *pList) {
     printf("Playing \"%s\":\n", pList->data.song);
@@ -274,7 +330,7 @@ void play_song(Node *pList) {
         fflush(stdout);
 
 #ifdef _WIN32
-        Sleep(1000);  // sleep for 1s on Windows
+        Sleep(500);  // sleep for 0.5s on Windows
 #else
         sleep(1);  // sleep for 1s on mac/linux
 #endif

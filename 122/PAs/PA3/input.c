@@ -1,4 +1,20 @@
+/*
+- Name: Logan Meyers
+- TA: Martin "Double Factorial" Hundrup
+- Assignment: PA 3
+- [Mostly] Finished: 02/10/2025
+- Description: Digital Music Manager!
+
+- File: input.c
+- Description: definitions for my input functions
+*/
+
 #include "input.h"
+
+// this is all pretty simple stuff, though I've had a lot of issues
+// wrestling with C to clear stdin buffers so i've given up and
+// have resorted to my rocket launcher, named "Using fgets for everything
+// instead of scanf", this baby fixes all.
 
 void clear_buffer() {
     int c;

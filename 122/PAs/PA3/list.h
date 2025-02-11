@@ -1,3 +1,14 @@
+/*
+- Name: Logan Meyers
+- TA: Martin "Double Factorial" Hundrup
+- Assignment: PA 3
+- [Mostly] Finished: 02/10/2025
+- Description: Digital Music Manager!
+
+- File: list.h
+- Description: Headers and declerations for my list functions
+*/
+
 #ifndef LIST_H
 #define LIST_H
 
@@ -32,39 +43,177 @@ typedef struct node {
 
 /* ----- Standard Doubly-Linked-List Functions ----- */
 
-// start of standard doubly linked list stuff
+/*
+ * Function: init_list
+ * --------------------
+ *   Sets *pList to NULL
+ * 
+ *   Parameters:
+ *   - **pList: pointer to list to edit
+*/
 void init_list(Node **pList);
+
+/*
+ * Function: create_node
+ * --------------------
+ *   Creates new node in heap and assigns new data
+ * 
+ *   Parameters:
+ *   - new_data: new data to set to new Node's data
+ * 
+ *   Returns:
+ *   - pointer to new Node on heap
+*/
 Node *create_node(Record new_data);
+
+/*
+ * Function: insert_front
+ * --------------------
+ *   Creates a new Node and inserts it at the front of the list
+ * 
+ *   Parameters:
+ *   - **pList: poitner to list to edit
+ *   - new_data: new data to set to new Node's data
+ * 
+ *   Returns:
+ *   - success value; 1 for success, 0 for fail
+*/
 int insert_front(Node **pList, Record new_data);
+
+/*
+ * Function: destroy_list
+ * --------------------
+ *   Frees entire list
+ * 
+ *   Parameters:
+ *   - **pList: pointer to list to edit and delete list of
+*/
 void destroy_list(Node **pList);
+
+/*
+ * Function: print_list
+ * --------------------
+ *   Prints the raw list nicely, should not be used for UI
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to print
+ * 
+*/
 void print_list(Node *pList);
-// end of standard funcs
 
 /* ----- Custom Functions ----- */
 
+/*
+ * Function: get_list_length
+ * --------------------
+ *   Get the length of the list
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to get length of
+ * 
+ *   Returns:
+ *   - length of the list
+*/
 int get_list_length(Node *pList);
 
-// given a name and the list, return the pointer to the first node
-// that matches
+/*
+ * Function: get_song_node
+ * --------------------
+ *   Given a name, find (if possible) the pointer to the node matching that song name
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to find song in
+ *   - name: string for song name
+ * 
+ *   Returns:
+ *   - pointer to Node matching that song name
+*/
 Node *get_song_node(Node *pList, char *name);
 
-// find if a given artist has any songs in the playlist
+/*
+ * Function: get_artist_exists
+ * --------------------
+ *   See if there exists a record with the given artist's name
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to find song in
+ *   - artist: string for artist name
+ * 
+ *   Returns:
+ *   - 1 for success and exists, 0 for fail and not exist
+*/
 int get_artist_exists(Node *pList, char *artist);
 
+/*
+ * Function: print_songs_matching_artist
+ * --------------------
+ *   Print all records matching the artist name in the list
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to find songs in
+ *   - artist: string for artist name
+ * 
+ *   Returns:
+ *   - how many songs matched & were printed
+*/
 int print_songs_matching_artist(Node *pList, char *artist);
 
-// similar to get_song_node, but with indexed songs matching artist
+/*
+ * Function: get_nth_song_of_artist
+ * --------------------
+ *   Get the nth song from a matching artist
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to find songs in
+ *   - artist: string for artist name
+ *   - n: song number
+ * 
+ *   Returns:
+ *   - pointer to corresponding record, NULL if not found
+*/
 Node *get_nth_song_of_artist(Node *pList, char *artist, int n);
 
+/*
+ * Function: remove_song
+ * --------------------
+ *   Removes the first occurence of a record with matching song name
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to find song in
+ *   - song_name: string for song name
+ * 
+ *   Returns:
+ *   - 1 for found and removed, 0 for not found
+*/
 int remove_song(Node **pList, char *song_name);
 
-// cool function I wrote to print the addresses of pointers,
-// to visibly see how they point to each other
+/*
+ * Function: print_list_p
+ * --------------------
+ *   Ugly printing of list, you see the exact pointers for debugging
+ * 
+ *   Parameters:
+ *   - *pList: pointer to list to print
+ * 
+*/
 void print_list_p(Node *pList);
 
 /* ----- Sort Functions ----- */
 
+/*
+ * Function: sort_artist
+ * --------------------
+ *   Sorts list by artist (A-Z) by swapping pointers by bubble sort
+ * 
+ *   Parameters:
+ *   - **pList: pointer to list to sort
+ * 
+*/
 void sort_artist(Node **pList);
+
+// these next 3 are the exact same as
+// sort_artist, but check & modify
+// difference values
 void sort_album(Node **pList);
 void sort_rating(Node **pList);
 void sort_plays(Node **pList);
