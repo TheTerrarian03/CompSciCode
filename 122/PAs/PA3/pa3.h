@@ -4,6 +4,12 @@
 #include "list.h"
 #include "input.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 /* ----- Menu Functions ----- */
 
 int main_menu();
@@ -15,9 +21,8 @@ void display_menu(Node *pList);
 void edit_menu(Node *pList);
 // void sort_menu();
 void rate_menu(Node **pList);
-void play_menu();
+void play_menu(Node *pList);
 // void shuffle_menu();
-void exit_menu();
 
 /* ----- File reading/writing ----- */
 

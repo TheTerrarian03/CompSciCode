@@ -32,6 +32,8 @@ int main() {
             edit_menu(pHead);
         } else if (choice == 8) {
             rate_menu(&pHead);
+        } else if (choice == 9) {
+            play_menu(pHead);
         } else if (choice == 11) {
             return 0;
         } else {

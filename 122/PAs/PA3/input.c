@@ -48,43 +48,54 @@ int get_pos_int_range_loop(const char *line_prompt, int min, int max) {
 }
 
 void cpy_nstring(char *dest, int n) {
-    int c;
-    int i = 0;
-    while ((c = getchar()) != '\n' && c != EOF && i < n-1) {
-        dest[i] = c;
-        i++;
-    }
-    dest[i] = '\0';
+    char line[100] = "";
+
+    fgets(line, sizeof(line), stdin);
+
+    strncpy(dest, line, n);
+
+    dest[strlen(line)-1] = '\0';
 }
 
 void cpy_nstring_if_exist(char *dest, int n) {
-    clear_buffer();
+    char line[100] = "";
 
-    int c = getchar();
+    fgets(line, sizeof(line), stdin);
 
-    if (c == '\n') return;
+    if (line[0] == '\n') return;
 
-    dest[0] = c;
-    int i = 1;
+    strncpy(dest, line, n);
 
-    while ((c = getchar()) != '\n' && c != EOF && i < n-1) {
-        dest[i] = c;
-        i++;
-    }
-    dest[i] = '\0';
+    dest[strlen(line)-1] = '\0';
 }
 
-void set_int_in_range_if_exist(int *num, int min, int max) {
-    int input = min;
+void set_int_in_range_if_exist(char *line_prompt, int *num, int min, int max) {
+    int choice = min-1;
 
-    int result = scanf("%d", &input);
+    printf("%s", line_prompt);
 
-    if (result == 0) return;
+    while (choice == min-1) {
+        char line[100] = "";
 
-    if (input < min || input > max) {
-        // number out of range, skip
-        return;
+        fgets(line, sizeof(line), stdin);
+
+        if (line[0] == '\n') return;
+
+        if (sscanf(line, "%d", &choice) == 1) {
+            printf("%d\n", choice);
+            if (choice >= min && choice <= max) {
+                printf("num found of %d\n", choice);
+                *num = choice;
+                return;
+            }
+
+            printf("Out of range! Try again:\n%s", line_prompt);
+            choice = min-1;
+            continue;
+        }
+
+        printf("Invalid Input! Enter a number [%d, %d]:\n%s", min, max, line_prompt);
+
+        choice = min-1;
     }
-
-    *num = input;
 }

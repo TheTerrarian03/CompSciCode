@@ -16,9 +16,7 @@ int main_menu() {
     10 - Shuffle songs\n\
     11 - Exit\n");
 
-    int choice = choice = get_pos_int_range_loop("> ", 1, 11);
-
-    return choice;
+    return get_pos_int_range_loop("> ", 1, 11);
 }
 int load_menu(Node **pList) {
     // open file
@@ -109,23 +107,7 @@ void edit_menu(Node *pList) {
 
     printf("Please enter the number song you'd like to edit (1-%d)\n> ", num_matching);
 
-    int song_num = 0;
-
-    while (song_num < 1 || song_num > num_matching) {
-        int result = scanf("%d", &song_num);
-
-        if (result > 0 && song_num >= 1 && song_num <= num_matching) break;
-
-        if (result > 0) {
-            printf("Number out of range! Try again:\n> ");
-            continue;
-        }
-
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF);
-
-        printf("Invalid input! Try again:\n> ");
-    }
+    int song_num = get_pos_int_range_loop("> ", 1, num_matching);
 
     Node *song_to_edit = get_nth_song_of_artist(pList, artist, song_num);
 
@@ -133,25 +115,37 @@ void edit_menu(Node *pList) {
     printf("NOTE: These are taken literally and there will be no redos.\n");
     printf("NOTE: entering nothing and just pressing enter will skip and keep current value\n");
     printf("Anything that should be a number but is a character is converted with 0 as default.\n");
-
-    char input[MAX_NAME_LEN] = "";
     
     printf("Artist => ");
     cpy_nstring_if_exist(song_to_edit->data.artist, MAX_NAME_LEN);
-    printf("Artist: %s\n", song_to_edit->data.artist);
+
     printf("Album => ");
     cpy_nstring_if_exist(song_to_edit->data.album, MAX_NAME_LEN);
-    printf("Album: %s\n", song_to_edit->data.album);
+
     printf("Song => ");
     cpy_nstring_if_exist(song_to_edit->data.song, MAX_NAME_LEN);
+
     printf("Genre => ");
     cpy_nstring_if_exist(song_to_edit->data.genre, MAX_NAME_LEN);
 
+    printf("Duration => ");
+    char line[MAX_NAME_LEN] = "";
+    cpy_nstring(line, MAX_NAME_LEN);
+    if (line[0] != '\n' && line[0] != '\0') {
+        int minutes = atoi(strtok(line, ":"));
+        int seconds = atoi(strtok(NULL, "\n\0"));
+
+        if (minutes != 0 && seconds != 0) {
+            song_to_edit->data.length.minutes = minutes;
+            song_to_edit->data.length.seconds = seconds;
+        }
+    }
+
     printf("Times played => ");
-    set_int_in_range_if_exist(&(song_to_edit->data.num_plays), 0, __INT32_MAX__);
+    set_int_in_range_if_exist("", &(song_to_edit->data.num_plays), 0, __INT32_MAX__);
 
     printf("Rating (1-5) => ");
-    set_int_in_range_if_exist(&(song_to_edit->data.rating), 1, 5);
+    set_int_in_range_if_exist("", &(song_to_edit->data.rating), 1, 5);
 }
 // void sort_menu();
 void rate_menu(Node **pList) {
@@ -176,9 +170,35 @@ void rate_menu(Node **pList) {
 
     printf("Successfully gave song \"%s\" rating %d.\n", song, rating);
 }
-void play_menu();
+void play_menu(Node *pList) {
+    printf("Playing %d songs...\n\n", get_list_length(pList));
+
+    while (pList != NULL) {
+        printf("Playing \"%s\":\n", pList->data.song);
+        
+        for (int i=0; i < 10; i++) {
+            printf("\r0:00 [");
+
+            for (int j=0; j < 10; j++) {
+                if (j <= i) printf("X");
+                else printf(" ");
+            }
+            printf("] %d:%d", pList->data.length.minutes, pList->data.length.seconds);
+
+            fflush(stdout);
+
+#ifdef _WIN32
+            Sleep(1000);  // sleep for 1s on Windows
+#else
+            sleep(1);  // sleep for 1s on mac/linux
+#endif
+        }
+
+        putchar('\n');
+        pList = pList->pNext;
+    }
+}
 // void shuffle_menu();
-void exit_menu();
 
 /* ----- File reading/writing ----- */
 

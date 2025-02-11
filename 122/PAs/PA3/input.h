@@ -16,6 +16,6 @@ void cpy_nstring(char *dest, int n);
 
 void cpy_nstring_if_exist(char *dest, int n);
 
-void set_int_in_range_if_exist(int *num, int min, int max);
+void set_int_in_range_if_exist(char *line_prompt, int *num, int min, int max);
 
 #endif
