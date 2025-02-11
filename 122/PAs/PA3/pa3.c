@@ -44,9 +44,9 @@ int load_menu(Node **pList) {
     destroy_list(pList);
 
     // read lines and put song in the list
-    char line[MAX_LINE_LEN] = {};
+    char line[MAX_LINE_LEN];
     while (fgets(line, sizeof(line), infile) != NULL) {
-        Record new_record = {};
+        Record new_record;
 
         record_from_line(&new_record, line);
         
@@ -126,7 +126,7 @@ void insert_menu(Node **pList) {
     }
 
     printf("Times played => ");
-    set_int_in_range_if_exist("", &(newRecord.num_plays), 0, __INT32_MAX__);
+    set_int_in_range_if_exist("", &(newRecord.num_plays), 0, INT_MAX);
 
     printf("Rating (1-5) => ");
     set_int_in_range_if_exist("", &(newRecord.rating), 1, 5);
@@ -212,7 +212,7 @@ void edit_menu(Node *pList) {
     }
 
     printf("Times played => ");
-    set_int_in_range_if_exist("", &(song_to_edit->data.num_plays), 0, __INT32_MAX__);
+    set_int_in_range_if_exist("", &(song_to_edit->data.num_plays), 0, INT_MAX);
 
     printf("Rating (1-5) => ");
     set_int_in_range_if_exist("", &(song_to_edit->data.rating), 1, 5);
@@ -270,7 +270,7 @@ void play_menu(Node *pList) {
 }
 void shuffle_menu(Node *pList) {
     // frequency array of fixed size
-    int order[100] = {};
+    int order[100];
     int list_len = get_list_length(pList);
 
     // generate unique nums for song order
@@ -391,12 +391,14 @@ char *extract_string(char dest[MAX_NAME_LEN], char *line) {
         char *end = strchr(start, '"');  // find next ending quote
         if (end) {
             strncpy(dest, start, end - start);  // copy string to dest without quotes
+            dest[end - start] = '\0';
             return end + 2;  // return pointer to next character, after quote and comma
         }
     } else {
         char *end = strchr(line, ',');  // find next comma
         if (end) {
             strncpy(dest, start, end - start);  // copy string to dest
+            dest[end - start] = '\0';
             return end + 1;  // return pointer to next character, after comma
         }
     }
@@ -406,7 +408,7 @@ char *extract_string(char dest[MAX_NAME_LEN], char *line) {
 }
 
 void record_from_line(Record *to_store, char line[MAX_LINE_LEN]) {
-    char artist[MAX_NAME_LEN] = "", album[MAX_NAME_LEN] = "", song[MAX_NAME_LEN] = "", genre[MAX_NAME_LEN] = "";
+    char artist[MAX_NAME_LEN] = {'\0'}, album[MAX_NAME_LEN] = { '\0' }, song[MAX_NAME_LEN] = { '\0' }, genre[MAX_NAME_LEN] = { '\0' };
 
     // read artist, album, song, and genre
     char *next = extract_string(to_store->artist, line);

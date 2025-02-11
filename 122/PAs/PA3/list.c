@@ -24,11 +24,24 @@ Node *create_node(Record new_data) {
     if (pMem != NULL) {
         pMem->pNext = NULL;
         pMem->pPrev = NULL;
-        pMem->data = new_data;
+        //pMem->data = new_data;
+        set_node_data(pMem, new_data);
     }
 
     // return a possibly NULL pointer to a Node
     return pMem;
+}
+void set_node_data(Node* pList, Record new_data) {
+    if (!pList) return;
+
+    strcpy(pList->data.album, new_data.album);
+    strcpy(pList->data.artist, new_data.artist);
+    strcpy(pList->data.genre, new_data.genre);
+    strcpy(pList->data.song, new_data.song);
+    pList->data.length.minutes = new_data.length.minutes;
+    pList->data.length.seconds = new_data.length.seconds;
+    pList->data.num_plays = new_data.num_plays;
+    pList->data.rating = new_data.rating;
 }
 int insert_front(Node **pList, Record new_data) {
     Node *pMem = create_node(new_data);

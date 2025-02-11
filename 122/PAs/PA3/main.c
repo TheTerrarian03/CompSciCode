@@ -27,7 +27,7 @@ int main() {
 
         if (choice == 1) {
             int success = load_menu(&pHead);
-            print_list_p(pHead);
+            //print_list_p(pHead);
         } else if (choice == 2) {
             store_menu(pHead);
         } else if (choice == 3) {

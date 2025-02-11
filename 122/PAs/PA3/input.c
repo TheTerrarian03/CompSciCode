@@ -37,6 +37,8 @@ int get_pos_int_loop(const char *line_prompt) {
 
         choice = -1;
     }
+
+    return choice;
 }
 
 int get_pos_int_range_loop(const char *line_prompt, int min, int max) {
@@ -61,6 +63,8 @@ int get_pos_int_range_loop(const char *line_prompt, int min, int max) {
 
         choice = min-1;
     }
+
+    return choice;
 }
 
 void cpy_nstring(char *dest, int n) {
@@ -68,7 +72,9 @@ void cpy_nstring(char *dest, int n) {
 
     fgets(line, sizeof(line), stdin);
 
-    strncpy(dest, line, n);
+    strncpy(dest, line, strlen(line));
+
+    //strncpy(dest, line, n);
 
     dest[strlen(line)-1] = '\0';
 }

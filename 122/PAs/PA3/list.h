@@ -12,6 +12,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -65,6 +67,18 @@ void init_list(Node **pList);
  *   - pointer to new Node on heap
 */
 Node *create_node(Record new_data);
+
+/*
+ * Function: set_node_data
+ * --------------------
+ *   Copies values into node, including strcpy'ing the strings
+ *
+ *   Parameters:
+ *   - *pList: the node to copy data into
+ *   - new_data: new data to set to new Node's data
+ *
+*/
+void set_node_data(Node* pList, Record new_data);
 
 /*
  * Function: insert_front

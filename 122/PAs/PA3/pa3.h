@@ -22,6 +22,8 @@
 #include <unistd.h>
 #endif
 
+#define INT_MAX 1000000000
+
 /* ----- Menu Functions ----- */
 
 /*
