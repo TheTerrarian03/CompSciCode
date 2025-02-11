@@ -84,7 +84,7 @@ void set_int_in_range_if_exist(char *line_prompt, int *num, int min, int max) {
         if (sscanf(line, "%d", &choice) == 1) {
             printf("%d\n", choice);
             if (choice >= min && choice <= max) {
-                printf("num found of %d\n", choice);
+                // printf("num found of %d\n", choice);
                 *num = choice;
                 return;
             }

@@ -12,7 +12,7 @@ int main_menu() {
     6  - Edit a song\n\
     7  - Sort songs\n\
     8  - Rate a song\n\
-    9  - Play a song\n\
+    9  - Play songs\n\
     10 - Shuffle songs\n\
     11 - Exit\n");
 
@@ -83,8 +83,67 @@ void display_menu(Node *pList) {
         cur_num++;
     }
 }
-// void insert_menu();
-// void delete_menu();
+void insert_menu(Node **pList) {
+    Record newRecord;
+    
+    printf("Please enter the values for the attributes for the new song below:\n");
+    printf("NOTE: empty strings allowed, but not recommended.\n");
+
+    printf("Artist => ");
+    cpy_nstring_if_exist(newRecord.artist, MAX_NAME_LEN);
+
+    printf("Album => ");
+    cpy_nstring_if_exist(newRecord.album, MAX_NAME_LEN);
+
+    printf("Song => ");
+    cpy_nstring_if_exist(newRecord.song, MAX_NAME_LEN);
+
+    printf("Genre => ");
+    cpy_nstring_if_exist(newRecord.genre, MAX_NAME_LEN);
+
+    printf("Duration => ");
+    char line[MAX_NAME_LEN] = "";
+    cpy_nstring(line, MAX_NAME_LEN);
+    if (line[0] != '\n' && line[0] != '\0') {
+        int minutes = atoi(strtok(line, ":"));
+        int seconds = atoi(strtok(NULL, "\n\0"));
+
+        if (minutes != 0 && seconds != 0) {
+            newRecord.length.minutes = minutes;
+            newRecord.length.seconds = seconds;
+        }
+    }
+
+    printf("Times played => ");
+    set_int_in_range_if_exist("", &(newRecord.num_plays), 0, __INT32_MAX__);
+
+    printf("Rating (1-5) => ");
+    set_int_in_range_if_exist("", &(newRecord.rating), 1, 5);
+
+    insert_front(pList, newRecord);
+}
+void delete_menu(Node **pList) {
+    printf("What song would you like to delete? (Case-sensitive)\n> ");
+
+    char song[MAX_NAME_LEN] = "";
+    cpy_nstring(song, MAX_NAME_LEN);
+
+    printf("Got song: %s\n", song);
+
+    // check to see if song exists in playlist
+    Node *song_node = get_song_node(*pList, song);
+    if (song_node == NULL) {
+        printf("That song doesn't exist! Please try deleting another song.\n");
+        return;
+    }
+
+    printf("Removing...\n");
+
+    int success = remove_song(pList, song);
+
+    if (success) printf("Successfully removed \"%s\"!\n", song);
+    else printf("Failed to remove \"%s\", song doesn't exist.\n", song);
+}
 void edit_menu(Node *pList) {
     printf("!! THIS HAS NOT BEEN IMPLEMENTED AND MAY NOT WORK AT ALL !!\n");
 
@@ -147,7 +206,25 @@ void edit_menu(Node *pList) {
     printf("Rating (1-5) => ");
     set_int_in_range_if_exist("", &(song_to_edit->data.rating), 1, 5);
 }
-// void sort_menu();
+void sort_menu(Node **pList) {
+    printf("Which way would you like to sort your music?\n");
+    printf("1) Artist (A-Z)\n");
+    printf("2) Album (A-Z)\n");
+    printf("3) Rating (1-5)\n");
+    printf("4) Time played (big -> small)\n");
+
+    int choice = get_pos_int_range_loop("> ", 1, 4);
+
+    printf("Got choice: %d\n", choice);
+
+    switch (choice) {
+        case 1: sort_artist(pList); break;
+        case 2: sort_album(pList); break;
+        case 3: sort_rating(pList); break;
+        case 4: sort_plays(pList); break;
+        default: printf("Invalid, not sorting.\n");
+    }
+}
 void rate_menu(Node **pList) {
     printf("What song would you like to rate? (Case-sensitive)\n> ");
 
@@ -174,31 +251,35 @@ void play_menu(Node *pList) {
     printf("Playing %d songs...\n\n", get_list_length(pList));
 
     while (pList != NULL) {
-        printf("Playing \"%s\":\n", pList->data.song);
-        
-        for (int i=0; i < 10; i++) {
-            printf("\r0:00 [");
-
-            for (int j=0; j < 10; j++) {
-                if (j <= i) printf("X");
-                else printf(" ");
-            }
-            printf("] %d:%d", pList->data.length.minutes, pList->data.length.seconds);
-
-            fflush(stdout);
-
-#ifdef _WIN32
-            Sleep(1000);  // sleep for 1s on Windows
-#else
-            sleep(1);  // sleep for 1s on mac/linux
-#endif
-        }
+        play_song(pList);
 
         putchar('\n');
         pList = pList->pNext;
     }
 }
 // void shuffle_menu();
+
+void play_song(Node *pList) {
+    printf("Playing \"%s\":\n", pList->data.song);
+    
+    for (int i=0; i < 10; i++) {
+        printf("\r0:00 [");
+
+        for (int j=0; j < 10; j++) {
+            if (j <= i) printf("X");
+            else printf(" ");
+        }
+        printf("] %d:%d", pList->data.length.minutes, pList->data.length.seconds);
+
+        fflush(stdout);
+
+#ifdef _WIN32
+        Sleep(1000);  // sleep for 1s on Windows
+#else
+        sleep(1);  // sleep for 1s on mac/linux
+#endif
+    }
+}
 
 /* ----- File reading/writing ----- */
 

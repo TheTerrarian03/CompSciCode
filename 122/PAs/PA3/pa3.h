@@ -16,13 +16,15 @@ int main_menu();
 int load_menu(Node **pList);
 void store_menu(Node *pList);
 void display_menu(Node *pList);
-// void insert_menu();
-// void delete_menu();
+void insert_menu(Node **pList);
+void delete_menu(Node **pList);
 void edit_menu(Node *pList);
-// void sort_menu();
+void sort_menu(Node **pList);
 void rate_menu(Node **pList);
 void play_menu(Node *pList);
 // void shuffle_menu();
+
+void play_song(Node *pList);
 
 /* ----- File reading/writing ----- */
 

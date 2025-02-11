@@ -12,8 +12,11 @@
 */
 
 #include "pa3.h"  // includes list.h and input.h as well
+#include "test.h"
 
 int main() {    
+    
+    
     // Playlist of songs in doubly linked list
     Node *pHead = NULL;
     init_list(&pHead);
@@ -24,12 +27,19 @@ int main() {
 
         if (choice == 1) {
             int success = load_menu(&pHead);
+            print_list_p(pHead);
         } else if (choice == 2) {
             store_menu(pHead);
         } else if (choice == 3) {
             display_menu(pHead);
+        } else if (choice == 4) {
+            insert_menu(&pHead);
+        } else if (choice == 5) {
+            delete_menu(&pHead);
         } else if (choice == 6) {
             edit_menu(pHead);
+        } else if (choice == 7) {
+            sort_menu(&pHead);
         } else if (choice == 8) {
             rate_menu(&pHead);
         } else if (choice == 9) {

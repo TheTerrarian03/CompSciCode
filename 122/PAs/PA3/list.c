@@ -12,7 +12,7 @@ Node *create_node(Record new_data) {
     // set attributes if it exists
     if (pMem != NULL) {
         pMem->pNext = NULL;
-        pMem->pPref = NULL;
+        pMem->pPrev = NULL;
         pMem->data = new_data;
     }
 
@@ -33,7 +33,7 @@ int insert_front(Node **pList, Record new_data) {
         // otherwise add to front and adjust links
         else {
             pMem->pNext = *pList;
-            (pMem->pNext)->pPref = pMem;
+            (pMem->pNext)->pPrev = pMem;
             *pList = pMem;
         }
     }
@@ -123,11 +123,206 @@ Node *get_nth_song_of_artist(Node *pList, char *artist, int n) {
     return NULL;
 }
 
+// recursive, based on Martin's deleteContact function from Lab3
+int remove_song(Node **pList, char *song_name) {
+    // empty list
+    if (!*pList) return 0;  // did not remove a song
+
+    // delete the first element if it matches
+    if (!strcmp((*pList)->data.song, song_name)) {
+        Node* pTemp = *pList;
+
+		*pList = (*pList)->pNext;
+
+        if ((pTemp)->pNext) (pTemp)->pNext->pPrev = (pTemp)->pPrev;
+		
+		if ((pTemp)->pPrev) (pTemp)->pPrev->pNext = (pTemp)->pNext;
+
+		free(pTemp);
+
+		return 1;  // found a song and removed it
+    }
+
+    // recursive call
+    return remove_song(&(*pList)->pNext, song_name);
+}
+
 void print_list_p(Node *pList) {
     if (pList == NULL) {
         putchar('\n');
     } else {
-        printf("[%p <-- %p --> %p]\n", pList->pPref, pList, pList->pNext);
+        printf("[%p <-- %p --> %p]\n", pList->pPrev, pList, pList->pNext);
         print_list_p(pList->pNext);
     }
+}
+
+/* ----- Sort Functions ----- */
+
+void sort_artist(Node **pList) {
+    if (!pList || !*pList) return; // Check for empty list
+
+    int swapped;
+    Node *current;
+    Node *lastPtr = NULL; // Keep track of the last sorted node
+
+    do {
+        swapped = 0;
+        current = *pList;
+
+        while (current->pNext != lastPtr) {
+            // Compare the artists
+            if (strcmp(current->data.artist, current->pNext->data.artist) > 0) {
+                // Swap the nodes instead of the data
+                Node *temp = current->pNext;
+
+                // Adjust the pointers for the swap
+                current->pNext = temp->pNext;
+                temp->pPrev = current->pPrev;
+
+                if (current->pPrev) {
+                    current->pPrev->pNext = temp;
+                } else {
+                    *pList = temp; // Update pList if needed
+                }
+
+                if (temp->pNext) {
+                    temp->pNext->pPrev = current;
+                }
+
+                temp->pNext = current;
+                current->pPrev = temp;
+
+                swapped = 1; // A swap occurred
+            } else {
+                current = current->pNext; // Move to the next node
+            }
+        }
+        lastPtr = current; // Update the last sorted node
+    } while (swapped); // Continue until no swaps are made
+}
+void sort_album(Node **pList) {
+    if (!pList || !*pList) return; // Check for empty list
+
+    int swapped;
+    Node *current;
+    Node *lastPtr = NULL; // Keep track of the last sorted node
+
+    do {
+        swapped = 0;
+        current = *pList;
+
+        while (current->pNext != lastPtr) {
+            // Compare the albums
+            if (strcmp(current->data.album, current->pNext->data.album) > 0) {
+                // Swap the nodes instead of the data
+                Node *temp = current->pNext;
+
+                // Adjust the pointers for the swap
+                current->pNext = temp->pNext;
+                temp->pPrev = current->pPrev;
+
+                if (current->pPrev) {
+                    current->pPrev->pNext = temp;
+                } else {
+                    *pList = temp; // Update pList if needed
+                }
+
+                if (temp->pNext) {
+                    temp->pNext->pPrev = current;
+                }
+
+                temp->pNext = current;
+                current->pPrev = temp;
+
+                swapped = 1; // A swap occurred
+            } else {
+                current = current->pNext; // Move to the next node
+            }
+        }
+        lastPtr = current; // Update the last sorted node
+    } while (swapped); // Continue until no swaps are made
+}
+void sort_rating(Node **pList) {
+    if (!pList || !*pList) return; // Check for empty list
+
+    int swapped;
+    Node *current;
+    Node *lastPtr = NULL; // Keep track of the last sorted node
+
+    do {
+        swapped = 0;
+        current = *pList;
+
+        while (current->pNext != lastPtr) {
+            // Compare the ratings
+            if (current->data.rating > current->pNext->data.rating) {
+                // Swap the nodes instead of the data
+                Node *temp = current->pNext;
+
+                // Adjust the pointers for the swap
+                current->pNext = temp->pNext;
+                temp->pPrev = current->pPrev;
+
+                if (current->pPrev) {
+                    current->pPrev->pNext = temp;
+                } else {
+                    *pList = temp; // Update pList if needed
+                }
+
+                if (temp->pNext) {
+                    temp->pNext->pPrev = current;
+                }
+
+                temp->pNext = current;
+                current->pPrev = temp;
+
+                swapped = 1; // A swap occurred
+            } else {
+                current = current->pNext; // Move to the next node
+            }
+        }
+        lastPtr = current; // Update the last sorted node
+    } while (swapped); // Continue until no swaps are made
+}
+void sort_plays(Node **pList) {
+    if (!pList || !*pList) return; // Check for empty list
+
+    int swapped;
+    Node *current;
+    Node *lastPtr = NULL; // Keep track of the last sorted node
+
+    do {
+        swapped = 0;
+        current = *pList;
+
+        while (current->pNext != lastPtr) {
+            // Compare the plays
+            if (current->data.num_plays > current->pNext->data.num_plays) {
+                // Swap the nodes instead of the data
+                Node *temp = current->pNext;
+
+                // Adjust the pointers for the swap
+                current->pNext = temp->pNext;
+                temp->pPrev = current->pPrev;
+
+                if (current->pPrev) {
+                    current->pPrev->pNext = temp;
+                } else {
+                    *pList = temp; // Update pList if needed
+                }
+
+                if (temp->pNext) {
+                    temp->pNext->pPrev = current;
+                }
+
+                temp->pNext = current;
+                current->pPrev = temp;
+
+                swapped = 1; // A swap occurred
+            } else {
+                current = current->pNext; // Move to the next node
+            }
+        }
+        lastPtr = current; // Update the last sorted node
+    } while (swapped); // Continue until no swaps are made
 }

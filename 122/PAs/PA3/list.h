@@ -27,7 +27,7 @@ typedef struct record {
 typedef struct node {
     Record data;
     struct node *pNext;
-    struct node *pPref;
+    struct node *pPrev;
 } Node;
 
 /* ----- Standard Doubly-Linked-List Functions ----- */
@@ -56,8 +56,17 @@ int print_songs_matching_artist(Node *pList, char *artist);
 // similar to get_song_node, but with indexed songs matching artist
 Node *get_nth_song_of_artist(Node *pList, char *artist, int n);
 
+int remove_song(Node **pList, char *song_name);
+
 // cool function I wrote to print the addresses of pointers,
 // to visibly see how they point to each other
 void print_list_p(Node *pList);
+
+/* ----- Sort Functions ----- */
+
+void sort_artist(Node **pList);
+void sort_album(Node **pList);
+void sort_rating(Node **pList);
+void sort_plays(Node **pList);
 
 #endif
