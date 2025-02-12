@@ -133,6 +133,9 @@
   <ItemGroup>
     <ClInclude Include="Rectangle.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="rectangle_data.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
