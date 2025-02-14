@@ -2,19 +2,32 @@
 
 int main() {
 	Rectangle r1(4.3, 5);
-	//Rectangle r2 = Rectangle(3.0, 2.0);
-	//Rectangle r3 = Rectangle();
+	Rectangle r2;
+	Rectangle r3;
 	Rectangle r4(r1);
+	r2 = r1;
+	cout << "Address of r1: " << &r3 << endl;
 	ifstream inputStream;
 
-	double len;
+	double len = 0, wid = 0;
 
 	// no longer "r", now std::ios::in
 	inputStream.open("rectangle_data.txt", std::ios::in);
 
-	inputStream >> len;
+	inputStream >> len >> wid;
 
-	cout << len << std::endl;
+	r3.setLength(len);
+	r3.setWidth(wid);
+
+	cout << r3 << endl;
+
+	inputStream >> r3;
+
+	cout << r3 << endl;
+
+	inputStream.close();
+
+	//cout << len << std::endl;
 
 	cout << "L: " << r1.getLength() << ", W: " << r1.getWidth() << endl;
 

@@ -19,6 +19,26 @@ Rectangle::Rectangle(Rectangle& r) {
 	mWidth = r.mWidth;
 }
 
+// copy assignment operator
+Rectangle& Rectangle::operator=(Rectangle& rhs) {
+	// self-referential assignment
+	if (this != &rhs) {
+		mLength = rhs.mLength;
+		mWidth = rhs.mWidth;
+
+		// "this" is a pointer to an instance of an object
+		//cout << "Address of this: " << this << endl;
+	}
+
+	return *this;
+}
+
+// desstruction
+Rectangle::~Rectangle() {
+	// clean up resources
+	cout << "Inside Rectangle Destructor: " << *this << endl;
+}
+
 // getters - accessorororororewhiosghbdfjkcghewnigsrkxjgnoeguiwrbksjdy7593t408p2iwesdkljbfkdjlkivpgru5yrgej
 double Rectangle::getLength() {
 	return mLength;
@@ -42,5 +62,18 @@ void Rectangle::setWidth(double newWidth) {
 
 std::ostream& operator<< (std::ostream& lhs, Rectangle& rhs) {
 	lhs << "l: " << rhs.getLength() << " w: " << rhs.getWidth();
+	return lhs;
+}
+
+
+// overloaded operator - non-member
+ifstream& operator>> (ifstream& lhs, Rectangle& rhs) {
+	double len, wid;
+
+	lhs >> len >> wid;
+
+	rhs.setLength(len);
+	rhs.setWidth(wid);
+
 	return lhs;
 }

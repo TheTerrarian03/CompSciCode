@@ -30,9 +30,12 @@ public:
 	Rectangle(Rectangle &r);
 
 	// copy assignment operator
+	Rectangle& operator=(Rectangle& rhs);
 
-	// desructor
-
+	// desructor - special member function invoked implicitly when an
+	// object goes out of scope - gets invoked when an object on the heap is
+	// explicitly deleted (instead of freed from C)
+	~Rectangle();
 
 	// getters - accessorororororewhiosghbdfjkcghewnigsrkxjgnoeguiwrbksjdy7593t408p2iwesdkljbfkdjlkivpgru5yrgej
 	double getLength();
@@ -50,3 +53,6 @@ private:
 
 // overloaded operator - non-member
 std::ostream& operator<< (std::ostream& lhs, Rectangle& rhs);
+
+// overloaded operator - non-member
+ifstream& operator>> (ifstream& lhs, Rectangle& rhs);
