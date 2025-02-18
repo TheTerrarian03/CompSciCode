@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\FitnessAppWrapper.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|solutionrelative:PA4\\FitnessAppWrapper.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|solutionrelative:PA4\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\ExercisePlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|solutionrelative:PA4\\ExercisePlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\DietPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|solutionrelative:PA4\\DietPlan.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\dietPlans.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{05FD3D9B-663E-4455-AB7F-2CEA451E6692}|PA4\\PA4.vcxproj|solutionrelative:PA4\\dietPlans.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\main.cpp",
+              "RelativeDocumentMoniker": "PA4\\main.cpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\main.cpp",
+              "RelativeToolTip": "PA4\\main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-18T19:49:09.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FitnessAppWrapper.hpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\FitnessAppWrapper.hpp",
+              "RelativeDocumentMoniker": "PA4\\FitnessAppWrapper.hpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\FitnessAppWrapper.hpp",
+              "RelativeToolTip": "PA4\\FitnessAppWrapper.hpp",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAEMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T19:53:23.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DietPlan.hpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\DietPlan.hpp",
+              "RelativeDocumentMoniker": "PA4\\DietPlan.hpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\DietPlan.hpp",
+              "RelativeToolTip": "PA4\\DietPlan.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T19:52:46.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ExercisePlan.hpp",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\ExercisePlan.hpp",
+              "RelativeDocumentMoniker": "PA4\\ExercisePlan.hpp",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\ExercisePlan.hpp",
+              "RelativeToolTip": "PA4\\ExercisePlan.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T19:53:07.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "dietPlans.txt",
+              "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\dietPlans.txt",
+              "RelativeDocumentMoniker": "PA4\\dietPlans.txt",
+              "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\PAs\\PA4\\PA4\\dietPlans.txt",
+              "RelativeToolTip": "PA4\\dietPlans.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-02-18T20:45:10.318Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
