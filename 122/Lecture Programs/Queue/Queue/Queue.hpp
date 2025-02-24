@@ -13,10 +13,24 @@ private:
 	Node* mpHead, * mpTail;
 
 public:
-	bool enqueue(string& newData);
+	// constructor
+	Queue();
+
+	// insert at tail/end of queue
+	bool enqueue(string newData);
+	// queue must not be empty
+	string dequeue();
+
+	// predicate function
+	bool is_empty() const;
 };
 
-bool Queue::enqueue(string& newData) {
+Queue::Queue() {
+	this->mpHead = nullptr;
+	this->mpTail = nullptr;
+}
+
+bool Queue::enqueue(string newData) {
 	Node* pMem = new Node(newData);  // constructor for Node gets called here w/ new
 	bool success = false;
 
@@ -36,4 +50,24 @@ bool Queue::enqueue(string& newData) {
 	}
 		
 	return success;
+}
+
+string Queue::dequeue() {
+	string data = this->mpHead->getData();
+	Node* pTemp = this->mpHead;  // refers to Node to delete
+
+	this->mpHead = this->mpHead->getNextPtr();
+
+	if (mpHead == nullptr) {
+		mpTail = nullptr;
+	}
+
+	delete pTemp;  // invokes a node's destructor the for the object that's removed
+	cout << "finished removing job \"" << data << "\"." << endl;
+
+	return data;
+}
+
+bool Queue::is_empty() const {
+	return this->mpHead == nullptr && this->mpTail == nullptr;
 }

@@ -11,8 +11,15 @@ using std::string;
 class Node {
 
 public:
+	// constructor
 	Node(const string& newData = "");  // literal string of "" requires a constant reference
-	void setNextPtr(Node* const newNextPtr);  // parameter considered constant, so the address stores is not constant.
+
+	// setters
+	void setNextPtr(Node* newNextPtr);  // parameter considered constant, so the address stores is not constant.
+
+	// getters
+	string getData() const;
+	Node* getNextPtr() const;
 
 private:
 	string mJob;
@@ -26,6 +33,12 @@ Node::Node(const string& newData) {
 	this->mpNext = nullptr;
 }
 
-void Node::setNextPtr(Node* const newNextPtr) {
+void Node::setNextPtr(Node* newNextPtr) {
 	this->mpNext = newNextPtr;
+}
+string Node::getData() const {
+	return this->mJob;
+}
+Node* Node::getNextPtr() const {
+	return this->mpNext;
 }

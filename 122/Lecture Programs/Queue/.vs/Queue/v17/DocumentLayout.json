@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|solutionrelative:Queue\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Queue.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|solutionrelative:Queue\\Queue.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Node.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|solutionrelative:Queue\\Node.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{708DBEE1-5A4E-4EE6-B7ED-1A42A7B0CD75}|Queue\\Queue.vcxproj|solutionrelative:Queue\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Queue.hpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Queue.hpp",
               "RelativeDocumentMoniker": "Queue\\Queue.hpp",
               "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Queue.hpp",
               "RelativeToolTip": "Queue\\Queue.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-21T18:34:08.479Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Node.hpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Node.hpp",
               "RelativeDocumentMoniker": "Queue\\Node.hpp",
               "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\Node.hpp",
               "RelativeToolTip": "Queue\\Node.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABzAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-21T18:33:59.226Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\main.cpp",
               "RelativeDocumentMoniker": "Queue\\main.cpp",
               "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Queue\\Queue\\main.cpp",
               "RelativeToolTip": "Queue\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-21T18:33:43.694Z",
               "EditorCaption": ""
