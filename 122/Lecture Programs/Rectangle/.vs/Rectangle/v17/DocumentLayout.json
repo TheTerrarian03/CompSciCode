@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\Rectangle.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\Rectangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|solutionrelative:Rectangle\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0918ED64-B896-42A0-BAA4-0DE52EDD5DB8}|Rectangle\\Rectangle.vcxproj|C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\rectangle_data.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -42,7 +42,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Rectangle.cpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.cpp",
               "RelativeDocumentMoniker": "Rectangle\\Rectangle.cpp",
@@ -50,31 +50,30 @@
               "RelativeToolTip": "Rectangle\\Rectangle.cpp",
               "ViewState": "AgIAABcAAAAAAAAAAAAAAEAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-07T18:56:51.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-07T18:56:51.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Rectangle.hpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp",
               "RelativeDocumentMoniker": "Rectangle\\Rectangle.hpp",
               "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\Rectangle.hpp",
               "RelativeToolTip": "Rectangle\\Rectangle.hpp",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAADkAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADkAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-07T18:56:43.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp",
               "RelativeDocumentMoniker": "Rectangle\\main.cpp",
               "ToolTip": "C:\\Users\\lsm03\\Desktop\\Programming2\\College\\CompSciCode\\122\\Lecture Programs\\Rectangle\\Rectangle\\main.cpp",
               "RelativeToolTip": "Rectangle\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-07T18:56:34.32Z",
               "EditorCaption": ""
