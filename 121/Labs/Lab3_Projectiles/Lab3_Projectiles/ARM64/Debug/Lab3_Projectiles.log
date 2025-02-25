@@ -1,6 +1,0 @@
-﻿  functions.c
-  main.c
-Z:\Desktop\Programming\College\CPT_S 121\Lab3_Projectiles\Lab3_Projectiles\functions.c(48,54): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-Z:\Desktop\Programming\College\CPT_S 121\Lab3_Projectiles\Lab3_Projectiles\functions.c(56,1): warning C4716: 'display_time_and_height': must return a value
-  Lab3_Projectiles.vcxproj -> Z:\Desktop\Programming\College\CPT_S 121\Lab3_Projectiles\ARM64\Debug\Lab3_Projectiles.exe
