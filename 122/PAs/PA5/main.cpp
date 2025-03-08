@@ -1,52 +1,45 @@
-#include <iostream>
-#include "QueueNode.hpp"
+// #include "Queue.hpp"
+#include "Tests.hpp"
+// #include "Simulation.hpp"
+
+bool ynPrompt(std::string prompt);
 
 int main() {
-    Data *d = new Data(1, 2, 3);
-    Data *e = new Data(*d);
-
-    e->setTotalTime(10);
+    std::cout << "---------- TEST QUEUE FUNCTIONALITY ----------" << std::endl << std::endl;
     
-    // std::cout << *d << std::endl;
-    // std::cout << *e << std::endl;
+    if (ynPrompt("Would you like to run the Queue Tests?")) testMost();
 
-    QueueNode *qn = new QueueNode();
-    QueueNode *qn2 = new QueueNode();
-    qn->setData(*d);
-    qn->setNext(qn2);
-    qn2->setData(*e);
+    std::cout << std::endl << "---------- TEST SIMULATION ----------" << std::endl;
 
-    std::cout << *qn << std::endl;
-    std::cout << *qn2 << std::endl;
+    if (ynPrompt("Would you like to run the Test Simulation (24h)?")) testSim24H();
 
-    // queue 1: express lane
-    // queue 2: normal lane
+    std::cout << std::endl << "---------- SIMULATION ----------" << std::endl;
+
+    if (ynPrompt("Would you like to run a custom simulation?")) {
+        int n = 0;
+        bool verbose = false, realtime = false;
+        
+        std::cout << "How many minutes? (integer):" << std::endl << "> ";
+        std::cin >> n;
+
+        verbose = ynPrompt("Would you like to enable verbose output?");
+
+        realtime = ynPrompt("Would you like to run this in realtime?");
+
+        Simulation sim = Simulation(verbose, realtime);
+
+        sim.runSimulation(n);
+    }
+}
+
+bool ynPrompt(std::string prompt) {
+    char input;
     
-    // gen random num for express and normal lane
-        // express: 1-5 for arrival time
-        // normal: 3-8 for arrival time
-        
-    
-    // program main loop:
+    std::cout << prompt << " (y/n):" << std::endl;
+    std::cout << "> ";
 
-        // randomly generate arrival times and service times of customers into each lane
+    std::cin >> input;
 
-
-        // express lane gen: 1-5min
-        // normal lane gen: 3-8min
-
-        // express lane time: 1-5min
-        // normal lane time: 3-8min
-
-        // print as customers are enqueued into the line
-            // arrival time
-            // customer number
-        
-        // print as customers are checked out and dequeue line
-            // which line
-            // customer number
-            // totalTime in the line
-        
-        // loop runs for n minutes, inputted by user
-
+    if (input == 'y' || input == 'Y') return true;
+    return false;
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 class Data {
@@ -23,6 +25,10 @@ public:
     int getServiceTime() { return this->serviceTime; }
     int getTotalTime() { return this->totalTime; }
 
+    // simulation-related functions
+    void decrementST() { this->serviceTime--; }
+    void incerementTT() { this->totalTime++; }
+
 private:
     int customerNumber;
     int serviceTime;
@@ -35,4 +41,13 @@ std::ostream& operator<< (std::ostream& lhs, Data &rhs) {
     lhs << rhs.getServiceTime() << std::endl;
     lhs << rhs.getTotalTime() << std::endl;
     return lhs;
+}
+
+// overloaded equivalence
+bool operator== (Data &lhs, Data &rhs) {
+    if (lhs.getCustomerNumber() == rhs.getCustomerNumber() &&
+        lhs.getServiceTime() == rhs.getServiceTime() &&
+        lhs.getTotalTime() == rhs.getTotalTime()) return true;
+
+    return false;
 }
