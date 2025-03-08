@@ -8,8 +8,29 @@ class Queue {
 public:
     // constructors and destructors
     Queue() : pHead(nullptr), pTail(nullptr) {}
-    Queue(Queue &copy);
+    Queue(const Queue &copy);
     ~Queue();
+    Queue& operator= (const Queue& rhs) {
+        // self-assignment check
+        if (this == &rhs) {
+            return *this;
+        }
+        
+        // clear old queue
+        while (!isEmpty()) {
+            dequeue();
+        }
+
+        // copy from rhs to this queue
+        QueueNode* pCur = rhs.pHead;
+        while (pCur != nullptr) {
+            Data d = pCur->getData();
+            enqueue(d);
+            pCur = pCur->getNext();
+        }
+
+        return *this;
+    }
 
     // enqueue and dequeue
     void enqueue(Data &copy);
@@ -34,8 +55,16 @@ private:
     void print(std::ostream& outfile, QueueNode *pNode);
 };
 
-Queue::Queue(Queue &copy) {
-    std::cout << "NOT IMPLEMENTED" << std::endl;
+Queue::Queue(const Queue &copy) {
+    // self check
+    if (copy.pHead == nullptr) return;
+
+    QueueNode* pCur = copy.pHead;
+    
+    while (pCur != nullptr) {
+        enqueue(pCur->getData());
+        pCur = pCur->getNext();
+    }
 }
 
 Queue::~Queue() {}

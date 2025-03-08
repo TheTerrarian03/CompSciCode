@@ -1,5 +1,7 @@
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 
 class Data {
@@ -8,10 +10,20 @@ public:
     // constructors and destructor
     Data() : customerNumber(0), serviceTime(0), totalTime(0) {}  // constructor
     Data(int customerNumber, int serviceTime, int totalTime) : customerNumber(customerNumber), serviceTime(serviceTime), totalTime(totalTime) {}
-    Data(Data &rhs) {
-        this->customerNumber = rhs.getCustomerNumber();
-        this->serviceTime = rhs.getServiceTime();
-        this->totalTime = rhs.getTotalTime();
+    // Copy constructor
+    Data(const Data& rhs) : customerNumber(rhs.customerNumber),
+                            serviceTime(rhs.serviceTime),
+                            totalTime(rhs.totalTime) {}
+
+    // Copy assignment operator
+    Data& operator=(const Data& rhs) {
+        if (this == &rhs) {
+            return *this; // Self-assignment check
+        }
+        this->customerNumber = rhs.customerNumber;
+        this->serviceTime = rhs.serviceTime;
+        this->totalTime = rhs.totalTime;
+        return *this; // Return *this to allow chained assignments
     }
     ~Data() {}
 

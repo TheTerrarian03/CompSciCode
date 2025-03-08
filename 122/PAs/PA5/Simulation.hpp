@@ -4,6 +4,7 @@
 #include <cstdlib>  // for rand and time
 #include <chrono>  // for more time stuff
 #include <thread>  // for thread sleep
+//#include <ctime>  // needed for some reason on windows (??)
 
 class Simulation {
 
@@ -188,31 +189,36 @@ void Simulation::step_minute(int n) {
     if (normalLen > maxNormalCustomers) maxNormalCustomers = normalLen;
 }
 
-void Simulation::waitForNextSecond() {
-    // current time
-    std::chrono::time_point now = std::chrono::system_clock::now();
-
-    // sleep until now, plus a second, minute how far we are already
-    std::this_thread::sleep_until(now + 
-                                  std::chrono::seconds(1) -
-                                  std::chrono::nanoseconds(now.time_since_epoch().count() % 1'000'000'000));
-}
-
 // had a little help with ChatGPT with this one.
 // I haven't used time or chrono that much,
 // with either c, c++, OR rust.
 // You could say I'm a little... Rusty! haha.
-void Simulation::waitForNextMinute() {
-    // current time
-    std::chrono::time_point now = std::chrono::system_clock::now();
-    
-    // seconds since epoch
-    time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-    tm *current_time = std::localtime(&now_time_t);
+void Simulation::waitForNextSecond() {
+    // Get the current time
+    auto now = std::chrono::system_clock::now();
 
-    // calc time until next minute
+    // Calculate the next second
+    auto next_second = std::chrono::time_point_cast<std::chrono::seconds>(now) + std::chrono::seconds(1);
+
+    // Sleep until the next second
+    std::this_thread::sleep_until(next_second);
+}
+
+// I initially had the exact type definitions out,
+// but to fix a whole bunch of issues Chat and I
+// changed them to autos. It works!
+// Windows is wacky.
+void Simulation::waitForNextMinute() {
+    // Get the current time
+    auto now = std::chrono::system_clock::now();
+
+    // Get the current time in seconds since epoch
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+    tm* current_time = std::localtime(&now_time_t);
+
+    // Calculate the time until the next minute
     int seconds_to_wait = 60 - current_time->tm_sec;
 
-    // sleep for the time we gotta wait
+    // Sleep for the calculated time
     std::this_thread::sleep_for(std::chrono::seconds(seconds_to_wait));
 }
