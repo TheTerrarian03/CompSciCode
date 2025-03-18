@@ -23,10 +23,14 @@ public:
 
 	void insert(T newData);
     void inorderTraversal() const;
+	void preOrderTraversal() const;
+	void postOrderTraversal() const;
 
 private:
 	void insert(T newData, Node<T>* pTree);
     void inorderTraversal(Node<T>* pTree) const;
+	void preOrderTraversal(Node<T>* pTree) const;
+	void postOrderTraversal(Node<T>* pTree) const;
 
 	Node<T>* mpRoot;
 };
@@ -47,6 +51,16 @@ void BST<T>::insert(T newData)
 template <typename T>
 void BST<T>::inorderTraversal() const {
     inorderTraversal(this->mpRoot);
+}
+
+template <typename T>
+void BST<T>::preOrderTraversal() const {
+	preOrderTraversal(this->mpRoot);
+}
+
+template <typename T>
+void BST<T>::postOrderTraversal() const {
+	postOrderTraversal(this->mpRoot);
 }
 
 template <typename T>
@@ -105,4 +119,39 @@ void BST<T>::inorderTraversal(Node<T>* pTree) const {
         // go right
         inorderTraversal(pTree->getRightPtr());
     }
+}
+
+template <typename T>
+void BST<T>::preOrderTraversal(Node<T>* pTree) const {
+	// recursive step
+	if (pTree != nullptr) {
+		// process
+		cout << pTree->getData() << endl;
+
+		// go left
+		preOrderTraversal(pTree->getLeftPtr());
+
+		// go right
+		preOrderTraversal(pTree->getRightPtr());
+	}
+}
+// you could look at what you get from a preorder traversal, and find:
+// the first item is the root of the tree
+// the next 2 items are children (likely) of the root node
+// and follow it recursively.
+// You could also find that every 3 items are good candidates for root nodes for a more balanced tree
+
+template <typename T>
+void BST<T>::postOrderTraversal(Node<T>* pTree) const {
+	// recursive step
+	if (pTree != nullptr) {
+		// go left
+		postOrderTraversal(pTree->getLeftPtr());
+
+		// go right
+		postOrderTraversal(pTree->getRightPtr());
+
+		// process
+		cout << pTree->getData() << endl;
+	}
 }

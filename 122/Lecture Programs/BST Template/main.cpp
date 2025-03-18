@@ -16,14 +16,16 @@ int main(void)
 	tree.insert("Frank");
 	tree.insert("Naomi");
 
+	tree2.insert(10);
+	tree2.insert(15);
+	tree2.insert(20);
 	tree2.insert(5);
-	tree2.insert(3);
-	tree2.insert(4);
-	tree2.insert(6);
-	tree2.insert(7);
+	tree2.insert(68);
 
 	tree.inorderTraversal();
 	tree2.inorderTraversal();
+	tree2.preOrderTraversal();
+	tree2.postOrderTraversal();
 
 	return 0;
 }
