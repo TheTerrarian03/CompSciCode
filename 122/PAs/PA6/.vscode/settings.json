@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.compilerPath": "/run/current-system/sw/bin/gcc",
+    "files.associations": {
+        "iosfwd": "cpp",
+        "iostream": "cpp"
+    }
+}
