@@ -1,3 +1,10 @@
+/*
+- File: MorseEnglishTranslater.cpp
+- Description: Function definitions for the MorseEnglishTranslater.hpp file
+
+- Modified: 03/23/2025
+*/
+
 #pragma once
 
 #include "MorseEnglishTranslater.hpp"
@@ -72,7 +79,7 @@ void MorseEnglishTranslater::englishToMorse(std::string input) {
 		char currChar = input[i];
 
 		// lowercase to uppercase handled in lookup! (MorseFuncs.hpp, charToID())
-		std::string morse_to_print = tree.search(currChar);
+		Morse morse_to_print = tree.search(currChar);
 
 		if (currChar == ' ') std::cout << "   ";
 		else if (currChar == '\n') std::cout << std::endl;
