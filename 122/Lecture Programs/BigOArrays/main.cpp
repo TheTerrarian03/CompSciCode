@@ -17,3 +17,10 @@ int main(void)
 
 	return 0;
 }
+
+// O tricks
+// for loops: multiplication
+	// loop 1 for x times
+	// loop 2 for x times
+
+	// total: x*x times

@@ -125,24 +125,24 @@ bool BigO::SortsAndSearches<T>::binary_search(const T *pList, const int size, co
 //	}
 //}
 //
-//// ascending order
-//template<class T>
-//void BigO::SortsAndSearches<T>::bubble_sort(T *pList, const int size)
-//{
-//	int index = 0, passes = 1;
-//	T temp;
-//
-//	for (; passes < size; ++passes)
-//	{
-//		// the sorting happens
-//		for (index = 0; index < size - passes; ++index)
-//		{
-//			if (pList[index] > pList[index + 1]) // swap?
-//			{
-//				temp = pList[index];
-//				pList[index] = pList[index + 1];
-//				pList[index + 1] = temp;
-//			}
-//		}
-//	}
-//}
+// ascending order
+template<class T>
+void BigO::SortsAndSearches<T>::bubble_sort(T *pList, const int size)
+{
+	int index = 0, passes = 1;
+	T temp;
+
+	for (; passes < size; ++passes)
+	{
+		// the sorting happens
+		for (index = 0; index < size - passes; ++index)
+		{
+			if (pList[index] > pList[index + 1]) // swap?
+			{
+				temp = pList[index];
+				pList[index] = pList[index + 1];
+				pList[index + 1] = temp;
+			}
+		}
+	}
+}
