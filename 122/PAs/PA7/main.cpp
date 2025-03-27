@@ -1,5 +1,6 @@
-#include "includes.hpp"
+// #include <iostream>
+#include "Data.hpp"
 
 int main() {
-    std::cout << "HEll owrojsmfklsbnglsbjl" << std::endl;
+    print();
 }

@@ -1,5 +1,5 @@
 all:
 	clear
-	gcc -o ./program.o -lstdc++ Data.hpp Node.hpp List.hpp includes.hpp main.cpp && \
+	g++-14 -lstdc++ -o program.o data.hpp main.cpp && \
 	clear && \
 	./program.o

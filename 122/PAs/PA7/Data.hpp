@@ -1,5 +1,7 @@
 #pragma once
 
-void print() {
-    
-}
+#include <iostream>
+
+class Data {
+
+};
