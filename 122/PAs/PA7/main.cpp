@@ -1,6 +1,9 @@
 // #include <iostream>
-#include "Data.hpp"
+// #include "Node.hpp"
+#include "List.hpp"
 
 int main() {
-    print();
+    Node a = Node<int>();
+
+    // std::cout << d << std::endl;
 }

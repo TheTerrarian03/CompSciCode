@@ -1,5 +1,5 @@
 all:
 	clear
-	g++-14 -lstdc++ -o program.o data.hpp main.cpp && \
+	g++ -lstdc++ -o program.o Data.cpp Node.hpp main.cpp && \
 	clear && \
 	./program.o
