@@ -7,3 +7,6 @@ int main() {
 
     // std::cout << d << std::endl;
 }
+
+// import records from file into linked list
+// store value of list into master csv, with num absences and list of absence dates

@@ -146,3 +146,18 @@ void BigO::SortsAndSearches<T>::bubble_sort(T *pList, const int size)
 		}
 	}
 }
+
+// reverse string complexity (meet in middle)
+	// find end:
+		// time complexity O(n)
+		// space complexity O(1)
+	// reverse string
+		// time complexity O(n)
+		// space complexity O(1)
+	// total: O(n+n) or still O(n)
+// reverse string complexity (brute force add another array)
+	// find end still same
+	// reverse:
+		// time complexity O(n)
+		// space complexity O(n)
+	
