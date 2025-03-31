@@ -8,6 +8,7 @@ class Node {
 public:
     // constructors, destructor    
     Node() : data(T()), pNext(nullptr) {}
+    Node(T _data) : data(_data), pNext(nullptr) {}
     Node(T _data, Node* _pNext) : data(_data), pNext(_pNext) {}
     ~Node() {}
 

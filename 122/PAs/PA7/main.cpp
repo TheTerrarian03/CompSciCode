@@ -1,11 +1,9 @@
-// #include <iostream>
-// #include "Node.hpp"
-#include "List.hpp"
+#include "RecordManager.hpp"
 
 int main() {
-    Node a = Node<int>();
+    RecordManager recMan;
 
-    // std::cout << d << std::endl;
+    recMan.run();
 }
 
 // import records from file into linked list

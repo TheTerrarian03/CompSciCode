@@ -31,6 +31,7 @@ Data::Data(const Data& copy) {
     units = copy.getUnits();
     program = copy.getProgram();
     level = copy.getLevel();
+    absences = copy.getAbsences();
     
     // absence stack here
 }
@@ -71,7 +72,7 @@ std::ostream& operator<<(std::ostream& lhs, const Data& rhs) {
        << "Absences: " << rhs.absences << "\n"
        << "Absence Dates: ";
 
-    // Print absence dates
+    // print absence dates stack
     if (rhs.absenceDates.empty()) {
         lhs << "None";
     } else {
@@ -81,6 +82,6 @@ std::ostream& operator<<(std::ostream& lhs, const Data& rhs) {
             temp.pop();
         }
     }
-    lhs << "\n"; // New line at the end
+    lhs << std::endl << std::endl;
     return lhs;
 }
