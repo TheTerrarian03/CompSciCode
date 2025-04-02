@@ -25,9 +25,9 @@ public:
 	void setPayRate(const double& newPayRate);
 	void setHours(const double& newHours);
 
-	double calculatePay();
+	virtual double calculatePay();  // to override a function
 
-private:
+protected:  // attributes are now acquired by objects inheriting from this class
 	string mName;
 	double mPayRate;
 	double mHours;

@@ -25,6 +25,7 @@ public:
 	// many of the functions that we find in the Employee
 	// class!
 
+	double calculatePay();
 
 private:
 	bool mIsSalaried;
