@@ -15,7 +15,7 @@ class Employee
 	// in this example to simplify a bit
 public:
 	Employee(const string& newName = "", const double& newPayRate = 8.55, const double& newHours = 0.0);
-	~Employee();
+	virtual ~Employee();  // allows derived classes to call this desturctor then clean up derived object
 
 	string getName();
 	double getPayRate();

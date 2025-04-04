@@ -11,16 +11,41 @@
 #include "Employee.hpp"
 #include "Manager.hpp"
 
+void printPay(Employee e);
+
 int main(void)
 {
-	Employee mEmployees[5];
+	// Employee e1("John", 16.85, 80);
+	// Manager m1("Jane", 3500, 75, true);
 
-	switch (type) {
-		case 1:
-			mEmployees[count] = new Employee()
+	Employee *employeeList[10] = {nullptr};
+	int numEmployees = 0, option = 0, count=0, type = 0;
+
+	cout << "Enter the number of employees:";
+	cin >> numEmployees;
+
+	for (; count < numEmployees; count++) {
+		cout << "Employee or manager? 1) hourly employee, 2) manager: ";
+		cin >> type;
+
+		switch (type) {
+			case 1: employeeList[count] = new Employee("John", 16.85, 80);
+					break;
+			case 2:	employeeList[count] = new Manager("Jane", 3500, 80, true);
+					break;
+			
+			// employeeList[count]->setHours(80);
+		}
+		// cout << "Pay: " << employeeList[count]->calculatePay() << endl;
+		printPay(*employeeList[count]);
+		delete employeeList[count];
 	}
 
 	return 0;
+}
+
+void printPay(Employee e) {
+	cout << e.getName() << ": " << e.calculatePay() << endl;
 }
 
 // constructors, descructors, friends, and the oeverloaded assignment operator is not inherited
