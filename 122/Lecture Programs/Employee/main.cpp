@@ -71,3 +71,10 @@ void printPay(Employee e) {
 	// a mix of the other forms
 	// class Chairman : public CEO, public COO
 	// diamond problem
+
+/* ----- Polymorphism ----- */
+// Ability for a single expression to take on multiple different meanings
+// a virtual function (V-Table) table is bult for every function that is virtual.
+	// that directs operations to the appropriate oen at runtime
+
+// you can start programming "in the general"
