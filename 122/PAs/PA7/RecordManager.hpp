@@ -2,6 +2,7 @@
 #include "util.hpp"
 #include <string>
 #include <sstream>
+#include <fstream>
 
 class RecordManager {
 
@@ -33,4 +34,9 @@ private:
     bool markAbsences();
     bool mmApplyEdit(Data newData);
     bool mmGenReports();
+
+    // helper functions
+    int getIntFromISS(std::istringstream &from);
+    double getDoubleFromISS(std::istringstream &from);
+    std::string getStrFromISS(std::istringstream &from);
 };

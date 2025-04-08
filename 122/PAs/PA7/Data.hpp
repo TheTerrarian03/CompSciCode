@@ -30,6 +30,8 @@ public:
     int getAbsences() const;
     std::stack<std::string> getAbsenceDates() const;
 
+    bool validRecord() const;
+
     // setters
     void setRecordNum(int _recordNum);
     void setIdNum(int _idNum);

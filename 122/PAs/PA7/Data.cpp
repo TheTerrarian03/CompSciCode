@@ -47,6 +47,17 @@ std::string Data::getLevel() const { return level; }
 int Data::getAbsences() const { return absences; }
 std::stack<std::string> Data::getAbsenceDates() const { return absenceDates; }
 
+bool Data::validRecord() const {
+    if (recordNum != -1 &&
+        idNum != -1 &&
+        name != "" &&
+        email != "" &&
+        program != "" &&
+        level != "") return true;
+    
+    return false;
+}
+
 // setters
 void Data::setRecordNum(int _recordNum) { recordNum = _recordNum; }
 void Data::setIdNum(int _idNum) { idNum = _idNum; }
