@@ -28,7 +28,7 @@ public:
     std::string getProgram() const;
     std::string getLevel() const;
     int getAbsences() const;
-    std::stack<std::string> getAbsenceDates() const;
+    std::stack<std::string>& getAbsenceDates();
 
     bool validRecord() const;
 
@@ -41,7 +41,7 @@ public:
     void setProgram(const std::string& _program);
     void setLevel(const std::string& _level);
     void setAbsences(int _absences);
-    void setAbsenceDates(const std::stack<std::string>& _absenceDates);
+    void setAbsenceDates(const std::stack<std::string>& _tmpAbsenceStack);
 
     // friend functions for operator overloads
     friend std::ostream& operator<<(std::ostream& lhs, const Data& rhs);

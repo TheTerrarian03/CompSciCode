@@ -49,11 +49,15 @@ bool RecordManager::performMainMenuOption(int option) {
     
     switch (option) {
         case 1: return mmImport();
+        case 2: return mmLoadMaster();
         case 3: return mmStoreMaster();
         case 6: {
             records.printList();
             return true;
             break;
+        }
+        default: {
+            std::cout << "Not implemented!" << std::endl;
         }
     }
 
@@ -69,10 +73,10 @@ bool RecordManager::mmImport() {
     records.deleteList();
 
     // then, try to open file and exit if fail
-    std::ifstream infile("classList.csv");
+    std::ifstream infile(CLASS_LIST_FILE);
 
     if (!infile.is_open()) {
-        std::cerr << "Failed to open `classList.csv` file! Could not read records." << std::endl;
+        std::cerr << "Failed to open `" << CLASS_LIST_FILE << "` file! Could not read records." << std::endl;
         return false;
     }
 
@@ -104,14 +108,14 @@ bool RecordManager::mmImport() {
         record.setEmail(getStrFromISS(iss));
         if (iss.peek() == 'A') {  // remove AU from credits and set credits to 0
             record.setUnits(0);
-            iss.get();
-            iss.get();
-            iss.get();
+            iss.get();  // 'A'
+            iss.get();  // 'U'
+            iss.get();  // ','
         } else {  // otherwise just extract value
             record.setUnits(getDoubleFromISS(iss));
         }
         record.setProgram(getStrFromISS(iss));
-        record.setLevel(getStrFromISS(iss));  // getting string here, still has newline
+        record.setLevel(getStrFromISS(iss));
 
         if (record.validRecord()) {
             records.insertAtFront(record);
@@ -122,17 +126,76 @@ bool RecordManager::mmImport() {
 
     return true;
 }
-bool RecordManager::mmLoadMaster() {}
+bool RecordManager::mmLoadMaster() {
+    // first, clear list
+    records.deleteList();
+
+    // try to open file to read from
+    std::ifstream infile(MASTER_LIST_FILE);
+
+    if (!infile.is_open()) {
+        std::cerr << "Failed to open `" << MASTER_LIST_FILE << "` file! Could not read master list." << std::endl;
+        return false;
+    }
+
+    // read header line
+    std::string line;
+    getline(infile, line);
+
+    // read until no more records
+    while(getline(infile, line)) {
+        if (line.empty()) {
+            std::cout << "Empty record found, skipping..." << std::endl;
+            continue;
+        }
+
+        Data record = Data();
+
+        // convert line to string stream to be read from
+        std::istringstream iss(line);
+
+        // read from string stream into values
+
+        record.setRecordNum(getIntFromISS(iss));
+        record.setIdNum(getIntFromISS(iss));
+        record.setName(getStrFromISS(iss));
+        record.setEmail(getStrFromISS(iss));
+        if (iss.peek() == 'A') {  // remove AU from credits and set credits to 0
+            record.setUnits(0);   // what else should have been done here?
+            iss.get();  // 'A'
+            iss.get();  // 'U'
+            iss.get();  // ','
+        } else {  // otherwise just extract value
+            record.setUnits(getDoubleFromISS(iss));
+        }
+        record.setProgram(getStrFromISS(iss));
+        record.setLevel(getStrFromISS(iss));
+        record.setAbsences(getIntFromISS(iss));
+        std::stack<std::string> absences = std::stack<std::string>();
+        while (iss.peek() != -1) {
+            absences.push(getStrFromISS(iss));
+        }
+        record.setAbsenceDates(absences);
+
+        if (record.validRecord()) {
+            records.insertAtFront(record);
+        }
+    }
+
+    infile.close();
+
+    return true;
+}
 bool RecordManager::mmStoreMaster() {
     // try to open file to export to
-    std::ofstream outfile("masterList.csv");
+    std::ofstream outfile(MASTER_LIST_FILE);
 
     if (!outfile.is_open()) {
-        std::cerr << "Failed to open or create `masterList.csv` file! Could not store master list." << std::endl;
+        std::cerr << "Failed to open or create `" << MASTER_LIST_FILE << "` file! Could not store master list." << std::endl;
     }
 
     // write header line
-    outfile << ",ID,Name,Email,Units,Program,Level,NumAbsences,AbsenceDates..." << std::endl;
+    outfile << MASTER_LIST_HEADER_STRING << std::endl;
     
     // made copy of records so they can be popped and written
     List<Data> copy(records);
@@ -156,6 +219,7 @@ bool RecordManager::mmStoreMaster() {
 
         while (!absences.empty()) {
             outfile << "," << absences.top();  // pop and write top date
+            absences.pop();
         }
 
         outfile << std::endl;
@@ -195,13 +259,15 @@ std::string RecordManager::getStrFromISS(std::istringstream &from) {
         getline(from, tmp, ',');
     }
 
-    // this doesn't seem to work right
+    // remove newline and carriage return from end of line
+    // i'm not sure how else to do this. I've looked at
+    // https://stackoverflow.com/questions/1488775/c-remove-new-line-from-multiline-string
+    // but none of those worked. Probably because of the '\r'
     if (!tmp.empty()) {
         while (tmp.back() == '\n' || tmp.back() == '\r') {
             tmp.pop_back();
         }
     }
 
-    // std::cout << "Read str string: '" << tmp << '\'' << std::endl;
     return tmp;
 }

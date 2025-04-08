@@ -24,16 +24,15 @@ Data::Data(int _recordNum,
 }
 Data::~Data() {}
 Data::Data(const Data& copy) {
-    recordNum = copy.getRecordNum();
-    idNum = copy.getIdNum();
-    name = copy.getName();
-    email = copy.getEmail();
-    units = copy.getUnits();
-    program = copy.getProgram();
-    level = copy.getLevel();
-    absences = copy.getAbsences();
-    
-    // absence stack here
+    recordNum = copy.recordNum;
+    idNum = copy.idNum;
+    name = copy.name;
+    email = copy.email;
+    units = copy.units;
+    program = copy.program;
+    level = copy.level;
+    absences = copy.absences;
+    absenceDates = copy.absenceDates;  // turn out this one missing line will cause your program to not work properly! no more dates :shrug:
 }
 
 // getters
@@ -45,7 +44,7 @@ double Data::getUnits() const { return units; }
 std::string Data::getProgram() const { return program; }
 std::string Data::getLevel() const { return level; }
 int Data::getAbsences() const { return absences; }
-std::stack<std::string> Data::getAbsenceDates() const { return absenceDates; }
+std::stack<std::string>& Data::getAbsenceDates() { return absenceDates; }
 
 bool Data::validRecord() const {
     if (recordNum != -1 &&
@@ -67,8 +66,9 @@ void Data::setUnits(double _units) { units = _units; }
 void Data::setProgram(const std::string& _program) { program = _program; }
 void Data::setLevel(const std::string& _level) { level = _level; }
 void Data::setAbsences(int _absences) { absences = _absences; }
-void Data::setAbsenceDates(const std::stack<std::string>& _absenceDates) { 
-    absenceDates = _absenceDates; 
+void Data::setAbsenceDates(const std::stack<std::string>& _tmpAbsenceStack) { 
+    absenceDates = _tmpAbsenceStack;  // deep copy of tmp stack to absenceDates via std::stack's operator=
+    if (!absenceDates.empty()) std::cout << "top of absences read: " << absenceDates.top() << std::endl;
 }
 
 // operator overloads

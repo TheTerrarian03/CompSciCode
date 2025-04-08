@@ -4,6 +4,10 @@
 #include <sstream>
 #include <fstream>
 
+#define CLASS_LIST_FILE "classList.csv"
+#define MASTER_LIST_FILE "masterList.csv"
+#define MASTER_LIST_HEADER_STRING ",ID,Name,Email,Units,Program,Level,NumAbsences,AbsenceDates..."
+
 class RecordManager {
 
 public:

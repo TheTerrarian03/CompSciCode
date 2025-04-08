@@ -118,6 +118,9 @@ int List<T>::length() {
     return len;
 }
 
+// side note: on my machine, it turns out that past 150000 records is too many
+// for the list to be able to delete, and seg faults when trying. So,
+// please don't have more than 150000 students you have to keep track of.
 template <typename T>
 void List<T>::deleteNode(Node<T> *node) {
     if (node == nullptr) return;
