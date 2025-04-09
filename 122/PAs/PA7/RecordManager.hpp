@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <format>
 
 #define CLASS_LIST_FILE "classList.csv"
 #define MASTER_LIST_FILE "masterList.csv"
@@ -35,7 +36,7 @@ private:
     bool mmImport();
     bool mmLoadMaster();
     bool mmStoreMaster();
-    bool markAbsences();
+    bool mmMarkAbsences();
     bool mmApplyEdit(Data newData);
     bool mmGenReports();
 

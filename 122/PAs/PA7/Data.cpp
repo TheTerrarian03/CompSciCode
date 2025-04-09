@@ -68,7 +68,6 @@ void Data::setLevel(const std::string& _level) { level = _level; }
 void Data::setAbsences(int _absences) { absences = _absences; }
 void Data::setAbsenceDates(const std::stack<std::string>& _tmpAbsenceStack) { 
     absenceDates = _tmpAbsenceStack;  // deep copy of tmp stack to absenceDates via std::stack's operator=
-    if (!absenceDates.empty()) std::cout << "top of absences read: " << absenceDates.top() << std::endl;
 }
 
 // operator overloads

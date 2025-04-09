@@ -51,6 +51,7 @@ bool RecordManager::performMainMenuOption(int option) {
         case 1: return mmImport();
         case 2: return mmLoadMaster();
         case 3: return mmStoreMaster();
+        case 4: return mmMarkAbsences();
         case 6: {
             records.printList();
             return true;
@@ -124,6 +125,8 @@ bool RecordManager::mmImport() {
 
     infile.close();
 
+    std::cout << "-- Successfully Imported from the class list!" << std::endl << std::endl;
+
     return true;
 }
 bool RecordManager::mmLoadMaster() {
@@ -184,6 +187,8 @@ bool RecordManager::mmLoadMaster() {
 
     infile.close();
 
+    std::cout << "-- Successfully Loaded from the master list!" << std::endl << std::endl;
+
     return true;
 }
 bool RecordManager::mmStoreMaster() {
@@ -227,9 +232,22 @@ bool RecordManager::mmStoreMaster() {
 
     outfile.close();
 
+    std::cout << "-- Successfully Stored the master list!" << std::endl << std::endl;
+
     return true;
 }
-bool RecordManager::markAbsences() {}
+bool RecordManager::mmMarkAbsences() {
+    time_t t = time(0);  // time now
+    struct tm * now = localtime( &t );
+    std::ostringstream oss = std::ostringstream();
+
+    oss << (now->tm_mon + 1) << "-" << (now->tm_mday) << "-" << (now->tm_year + 1900);
+    std::string date = oss.str();
+
+    std::cout << "current date: " << date << std::endl;
+    
+    return true;
+}
 bool RecordManager::mmApplyEdit(Data newData) {}
 bool RecordManager::mmGenReports() {}
 
