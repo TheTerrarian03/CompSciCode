@@ -4,10 +4,13 @@
 #include <sstream>
 #include <fstream>
 #include <format>
+#include <vector>
 
 #define CLASS_LIST_FILE "classList.csv"
 #define MASTER_LIST_FILE "masterList.csv"
 #define MASTER_LIST_HEADER_STRING ",ID,Name,Email,Units,Program,Level,NumAbsences,AbsenceDates..."
+#define REPORT_ALL_FILE "All Report.txt"
+#define REPORT_SPECIFIC_FILE "Specific Report.txt"
 
 class RecordManager {
 
@@ -26,19 +29,27 @@ private:
     // main & sub- menu functions
     int mainMenu();
     int reportMenu();
-    Data editMenu();
+    int minAbsenceMenu();
+    int editMenu();
     
     // perform functions
     bool performMainMenuOption(int option);
-    bool performReport(int type);
+    bool performAllReport();
+    bool performSpecificReport(int minAbsences);
 
     // abstracted main menu functions
     bool mmImport();
     bool mmLoadMaster();
     bool mmStoreMaster();
     bool mmMarkAbsences();
-    bool mmApplyEdit(Data newData);
+    bool mmEditAbsences();
     bool mmGenReports();
+
+    // abstracted edit menu functions
+    bool editStudent();
+    bool editDuplicates();
+    bool editClear();
+    bool editClearDay();
 
     // helper functions
     int getIntFromISS(std::istringstream &from);

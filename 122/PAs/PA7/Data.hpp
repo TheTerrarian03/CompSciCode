@@ -43,6 +43,8 @@ public:
     void setAbsences(int _absences);
     void setAbsenceDates(const std::stack<std::string>& _tmpAbsenceStack);
 
+    void addAbsence(const std::string& date);
+
     // friend functions for operator overloads
     friend std::ostream& operator<<(std::ostream& lhs, const Data& rhs);
 

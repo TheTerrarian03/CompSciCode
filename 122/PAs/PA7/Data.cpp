@@ -68,6 +68,12 @@ void Data::setLevel(const std::string& _level) { level = _level; }
 void Data::setAbsences(int _absences) { absences = _absences; }
 void Data::setAbsenceDates(const std::stack<std::string>& _tmpAbsenceStack) { 
     absenceDates = _tmpAbsenceStack;  // deep copy of tmp stack to absenceDates via std::stack's operator=
+    absences = (int)absenceDates.size();  // typecast in case?
+}
+
+void Data::addAbsence(const std::string& date) {
+    absenceDates.push(date);
+    absences++;
 }
 
 // operator overloads
