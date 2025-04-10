@@ -1,3 +1,13 @@
+/*
+- Name: Logan Meyers
+- TA: Martin Hundrup
+- Date Finished: 04-09-2025
+- Program: Student Absence Manager
+
+- File: Data.cpp
+- What: Function definitions for my Data class
+*/
+
 #include "Data.hpp"
 
 // constructors & destructor

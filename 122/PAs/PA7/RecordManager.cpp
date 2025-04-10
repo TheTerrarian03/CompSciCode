@@ -1,3 +1,14 @@
+/*
+- Name: Logan Meyers
+- TA: Martin Hundrup
+- Date Finished: 04-09-2025
+- Program: Student Absence Manager
+
+- File: RecordManager.cpp
+- What: Function definitions for my Record Manager wrapper
+        A cool 800 lines of awesomeness
+*/
+
 #include "RecordManager.hpp"
 
 // constructor and destructor

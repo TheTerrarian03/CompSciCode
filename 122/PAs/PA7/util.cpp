@@ -1,3 +1,13 @@
+/*
+- Name: Logan Meyers
+- TA: Martin Hundrup
+- Date Finished: 04-09-2025
+- Program: Student Absence Manager
+
+- File: util.cpp
+- What: Function definitions for my utility functions
+*/
+
 #include "util.hpp"
 
 void clearConsole() {
