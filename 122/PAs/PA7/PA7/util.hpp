@@ -10,6 +10,8 @@
 
 #pragma once
 
+#define _CRT_SECURE_NO_WARNINGS  // for locatime_s warning
+
 #include <iostream>
 #include <sstream>
 #include <cstdlib> // for system()

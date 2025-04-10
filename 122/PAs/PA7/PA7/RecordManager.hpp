@@ -16,7 +16,6 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <format>
 #include <vector>
 
 #define CLASS_LIST_FILE "classList.csv"
